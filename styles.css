@@ -1,0 +1,145 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f6f8fb;
+}
+
+.site-header {
+  background: #0b3b6f;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar__logo {
+  width: 32px;
+  height: 32px;
+  margin-right: 0.75rem;
+  border-radius: 6px;
+  background: white;
+  padding: 0.25rem;
+}
+
+.navbar__title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.navbar__link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 0.25rem;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.navbar__link:hover,
+.navbar__link:focus-visible {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.navbar__toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navbar__toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: white;
+  border-radius: 1px;
+  margin: 0;
+  transition: transform 0.2s ease;
+}
+
+.hero {
+  padding: 4rem 1rem;
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section {
+  padding: 3rem 1rem;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.footer {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background: #0b3b6f;
+  color: #eaf1ff;
+}
+
+@media (max-width: 720px) {
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar__links {
+    position: fixed;
+    top: 3rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(11, 59, 111, 0.95);
+    padding: 2rem 1.25rem;
+    gap: 2rem;
+    z-index: 101;
+    transform: translateY(-100vh);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .navbar__links--open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

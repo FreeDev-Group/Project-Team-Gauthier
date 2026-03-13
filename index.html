@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Team Gauthier</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <a class="navbar__brand" href="#">
+        <img class="navbar__logo" src="logo.svg" alt="Logo" />
+        <span class="navbar__title">Project Team Gauthier</span>
+      </a>
+
+      <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </button>
+
+      <ul class="navbar__links">
+        <li class="navbar__item"><a class="navbar__link" href="#">Home</a></li>
+        <li class="navbar__item"><a class="navbar__link" href="#about">About</a></li>
+        <li class="navbar__item"><a class="navbar__link" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <h1>Welcome to Project Team Gauthier</h1>
+      <p>This is a simple responsive navbar example you can build on.</p>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>Describe your project here.</p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Put contact details or a form here.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Project Team Gauthier</p>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.navbar__toggle');
+    const links = document.querySelector('.navbar__links');
+
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      links.classList.toggle('navbar__links--open');
+    });
+
+    const navLinks = document.querySelectorAll('.navbar__link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        links.classList.remove('navbar__links--open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+
+</html>
