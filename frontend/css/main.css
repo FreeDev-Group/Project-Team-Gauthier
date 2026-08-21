@@ -1,0 +1,49 @@
+/* ==========================================================================
+   main.css — Global entry point for all stylesheets
+   Owner: Mugisho (shared file — coordinate before editing)
+
+   Load order matters. Never change it lightly:
+     1. base       — reset, tokens, typography
+     2. components — reusable UI pieces
+
+   Page stylesheets (css/pages/*.css) are NOT imported here.
+   Each HTML page links its own page stylesheet AFTER main.css.
+   ========================================================================== */
+
+/* ---------- 1. BASE ---------- */
+@import url("base/reset.css");
+@import url("base/variables.css");
+@import url("base/typography.css");
+
+/* ---------- 2. COMPONENTS ---------- */
+@import url("components/navbar.css");
+@import url("components/footer.css");
+@import url("components/buttons.css");
+@import url("components/cards.css");
+@import url("components/forms.css");
+
+/* ---------- 3. GLOBAL LAYOUT HELPERS ---------- */
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.section {
+    padding-block: var(--section-spacing);
+}
+
+/* Accessibility: visually hidden but readable by screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
