@@ -368,3 +368,32 @@ body {
     display: none;
 }
 
+
+/* ==============================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 900px) {
+
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-brand {
+        min-height: 350px;
+        padding: 40px;
+    }
+
+    .logo {
+        margin-bottom: 35px;
+    }
+
+    .brand-content h1 {
+        font-size: 40px;
+    }
+
+    .auth-section {
+        padding: 40px 20px;
+    }
+}
+
