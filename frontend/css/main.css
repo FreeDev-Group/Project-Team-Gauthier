@@ -200,3 +200,35 @@ body {
     color: #777;
 }
 
+
+/* ==============================
+   FORM
+================================= */
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #d8d5da;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #5b2088;
+    box-shadow: 0 0 0 3px rgba(91, 32, 136, 0.1);
+}
+
