@@ -85,12 +85,23 @@ frontend/
 │
 └── assets/
     ├── images/
-    ├── icons/
+    │   ├── logo/           (logo-1.jpg → logo-5.jpg)
+    │   ├── backgrounds/
+    │   │   ├── dark/       (bg-dark-*.jpg)
+    │   │   └── light/      (bg-light-*.jpg)
+    │   ├── auth/           (login.jpg, signup.jpg)
+    │   └── mockup/         (final-work-output.png — maquette de référence)
+    │
+    ├── icons/              (SVG + PNG Lucide, voir assets/icons/README.md)
     └── fonts/
 
 docs/
 └── frontend-architecture.md
 ```
+
+Les sous-dossiers de `assets/images/` sont une organisation thématique, pas de nouveaux
+dossiers d'architecture. Ajoute un sous-dossier seulement si une vraie famille d'images
+apparaît (ex. `team/`, `case-studies/`) — jamais un sous-dossier par page.
 
 **Do not create any other frontend folder.** Notably forbidden: `frontend/styles/`, `frontend/scripts/`, `frontend/components/ui/`, `frontend/assets/data/`, `frontend/src/`.
 
@@ -110,9 +121,9 @@ docs/
 | `frontend/js/main.js` | General entry point. Injects the shared components and runs global behaviour. |
 | `frontend/js/components/` | Behaviour of the shared components. |
 | `frontend/js/pages/` | Behaviour specific to one page. |
-| `frontend/assets/images/` | Photos, illustrations, backgrounds. |
-| `frontend/assets/icons/` | SVG icons, favicon. |
-| `frontend/assets/fonts/` | Self-hosted font files. |
+| `frontend/assets/images/` | Photos, illustrations, backgrounds, logos, maquette de référence. |
+| `frontend/assets/icons/` | Icônes Lucide (SVG + PNG), favicon. Source et règles : `assets/icons/README.md`. |
+| `frontend/assets/fonts/` | Fichiers de police auto-hébergés. |
 | `docs/` | Team documentation. |
 
 ### How the stylesheets are loaded
@@ -186,7 +197,11 @@ Each HTML page links **two** stylesheets, in this order:
 
 ### Assets
 
-- `kebab-case`, descriptive: `hero-banner.jpg`, `icon-arrow-right.svg`.
+- `kebab-case`, descriptif : `bg-dark-3.jpg`, `logo-1.jpg`, `chevron-right.svg`.
+- **Jamais d'espace, de majuscule ni d'accent** dans un nom de fichier. Un espace dans une
+  URL doit être encodé en `%20` et casse silencieusement sur certains serveurs.
+- Les icônes gardent le nom exact de Lucide (voir `assets/icons/README.md`).
+- Chemin depuis `index.html` : `assets/…` — depuis `pages/*.html` : `../assets/…`.
 
 ### Git branches
 
