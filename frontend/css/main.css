@@ -317,3 +317,54 @@ body {
     transform: translateY(-1px);
 }
 
+
+/* ==============================
+   SWITCH LOGIN / REGISTER
+================================= */
+
+.switch-form {
+    text-align: center;
+    margin-top: 25px;
+    color: #777;
+    font-size: 14px;
+}
+
+.switch-form button {
+    border: none;
+    background: none;
+    color: #5b2088;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.switch-form button:hover {
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   ERRORS
+================================= */
+
+.error-message {
+    display: block;
+    color: #d93025;
+    font-size: 12px;
+    margin-top: 6px;
+    min-height: 15px;
+}
+
+.input-error {
+    border-color: #d93025 !important;
+}
+
+
+/* ==============================
+   HIDDEN
+================================= */
+
+.hidden {
+    display: none;
+}
+
