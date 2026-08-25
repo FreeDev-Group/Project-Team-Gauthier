@@ -97,3 +97,48 @@ body {
     position: relative;
     overflow: hidden;
 }
+
+.auth-brand::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(255, 210, 80, 0.3);
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+}
+
+.auth-brand::after {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(255, 210, 80, 0.2);
+    border-radius: 50%;
+    bottom: -80px;
+    left: -80px;
+}
+
+.brand-content {
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ==============================
+   LOGO
+================================= */
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 80px;
+}
+
+.logo span {
+    color: #f2c94c;
+}
+
