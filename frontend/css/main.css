@@ -257,3 +257,63 @@ body {
     font-weight: 600;
 }
 
+
+/* ==============================
+   OPTIONS
+================================= */
+
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    font-size: 13px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+}
+
+.remember input {
+    accent-color: #5b2088;
+}
+
+.form-options a {
+    color: #5b2088;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-options a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   BUTTON
+================================= */
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+
+    background: #f2c94c;
+    color: #321052;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.submit-btn:hover {
+    background: #e5bb35;
+    transform: translateY(-1px);
+}
+
