@@ -67,4 +67,33 @@ body {
 }
 
 
+/* ==============================
+   MAIN CONTAINER
+================================= */
 
+.auth-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+/* ==============================
+   BRAND SECTION
+================================= */
+
+.auth-brand {
+    background: linear-gradient(
+        135deg,
+        #321052,
+        #5b2088
+    );
+
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+}
