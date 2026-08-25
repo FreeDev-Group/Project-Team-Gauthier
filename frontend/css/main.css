@@ -142,3 +142,61 @@ body {
     color: #f2c94c;
 }
 
+
+/* ==============================
+   BRAND TEXT
+================================= */
+
+.brand-content h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.brand-content p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #eee5f5;
+    max-width: 430px;
+}
+
+
+/* ==============================
+   AUTH SECTION
+================================= */
+
+.auth-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 460px;
+    background: white;
+    padding: 45px;
+    border-radius: 18px;
+    box-shadow: 0 15px 50px rgba(40, 20, 50, 0.08);
+}
+
+
+/* ==============================
+   FORM HEADER
+================================= */
+
+.form-header {
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    font-size: 32px;
+    color: #321052;
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    color: #777;
+}
+
