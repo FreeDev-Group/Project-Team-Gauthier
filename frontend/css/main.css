@@ -232,3 +232,28 @@ body {
     box-shadow: 0 0 0 3px rgba(91, 32, 136, 0.1);
 }
 
+
+/* ==============================
+   PASSWORD
+================================= */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 65px;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #5b2088;
+    cursor: pointer;
+    font-weight: 600;
+}
+
