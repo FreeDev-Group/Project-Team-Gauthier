@@ -138,7 +138,66 @@
                 </div>
 
 
-                
+                <!-- REGISTER -->
+                <div id="registerForm" class="hidden">
+
+                    <div class="form-header">
+                        <h2>Create Account</h2>
+                        <p>Join Data Consultance today</p>
+                    </div>
+
+
+                    <form id="register">
+
+                        <div class="form-group">
+                            <label for="registerEmail">Email Address</label>
+
+                            <input
+                                type="email"
+                                id="registerEmail"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                            <small
+                                class="error-message"
+                                id="registerEmailError"
+                            ></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    type="password"
+                                    id="registerPassword"
+                                    name="password"
+                                    placeholder="Create a password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="show-password"
+                                    data-target="registerPassword"
+                                    aria-label="Show password"
+                                >
+                                    Show
+                                </button>
+
+                            </div>
+
+                            <small
+                                class="error-message"
+                                id="registerPasswordError"
+                            ></small>
+                        </div>
+
+                </div>
 
             </div>
 
