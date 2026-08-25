@@ -397,3 +397,24 @@ body {
     }
 }
 
+
+@media (max-width: 500px) {
+
+    .auth-brand {
+        min-height: 300px;
+        padding: 30px 25px;
+    }
+
+    .brand-content h1 {
+        font-size: 32px;
+    }
+
+    .brand-content p {
+        font-size: 15px;
+    }
+
+    .logo {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+}
