@@ -3,5 +3,393 @@
    Owner: Mugisho
 
    Styles for components/navbar.html only.
-   Use the tokens from base/variables.css. Do not hardcode values.
+   Written mobile-first: the burger panel is the base state, the horizontal
+   bar starts at the laptop breakpoint (992px).
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Component tokens
+
+   Spacing, typography, radius, shadows, transitions and z-index all come from
+   base/variables.css. The three brand colours below do NOT exist there yet:
+   --color-primary / --color-secondary / --color-accent are still #000000
+   placeholders. They are declared locally so the navbar renders correctly
+   today, and must move to base/variables.css in the Phase 0 token pass.
+   Once they are global, delete them here and swap in the var() references.
+   -------------------------------------------------------------------------- */
+
+.navbar {
+    /* TEMP — migrate to base/variables.css (Phase 0) */
+    --navbar-ink: #070723;          /* logo ink, sampled from logo-2.jpg */
+    --navbar-accent: #E49B3F;       /* site gold, sampled from the hero CTA */
+    --navbar-link: #171717;
+    --navbar-link-hover: #1E0636;   /* brand deep purple */
+
+    /* Layout */
+    --navbar-bg: var(--color-white);
+    --navbar-height: 60px;
+    --navbar-mark-size: 26px;
+    --navbar-separator: var(--color-gray-300);
+
+    position: relative;
+    background-color: var(--navbar-bg);
+    font-family: var(--font-primary);
+}
+
+/* Sticky host.
+   .navbar cannot stick to the viewport by itself: it only fills its parent
+   (#navbar-placeholder), so it would have nothing to travel through.
+   navbar.js tags that parent with .navbar-host. */
+.navbar-host {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-navbar);
+}
+
+.navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    width: 100%;
+    max-width: var(--container-max);
+    min-height: var(--navbar-height);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+/* Shadow appears only once the page is scrolled */
+.navbar::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    height: 1px;
+    background-color: var(--color-border);
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-in-out);
+}
+
+.navbar--scrolled {
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar--scrolled::after {
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Brand — DC mark + wordmark
+
+   The mockup shows a horizontal lockup (mark on the left, DATA / CONSULTANCY
+   stacked on the right). The only logo file available is logo-2.jpg, which is
+   a VERTICAL lockup. Rather than shrink the whole file until "CONSULTANCY" is
+   an unreadable 3px smear, we crop the mark out of it and set the wordmark as
+   real text — crisper, selectable, and it matches the mockup.
+
+   Crop measured on logo-2.jpg (447x354): mark occupies x 72->375, y 11->197.
+   Replace this block with a single <img> the day a horizontal SVG lockup exists.
+   -------------------------------------------------------------------------- */
+
+.navbar__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    flex: none;
+    color: var(--navbar-ink);
+    text-decoration: none;
+}
+
+.navbar__mark {
+    /* Geometry of logo-2.jpg, in source pixels */
+    --mark-src-w: 447;
+    --mark-src-h: 354;
+    --mark-x: 72;
+    --mark-y: 11;
+    --mark-w: 303;
+    --mark-h: 186;
+    /* Length of one source pixel once the mark is scaled to --navbar-mark-size */
+    --u: calc(var(--navbar-mark-size) / var(--mark-h));
+
+    position: relative;
+    display: block;
+    flex: none;
+    width: calc(var(--mark-w) * var(--u));
+    height: var(--navbar-mark-size);
+    overflow: hidden;
+}
+
+.navbar__mark-img {
+    position: absolute;
+    top: calc(var(--mark-y) * var(--u) * -1);
+    left: calc(var(--mark-x) * var(--u) * -1);
+    width: calc(var(--mark-src-w) * var(--u));
+    height: calc(var(--mark-src-h) * var(--u));
+    /* reset.css caps images at 100% of their box, which would undo the crop */
+    max-width: none;
+}
+
+.navbar__wordmark {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: var(--lh-tight);
+}
+
+.navbar__wordmark-name {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-tight);
+    color: var(--navbar-ink);
+}
+
+.navbar__wordmark-tag {
+    font-size: 8px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.14em;
+    color: var(--navbar-ink);
+}
+
+/* --------------------------------------------------------------------------
+   Burger toggle (hidden from 992px)
+   -------------------------------------------------------------------------- */
+
+.navbar__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    margin-inline-end: calc(var(--space-2xs) * -1);
+    border-radius: var(--radius-sm);
+    color: var(--navbar-link);
+    transition: background-color var(--duration-fast) var(--ease-in-out);
+}
+
+.navbar__toggle:hover {
+    background-color: var(--color-gray-100);
+}
+
+/* The three bars are one element plus its two pseudo-elements. */
+.navbar__burger,
+.navbar__burger::before,
+.navbar__burger::after {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: var(--radius-full);
+    background-color: currentColor;
+    transition: transform var(--duration-base) var(--ease-out),
+                opacity var(--duration-fast) var(--ease-in-out);
+}
+
+.navbar__burger {
+    position: relative;
+}
+
+.navbar__burger::before,
+.navbar__burger::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+.navbar__burger::before {
+    top: -7px;
+}
+
+.navbar__burger::after {
+    top: 7px;
+}
+
+/* Open state: middle bar fades, outer bars cross */
+.navbar__toggle--active .navbar__burger {
+    background-color: transparent;
+}
+
+.navbar__toggle--active .navbar__burger::before {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__toggle--active .navbar__burger::after {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+   Menu — mobile panel (base state)
+   -------------------------------------------------------------------------- */
+
+.navbar__menu {
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    z-index: var(--z-dropdown);
+    background-color: var(--navbar-bg);
+    border-top: var(--border-thin) solid var(--color-border);
+    box-shadow: var(--shadow-md);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--duration-base) var(--ease-in-out),
+                transform var(--duration-base) var(--ease-out),
+                visibility 0s linear var(--duration-base);
+}
+
+.navbar__menu--open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+}
+
+.navbar__list {
+    display: flex;
+    flex-direction: column;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding: var(--space-2xs) var(--container-padding) var(--space-sm);
+}
+
+.navbar__item {
+    border-bottom: var(--border-thin) solid var(--color-gray-100);
+}
+
+.navbar__item:last-child {
+    border-bottom: 0;
+}
+
+.navbar__link {
+    display: block;
+    padding-block: var(--space-xs);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-medium);
+    color: var(--navbar-link);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.navbar__link:hover,
+.navbar__link:focus-visible {
+    color: var(--navbar-link-hover);
+}
+
+.navbar__link--active {
+    font-weight: var(--fw-semibold);
+    color: var(--navbar-link-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Menu — horizontal bar (laptop and up)
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 992px) {
+
+    .navbar {
+        --navbar-height: 72px;
+        --navbar-mark-size: 30px;
+    }
+
+    .navbar__toggle {
+        display: none;
+    }
+
+    .navbar__menu {
+        position: static;
+        z-index: auto;
+        background: none;
+        border-top: 0;
+        box-shadow: none;
+
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: none;
+    }
+
+    .navbar__list {
+        flex-direction: row;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar__item {
+        display: flex;
+        align-items: center;
+        border-bottom: 0;
+    }
+
+    /* Thin "|" between links, as in the mockup.
+       Drawn as a bar rather than a "|" character so no screen reader
+       announces it and no font renders it differently. */
+    .navbar__item:not(:last-child)::after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 12px;
+        background-color: var(--navbar-separator);
+    }
+
+    .navbar__link {
+        position: relative;
+        padding: var(--space-2xs) var(--space-xs);
+        font-size: var(--fs-sm);
+    }
+
+    /* Gold underline on hover and on the current page */
+    .navbar__link::after {
+        content: "";
+        position: absolute;
+        left: var(--space-xs);
+        right: var(--space-xs);
+        bottom: 0;
+        height: 2px;
+        border-radius: var(--radius-full);
+        background-color: var(--navbar-accent);
+        transform: scaleX(0);
+        transition: transform var(--duration-base) var(--ease-out);
+    }
+
+    .navbar__link:hover::after,
+    .navbar__link:focus-visible::after,
+    .navbar__link--active::after {
+        transform: scaleX(1);
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .navbar__link {
+        padding-inline: var(--space-sm);
+    }
+
+    .navbar__link::after {
+        left: var(--space-sm);
+        right: var(--space-sm);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility
+   -------------------------------------------------------------------------- */
+
+.navbar__link:focus-visible,
+.navbar__brand:focus-visible,
+.navbar__toggle:focus-visible {
+    outline: 2px solid var(--navbar-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .navbar__menu,
+    .navbar__burger,
+    .navbar__burger::before,
+    .navbar__burger::after,
+    .navbar__link::after {
+        transition: none;
+    }
+}
