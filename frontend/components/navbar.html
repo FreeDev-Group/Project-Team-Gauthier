@@ -1,10 +1,59 @@
 <!--
   Navbar component — Data Consultancy
   Owner: Mugisho
-  This fragment is injected into #navbar-placeholder by js/components/navbar.js.
+  This fragment is injected into #navbar-placeholder by js/main.js.
   It is an HTML fragment: no <!DOCTYPE>, no <html>, no <head>, no <body>.
+
+  Paths: every link carries data-nav-href and the logo carries data-nav-src,
+  both relative to frontend/. js/components/navbar.js rewrites them at runtime
+  so the same fragment works from index.html and from pages/*.html.
+  Never hardcode a final href here.
 -->
 
-<nav class="navbar">
-    <!-- Navbar markup to be developed by Mugisho -->
+<nav class="navbar" aria-label="Main">
+    <div class="navbar__inner">
+
+        <a class="navbar__brand" href="index.html" data-nav-href="index.html">
+            <span class="navbar__mark">
+                <!-- src is set by navbar.js: an src here would 404 from pages/*.html -->
+                <img class="navbar__mark-img" data-nav-src="assets/images/logo/logo-2.jpg" alt="">
+            </span>
+            <span class="navbar__wordmark">
+                <span class="navbar__wordmark-name">DATA</span>
+                <span class="navbar__wordmark-tag">CONSULTANCY</span>
+            </span>
+        </a>
+
+        <button class="navbar__toggle" type="button"
+                aria-expanded="false" aria-controls="navbar-menu" aria-label="Open menu">
+            <span class="navbar__burger" aria-hidden="true"></span>
+        </button>
+
+        <div class="navbar__menu" id="navbar-menu">
+            <ul class="navbar__list">
+                <li class="navbar__item">
+                    <a class="navbar__link" href="index.html" data-nav-href="index.html">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="pages/about.html" data-nav-href="pages/about.html">About</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="pages/services.html" data-nav-href="pages/services.html">Services</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="pages/case-studies.html" data-nav-href="pages/case-studies.html">Case Studies</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="pages/industries.html" data-nav-href="pages/industries.html">Industries</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="pages/insights.html" data-nav-href="pages/insights.html">Insights</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="pages/contact.html" data-nav-href="pages/contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
 </nav>
