@@ -81,3 +81,26 @@ background: lightgoldenrodyellow;
   padding: 2rem 2rem 1.75rem;
 }
 
+
+
+.study-card__body .div {
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  background: rgba(36, 17, 52, 9.99);
+  border-radius: 0.5rem;
+
+}
+
+.study-card__body h2 {
+  margin: 0 0 0.85rem;
+  color: var(--color-bg);
+  font-size: clamp(1rem, 1vw + 1.1rem, 1.3rem);
+
+}
+
+.study-card__body p {
+  margin: 0.3rem 0;
+  color: white;
+  font-size: 0.90rem;
+  line-height: 1.3;
+}
