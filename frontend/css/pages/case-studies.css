@@ -148,3 +148,24 @@ background: lightgoldenrodyellow;
   background: rgba(50, 16, 82, 0.12);
   color: var(--color-primary);
 }
+
+.service-card__icon svg {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.service-card h3 {
+  margin: 0 0 0.7rem;
+  color: var(--color-primary);
+  font-size: 1.15rem;
+  line-height: 1.35;
+  min-height: 3.2em;
+}
+
+.service-card p {
+  margin: 0;
+  color: var(--case-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  min-height: 5.2em;
+}
