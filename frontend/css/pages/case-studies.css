@@ -12,3 +12,25 @@
 body {
 background: lightgoldenrodyellow;
 }
+
+.page--case-studies {
+  padding: 2.5rem 1.25rem 4.5rem;
+}
+
+.case-studies-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  margin-bottom: 1.5rem;
+}
+
+.section-heading h1
+ {
+  color: rgba(50, 16, 82, 0.12);;
+  font-weight: var(--fw-bold);
+  text-align: center;
+  align-items: center;
+  margin:auto;
+}
