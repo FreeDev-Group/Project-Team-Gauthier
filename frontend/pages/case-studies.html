@@ -1,27 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Consultancy — Case Studies</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/pages/case-studies.css">
-</head>
-<body>
-
-    <!-- Navbar is injected here (components/navbar.html) -->
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/pages/case-studies.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/images/logo/logo-6.png"
+    />
+  </head>
+  <body>
     <header id="navbar-placeholder"></header>
 
-    <main>
-        <!-- Case Studies page content -->
+    <main class="page page--case-studies">
+      <div class="title">
+        <h1>Case Studies</h1>
+      </div>
+      <div class="case-studies-shell">
+        <section
+          class="case-studies-summary"
+          aria-labelledby="case-studies-title"
+        >
+          <article class="study-card study-card--featured">
+            <div class="study-card__media">
+              <div class="case-image">
+                <img
+                  src="../assets/images/Case-studies/case.jfif"
+                  alt="Case study"
+                />
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
     </main>
 
-    <!-- Footer is injected here (components/footer.html) -->
     <footer id="footer-placeholder"></footer>
 
     <script src="../js/components/navbar.js"></script>
     <script src="../js/components/footer.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/pages/case-studies.js"></script>
-</body>
+  </body>
 </html>
