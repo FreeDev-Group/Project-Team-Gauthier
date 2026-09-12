@@ -184,3 +184,13 @@ background: lightgoldenrodyellow;
 .service-card a:focus-visible {
   color: var(--color-primary-light);
 }
+
+@media (max-width: 900px) {
+  .study-card {
+    grid-template-columns: 1fr;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
