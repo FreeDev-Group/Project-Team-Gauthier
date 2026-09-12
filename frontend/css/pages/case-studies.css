@@ -34,3 +34,27 @@ background: lightgoldenrodyellow;
   align-items: center;
   margin:auto;
 }
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.section-heading--compact {
+  margin-bottom: 1.25rem;
+}
+
+.study-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1.2fr);
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.study-card__media {
+    position: relative;
+    min-height: 310px;
+}
