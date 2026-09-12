@@ -1,7 +1,14 @@
-/* ==========================================================================
-   case-studies.css — Case Studies page styles
-   Owner: Arnold
+:root {
+  --case-bg: #f3efe9;
+  --case-panel: #ffffff;
+  --case-panel-alt: #f9f5f0;
+  --case-border: rgba(36, 17, 52, 0.12);
+  --case-text: #1d1b20;
+  --case-muted: #5d5862;
+  --case-accent: #f4c865;
+  --case-shadow: 0 18px 40px rgba(34, 20, 49, 0.08);
+}
 
-   Scoped to frontend/pages/case-studies.html.
-   Use the tokens from base/variables.css. Do not hardcode values.
-   ========================================================================== */
+body {
+background: lightgoldenrodyellow;
+}
