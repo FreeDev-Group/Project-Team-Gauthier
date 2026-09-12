@@ -194,3 +194,22 @@ background: lightgoldenrodyellow;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+@media (max-width: 640px) {
+  .page--case-studies {
+    padding-inline: 0.85rem;
+  }
+
+  .study-card__body {
+    padding: 1.4rem 1.1rem 1.35rem;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h1,
+  .section-heading h2 {
+    text-align: left;
+  }
+}
