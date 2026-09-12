@@ -124,3 +124,27 @@ background: lightgoldenrodyellow;
 .services-preview {
   margin-top: 2.5rem;
 }
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.service-card {
+  padding: 1.4rem 1.1rem 1.2rem;
+  box-shadow: 0 10px 20px rgba(40, 25, 53, 0.04);
+  min-height: 268px;
+}
+
+.service-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background: rgba(50, 16, 82, 0.12);
+  color: var(--color-primary);
+}
