@@ -58,3 +58,26 @@ background: lightgoldenrodyellow;
     position: relative;
     min-height: 310px;
 }
+
+.case-image {
+    width: 100%;
+}
+
+.case-image img {
+    width: 75%;
+    margin:auto;
+    height: 380px !important;
+    object-fit: cover;
+    display: block;
+    border-radius: 15.25rem 15.25rem 0 0;
+}
+
+
+
+.study-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 2rem 1.75rem;
+}
+
