@@ -169,3 +169,18 @@ background: lightgoldenrodyellow;
   line-height: 1.7;
   min-height: 5.2em;
 }
+
+.service-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--fw-semibold);
+}
+
+.service-card a:hover,
+.service-card a:focus-visible {
+  color: var(--color-primary-light);
+}
