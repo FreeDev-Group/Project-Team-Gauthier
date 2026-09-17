@@ -1,7 +1,215 @@
-/* ==========================================================================
-   case-studies.css — Case Studies page styles
-   Owner: Arnold
+:root {
+  --case-bg: #f3efe9;
+  --case-panel: #ffffff;
+  --case-panel-alt: #f9f5f0;
+  --case-border: rgba(36, 17, 52, 0.12);
+  --case-text: #1d1b20;
+  --case-muted: #5d5862;
+  --case-accent: #f4c865;
+  --case-shadow: 0 18px 40px rgba(34, 20, 49, 0.08);
+}
 
-   Scoped to frontend/pages/case-studies.html.
-   Use the tokens from base/variables.css. Do not hardcode values.
-   ========================================================================== */
+body {
+background: lightgoldenrodyellow;
+}
+
+.page--case-studies {
+  padding: 2.5rem 1.25rem 4.5rem;
+}
+
+.case-studies-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  margin-bottom: 1.5rem;
+}
+
+.section-heading h1
+ {
+  color: rgba(50, 16, 82, 0.12);;
+  font-weight: var(--fw-bold);
+  text-align: center;
+  align-items: center;
+  margin:auto;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.section-heading--compact {
+  margin-bottom: 1.25rem;
+}
+
+.study-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1.2fr);
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.study-card__media {
+    position: relative;
+    min-height: 310px;
+}
+
+.case-image {
+    width: 100%;
+}
+
+.case-image img {
+    width: 75%;
+    margin:auto;
+    height: 380px !important;
+    object-fit: cover;
+    display: block;
+    border-radius: 15.25rem 15.25rem 0 0;
+}
+
+
+
+.study-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 2rem 1.75rem;
+}
+
+
+
+.study-card__body .div {
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  background: rgba(36, 17, 52, 9.99);
+  border-radius: 0.5rem;
+
+}
+
+.study-card__body h2 {
+  margin: 0 0 0.85rem;
+  color: var(--color-bg);
+  font-size: clamp(1rem, 1vw + 1.1rem, 1.3rem);
+
+}
+
+.study-card__body p {
+  margin: 0.3rem 0;
+  color: white;
+  font-size: 0.90rem;
+  line-height: 1.3;
+}
+
+.study-card__body strong {
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+
+.study-card__result {
+  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.6rem 0.9rem;
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+  font-size: 0.94rem;
+}
+
+.services-preview {
+  margin-top: 2.5rem;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.service-card {
+  padding: 1.4rem 1.1rem 1.2rem;
+  box-shadow: 0 10px 20px rgba(40, 25, 53, 0.04);
+  min-height: 268px;
+}
+
+.service-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background: rgba(50, 16, 82, 0.12);
+  color: var(--color-primary);
+}
+
+.service-card__icon svg {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.service-card h3 {
+  margin: 0 0 0.7rem;
+  color: var(--color-primary);
+  font-size: 1.15rem;
+  line-height: 1.35;
+  min-height: 3.2em;
+}
+
+.service-card p {
+  margin: 0;
+  color: var(--case-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  min-height: 5.2em;
+}
+
+.service-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--fw-semibold);
+}
+
+.service-card a:hover,
+.service-card a:focus-visible {
+  color: var(--color-primary-light);
+}
+
+@media (max-width: 900px) {
+  .study-card {
+    grid-template-columns: 1fr;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .page--case-studies {
+    padding-inline: 0.85rem;
+  }
+
+  .study-card__body {
+    padding: 1.4rem 1.1rem 1.35rem;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h1,
+  .section-heading h2 {
+    text-align: left;
+  }
+}
