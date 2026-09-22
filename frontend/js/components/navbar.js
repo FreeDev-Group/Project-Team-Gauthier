@@ -8,8 +8,10 @@
    Responsibilities:
      - rewrite data-nav-href / data-nav-src for the current page depth
      - flag the link matching the current page
-     - drive the mobile burger menu
-     - toggle the sticky shadow on scroll
+     - drive the mobile burger menu (and lock page scroll while it is open)
+     - toggle the sticky glass state on scroll
+     - slide the gold indicator between links (desktop)
+     - fill the reading-progress bar
 
    Everything lives inside an IIFE so only initNavbar() reaches the global
    scope: navbar.js, footer.js and the page scripts share one global namespace.
@@ -92,6 +94,8 @@
         var desktop = window.matchMedia(DESKTOP_QUERY);
 
         function setOpen(open) {
+            // The page behind the mobile panel must not scroll
+            document.documentElement.classList.toggle("navbar-locked", open && !desktop.matches);
             menu.classList.toggle("navbar__menu--open", open);
             toggle.classList.toggle("navbar__toggle--active", open);
             toggle.setAttribute("aria-expanded", String(open));
@@ -149,6 +153,106 @@
     }
 
     /**
+     * Slide one gold underline between links on the horizontal bar.
+     * It rests under the current page, follows hover and keyboard focus,
+     * and goes back to the current page when the pointer or focus leaves.
+     * Positions are written as custom properties read by navbar.css.
+     * @param {HTMLElement} navbar
+     */
+    function setupIndicator(navbar) {
+        var menu = navbar.querySelector(".navbar__menu");
+        var indicator = navbar.querySelector(".navbar__indicator");
+        if (!menu || !indicator) return;
+
+        var desktop = window.matchMedia(DESKTOP_QUERY);
+        var links = navbar.querySelectorAll(".navbar__link");
+        var target = null;
+
+        function restingLink() {
+            return navbar.querySelector(".navbar__link--active");
+        }
+
+        function place(link) {
+            target = link;
+
+            if (!link || !desktop.matches) {
+                indicator.style.setProperty("--indicator-o", "0");
+                return;
+            }
+
+            var box = menu.getBoundingClientRect();
+            var rect = link.getBoundingClientRect();
+            // Match the width of the text, not of the padded hit area
+            var inset = parseFloat(window.getComputedStyle(link).paddingLeft) || 0;
+
+            indicator.style.setProperty("--indicator-x", (rect.left - box.left + inset) + "px");
+            indicator.style.setProperty("--indicator-y", (rect.bottom - box.top - 2) + "px");
+            indicator.style.setProperty("--indicator-w", Math.max(0, rect.width - inset * 2) + "px");
+            indicator.style.setProperty("--indicator-o", "1");
+        }
+
+        links.forEach(function (link) {
+            link.addEventListener("mouseenter", function () { place(link); });
+            link.addEventListener("focus", function () { place(link); });
+        });
+
+        menu.addEventListener("mouseleave", function () { place(restingLink()); });
+        menu.addEventListener("focusout", function (event) {
+            if (!menu.contains(event.relatedTarget)) place(restingLink());
+        });
+
+        var frame = 0;
+        function replace() {
+            window.cancelAnimationFrame(frame);
+            frame = window.requestAnimationFrame(function () { place(target || restingLink()); });
+        }
+
+        window.addEventListener("resize", replace);
+        desktop.addEventListener("change", replace);
+        // Web fonts change link widths once they load
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(replace);
+
+        place(restingLink());
+        navbar.classList.add("navbar--indicator");
+
+        // Enable the slide only after the first placement, so it does not
+        // fly in from the left edge on page load.
+        window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(function () {
+                indicator.classList.add("navbar__indicator--ready");
+            });
+        });
+    }
+
+    /**
+     * Fill the reading-progress bar as the page scrolls.
+     * @param {HTMLElement} navbar
+     */
+    function setupProgress(navbar) {
+        var bar = navbar.querySelector(".navbar__progress");
+        if (!bar) return;
+
+        var queued = false;
+
+        function update() {
+            queued = false;
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            var ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+            bar.style.setProperty("--navbar-progress", ratio.toFixed(4));
+        }
+
+        function queue() {
+            if (queued) return;
+            queued = true;
+            window.requestAnimationFrame(update);
+        }
+
+        window.addEventListener("scroll", queue, { passive: true });
+        window.addEventListener("resize", queue);
+        update();
+    }
+
+    /**
      * Initialise the navbar. Safe to call more than once.
      */
     function initNavbar() {
@@ -168,6 +272,8 @@
 
         setupToggle(navbar);
         setupSticky(navbar);
+        setupIndicator(navbar);
+        setupProgress(navbar);
     }
 
     window.initNavbar = initNavbar;

@@ -318,7 +318,10 @@
     }
 
     .navbar__menu {
-        position: static;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
         z-index: auto;
         background: none;
         border-top: 0;
@@ -413,5 +416,179 @@
     .navbar__burger::after,
     .navbar__link::after {
         transition: none;
+    }
+}
+
+/* ==========================================================================
+   Enhancements
+   Sliding indicator, reading progress, glass on scroll, mobile panel.
+   Kept in one block so the base navbar above stays readable.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Glass bar once the page scrolls
+   -------------------------------------------------------------------------- */
+
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+
+    .navbar {
+        transition: background-color var(--duration-base) var(--ease-in-out),
+                    box-shadow var(--duration-base) var(--ease-in-out);
+    }
+
+    .navbar--scrolled {
+        background-color: rgba(255, 255, 255, 0.86);
+        -webkit-backdrop-filter: saturate(180%) blur(12px);
+        backdrop-filter: saturate(180%) blur(12px);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Reading progress
+   A 2px bar on the bottom edge, filled by navbar.js with --navbar-progress
+   (0 -> 1). Scaled rather than resized, so it never triggers layout.
+   -------------------------------------------------------------------------- */
+
+.navbar__progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--navbar-link-hover), var(--navbar-accent));
+    transform: scaleX(var(--navbar-progress, 0));
+    transform-origin: left center;
+    pointer-events: none;
+}
+
+/* The indicator only exists on the horizontal bar */
+.navbar__indicator {
+    display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile panel (< 992px)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 991px) {
+
+    /* Tall content never pushes the panel off-screen */
+    .navbar__menu {
+        max-height: calc(100vh - var(--navbar-height));
+        max-height: calc(100dvh - var(--navbar-height));
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    /* Links cascade in when the panel opens */
+    .navbar__item {
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity var(--duration-base) var(--ease-out),
+                    transform var(--duration-base) var(--ease-out);
+    }
+
+    .navbar__menu--open .navbar__item {
+        opacity: 1;
+        transform: none;
+    }
+
+    .navbar__menu--open .navbar__item:nth-child(2) { transition-delay: 30ms; }
+    .navbar__menu--open .navbar__item:nth-child(3) { transition-delay: 60ms; }
+    .navbar__menu--open .navbar__item:nth-child(4) { transition-delay: 90ms; }
+    .navbar__menu--open .navbar__item:nth-child(5) { transition-delay: 120ms; }
+    .navbar__menu--open .navbar__item:nth-child(6) { transition-delay: 150ms; }
+    .navbar__menu--open .navbar__item:nth-child(7) { transition-delay: 180ms; }
+
+    /* Chevron on every row, gold on the current page */
+    .navbar__link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .navbar__link::after {
+        content: "";
+        flex: none;
+        width: 16px;
+        height: 16px;
+        background-color: var(--color-gray-400);
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+        transition: transform var(--duration-fast) var(--ease-out),
+                    background-color var(--duration-fast) var(--ease-in-out);
+    }
+
+    .navbar__link:hover::after,
+    .navbar__link:focus-visible::after {
+        background-color: var(--navbar-link-hover);
+        transform: translateX(2px);
+    }
+
+    .navbar__link--active::after {
+        background-color: var(--navbar-accent);
+    }
+}
+
+/* Page behind the open mobile panel does not scroll (class set by navbar.js) */
+.navbar-locked {
+    overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Horizontal bar (>= 992px): sliding indicator
+   navbar.js adds .navbar--indicator once it has placed the bar; until then
+   (or without JS) each link keeps its own underline.
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 992px) {
+
+    .navbar__indicator {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--indicator-w, 0);
+        height: 2px;
+        border-radius: var(--radius-full);
+        background-color: var(--navbar-accent);
+        opacity: var(--indicator-o, 0);
+        transform: translate(var(--indicator-x, 0), var(--indicator-y, 0));
+        pointer-events: none;
+    }
+
+    /* No transition on the first placement, only once it is in position */
+    .navbar__indicator--ready {
+        transition: transform var(--duration-slow) var(--ease-out),
+                    width var(--duration-slow) var(--ease-out),
+                    opacity var(--duration-base) var(--ease-in-out);
+    }
+
+    .navbar--indicator .navbar__link::after {
+        display: none;
+    }
+
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .navbar,
+    .navbar__item,
+    .navbar__indicator--ready,
+    .navbar__link::after {
+        transition: none;
+    }
+
+    .navbar__item {
+        transform: none;
+    }
+
+    .navbar__link:hover::after {
+        transform: none;
     }
 }

@@ -8,6 +8,10 @@
   both relative to frontend/. js/components/navbar.js rewrites them at runtime
   so the same fragment works from index.html and from pages/*.html.
   Never hardcode a final href here.
+
+  NEVER put a closing svg, body or head tag in this file, not even in a
+  comment: Live Server injects its reload script before each of them and
+  truncates the response. Icons are CSS masks (see navbar.css).
 -->
 
 <nav class="navbar" aria-label="Main">
@@ -53,7 +57,13 @@
                     <a class="navbar__link" href="pages/contact.html" data-nav-href="pages/contact.html">Contact</a>
                 </li>
             </ul>
+
+            <!-- Single gold underline that slides between links (desktop, navbar.js) -->
+            <span class="navbar__indicator" aria-hidden="true"></span>
         </div>
 
     </div>
+
+    <!-- Reading progress, filled by navbar.js -->
+    <span class="navbar__progress" aria-hidden="true"></span>
 </nav>
