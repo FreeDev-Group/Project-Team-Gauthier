@@ -2,6 +2,218 @@
    home.css — Home page styles
    Owner: Mugisho
 
-   Scoped to frontend/index.html.
-   Use the tokens from base/variables.css. Do not hardcode values.
+   Scoped to frontend/index.html. Every rule is prefixed by its section
+   (.hero__*, ...), so nothing leaks into the navbar, the footer or other pages.
+
+   Source of truth: assets/images/mockup/final-work-output.png.
+   Mockup values are scaled x1.9, the factor that turns the mockup navbar
+   (40px) into the real one (73px).
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Page tokens
+   Brand colours sampled from the mockup. base/variables.css still holds
+   #000000 placeholders for them, so they stay local until the Phase 0
+   token pass (same values as navbar.css and footer.css).
+   -------------------------------------------------------------------------- */
+
+.hero {
+    --home-purple: #1E0636;
+    --home-cream: #F9F2DF;
+    --home-gold: #E49B3F;
+    --home-gold-hover: #F0AE57;
+}
+
+/* ==========================================================================
+   1. Hero
+   Mockup: 544 x 232 px. Text starts at 9% (the logo's edge) and is centred
+   vertically; the photo shows through on the right behind a purple fade.
+   ========================================================================== */
+
+.hero {
+    position: relative;
+    /* Keeps the z-index of the layers below inside the hero, so they never
+       compete with the sticky navbar */
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    /* 232/544 of the width, as in the mockup: 440px at 1034px, 613px at 1440px */
+    min-height: clamp(440px, 42.6vw, 620px);
+    overflow: hidden;
+    background-color: var(--home-purple);
+}
+
+.hero__image {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    /* Wider frame than the photo: crop top and bottom, keep the presenter
+       and the screen in view */
+    object-fit: cover;
+    /* Anchored to the top: best match with the mockup framing */
+    object-position: 50% 0%;
+}
+
+/* Opaque purple behind the text, fading out over the photo.
+   Measured on the mockup: fully purple up to ~30% of the width, already
+   half transparent at 45%, light from 65%. */
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        90deg,
+        rgba(30, 6, 54, 0.95) 0%,
+        rgba(30, 6, 54, 0.9) 30%,
+        rgba(30, 6, 54, 0.5) 46%,
+        rgba(30, 6, 54, 0.22) 66%,
+        rgba(30, 6, 54, 0.1) 100%
+    );
+}
+
+/* Same width and gutters as the navbar and the footer */
+.hero__container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding: var(--space-2xl) var(--container-padding);
+}
+
+.hero__content {
+    max-width: 600px;
+}
+
+.hero__title {
+    /* 13em breaks "Data Consulting That / Drives Business Growth" on two
+       lines, as in the mockup */
+    max-width: 13em;
+    /* Mockup x1.9: 30px between the title and the subtitle */
+    margin: 0 0 14px;
+    font-family: inherit;
+    /* 44px: first line 442px wide and a 52px line pitch, as in the mockup */
+    font-size: clamp(2rem, 1.2rem + 2.4vw, 2.75rem);
+    font-weight: var(--fw-bold);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    color: var(--home-cream);
+}
+
+.hero__subtitle {
+    max-width: 31em;
+    /* Mockup x1.9: 26px line pitch, 35px down to the button */
+    margin: 0 0 28px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(249, 242, 223, 0.88);
+}
+
+.hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Mockup x1.9: 244 x 40px */
+    min-height: 40px;
+    padding: 9px 24px;
+    border-radius: 6px;
+    background-color: var(--home-gold);
+    /* Thin darker rim, as on the mockup button */
+    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    color: var(--home-purple);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-in-out);
+}
+
+.hero__cta:hover,
+.hero__cta:focus-visible {
+    background-color: var(--home-gold-hover);
+    color: var(--home-purple);
+    transform: translateY(-1px);
+    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25),
+                0 10px 24px -10px rgba(228, 155, 63, 0.75);
+}
+
+.hero__cta:focus-visible {
+    outline: 2px solid var(--home-cream);
+    outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Hero — responsive
+   -------------------------------------------------------------------------- */
+
+/* Same gutters as .navbar__inner from 768px */
+@media (min-width: 768px) {
+
+    .hero__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+/* Tablet: the text covers more of the photo, so the fade reaches further */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .hero__overlay {
+        background: linear-gradient(
+            90deg,
+            rgba(30, 6, 54, 0.92) 0%,
+            rgba(30, 6, 54, 0.85) 50%,
+            rgba(30, 6, 54, 0.45) 78%,
+            rgba(30, 6, 54, 0.2) 100%
+        );
+    }
+}
+
+/* Narrow screens: the photo sits behind the whole text block, so the
+   purple becomes an even veil instead of a side fade */
+@media (max-width: 767px) {
+
+    .hero {
+        min-height: 0;
+    }
+
+    .hero__image {
+        object-position: 62% 30%;
+    }
+
+    .hero__overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(30, 6, 54, 0.82) 0%,
+            rgba(30, 6, 54, 0.9) 100%
+        );
+    }
+
+    .hero__container {
+        padding-block: var(--space-2xl);
+    }
+
+    .hero__subtitle {
+        font-size: var(--fs-base);
+    }
+}
+
+@media (max-width: 479px) {
+
+    .hero__cta {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero__cta {
+        transition: none;
+    }
+
+    .hero__cta:hover,
+    .hero__cta:focus-visible {
+        transform: none;
+    }
+}
