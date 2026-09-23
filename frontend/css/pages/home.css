@@ -17,11 +17,15 @@
    token pass (same values as navbar.css and footer.css).
    -------------------------------------------------------------------------- */
 
-.hero {
+/* home.css is linked by index.html only, so <main> scopes these to the Home */
+main {
     --home-purple: #1E0636;
     --home-cream: #F9F2DF;
     --home-gold: #E49B3F;
     --home-gold-hover: #F0AE57;
+    --home-ink: #0A0705;
+    --home-text: #33302A;
+    --home-teal: #24707B;
 }
 
 /* ==========================================================================
@@ -37,8 +41,14 @@
     isolation: isolate;
     display: flex;
     align-items: center;
-    /* 232/544 of the width, as in the mockup: 440px at 1034px, 613px at 1440px */
-    min-height: clamp(440px, 42.6vw, 620px);
+    /* Mockup proportion (232/544), trimmed to 196/544 so the band stays
+       compact: 519px at 1440px instead of 614px.
+       width: 100% is required, otherwise min-height makes aspect-ratio
+       widen the box past the viewport. */
+    width: 100%;
+    aspect-ratio: 544 / 196;
+    min-height: 380px;
+    max-height: 560px;
     overflow: hidden;
     background-color: var(--home-purple);
 }
@@ -52,8 +62,15 @@
     /* Wider frame than the photo: crop top and bottom, keep the presenter
        and the screen in view */
     object-fit: cover;
-    /* Anchored to the top: best match with the mockup framing */
-    object-position: 50% 0%;
+    /* 38%: keeps the faces, the screen and the table inside the frame */
+    object-position: 50% 38%;
+    /* Very slow zoom: the scene breathes without pulling the eye away */
+    animation: hero-zoom 28s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes hero-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.07); }
 }
 
 /* Opaque purple behind the text, fading out over the photo.
@@ -78,7 +95,7 @@
     width: 100%;
     max-width: var(--container-max);
     margin-inline: auto;
-    padding: var(--space-2xl) var(--container-padding);
+    padding: var(--space-xl) var(--container-padding);
 }
 
 .hero__content {
@@ -175,6 +192,9 @@
 @media (max-width: 767px) {
 
     .hero {
+        /* Portrait screens cannot show a landscape photo whole without a
+           huge empty band: back to a cropped background here */
+        aspect-ratio: auto;
         min-height: 0;
     }
 
@@ -216,4 +236,391 @@
     .hero__cta:focus-visible {
         transform: none;
     }
+}
+
+/* --------------------------------------------------------------------------
+   Hero — gold edge, scroll cue and text entrance
+   -------------------------------------------------------------------------- */
+
+/* Thin gold line on the bottom edge, echoing the navbar */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(228, 155, 63, 0.75) 50%, transparent);
+}
+
+.hero__scroll {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(249, 242, 223, 0.75);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-in-out),
+                opacity var(--duration-base) var(--ease-in-out);
+}
+
+.hero__scroll:hover,
+.hero__scroll:focus-visible {
+    color: var(--home-cream);
+}
+
+.hero__scroll:focus-visible {
+    outline: 2px solid var(--home-cream);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.hero__scroll-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+    animation: hero-cue 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes hero-cue {
+    0%, 100% { transform: translateY(0); opacity: 0.75; }
+    50%      { transform: translateY(5px); opacity: 1; }
+}
+
+/* home.js hides the cue as soon as the page scrolls */
+.hero--scrolled .hero__scroll {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Text entrance, same mechanism as the About reveal */
+.js-reveal .hero__content > * {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+}
+
+.js-reveal .hero.is-visible .hero__content > * {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .hero.is-visible .hero__content > *:nth-child(2) { transition-delay: 110ms; }
+.js-reveal .hero.is-visible .hero__content > *:nth-child(3) { transition-delay: 220ms; }
+
+@media (max-width: 767px) {
+
+    .hero__scroll {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero__image,
+    .hero__scroll-icon {
+        animation: none;
+    }
+
+    .js-reveal .hero__content > * {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   2. About
+   Mockup: cream band, 544 x 235px, right after the hero.
+   Portrait on the left (176 x 186px, rounded), text on the right starting
+   at 48% of the width. Photo and text are centred on each other.
+   ========================================================================== */
+
+.about {
+    /* Mockup x1.9: 447px tall in all */
+    padding-block: 56px 64px;
+    background-color: var(--home-cream);
+}
+
+/* Same width and gutters as the hero, the navbar and the footer */
+.about__container {
+    display: grid;
+    /* Photo on the left, text filling the rest up to the container edge */
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    align-items: center;
+    column-gap: clamp(32px, 5vw, 72px);
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+/* --------------------------------------------------------------------------
+   Portrait
+   -------------------------------------------------------------------------- */
+
+/* Thin gold frame offset behind the portrait: depth without another asset */
+.about__media {
+    position: relative;
+    margin: 0;
+}
+
+.about__media::before {
+    content: "";
+    position: absolute;
+    inset: 18px -18px -18px 18px;
+    border: 2px solid var(--home-gold);
+    border-radius: 9px;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.about__image {
+    position: relative;
+    width: 100%;
+    /* The width/height attributes map to CSS height, which would win over
+       aspect-ratio: height must be reset here */
+    height: auto;
+    /* 176/186 of the mockup: a near-square portrait */
+    aspect-ratio: 176 / 186;
+    /* The file is a wider frame: crop the sides, keep the subject centred */
+    object-fit: cover;
+    object-position: 48% 50%;
+    border-radius: 9px;
+    box-shadow: 0 18px 36px -24px rgba(10, 7, 5, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   Text
+   -------------------------------------------------------------------------- */
+
+.about__title {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 15px;
+    font-family: inherit;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--home-ink);
+}
+
+.about__title-kicker {
+    font-size: 28px;
+    font-weight: var(--fw-bold);
+}
+
+.about__title-name {
+    /* 306px wide, as in the mockup */
+    font-size: 31px;
+    font-weight: var(--fw-bold);
+}
+
+.about__lead {
+    max-width: 36em;
+    margin: 0 0 19px;
+    font-size: var(--fs-base);
+    line-height: 1.5;
+    color: var(--home-text);
+}
+
+.about__note {
+    margin: 0 0 27px;
+    font-size: var(--fs-base);
+    line-height: 1.5;
+    color: var(--home-text);
+}
+
+/* --------------------------------------------------------------------------
+   Checked list
+   -------------------------------------------------------------------------- */
+
+.about__list {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.about__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: var(--fs-base);
+    line-height: 1.4;
+    color: var(--home-ink);
+}
+
+/* Teal disc with the white tick from assets/icons/check.svg.
+   A CSS mask lets the file be recoloured; it is never inline SVG, which
+   Live Server would break. */
+.about__check {
+    display: block;
+    flex: none;
+    width: 23px;
+    height: 23px;
+    border-radius: var(--radius-full);
+    background-color: var(--home-teal);
+    position: relative;
+}
+
+.about__check::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 13px;
+    height: 13px;
+    background-color: var(--color-white);
+    -webkit-mask: url("../../assets/icons/check.svg") center / contain no-repeat;
+    mask: url("../../assets/icons/check.svg") center / contain no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   About — button to the About page
+   -------------------------------------------------------------------------- */
+
+.about__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-height: 40px;
+    margin-top: 28px;
+    padding: 9px 22px;
+    border-radius: 6px;
+    background-color: var(--home-purple);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    color: var(--home-cream);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-in-out);
+}
+
+.about__cta:hover,
+.about__cta:focus-visible {
+    background-color: #2A0B47;
+    color: var(--home-cream);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px -12px rgba(30, 6, 54, 0.6);
+}
+
+.about__cta:focus-visible {
+    outline: 2px solid var(--home-purple);
+    outline-offset: 3px;
+}
+
+/* Arrow as a CSS mask: never inline SVG, which Live Server would break */
+.about__cta-icon {
+    display: block;
+    flex: none;
+    width: 15px;
+    height: 15px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.about__cta:hover .about__cta-icon,
+.about__cta:focus-visible .about__cta-icon {
+    transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   About — reveal on scroll
+   home.js adds .is-visible when the section enters the viewport. Without JS
+   everything stays visible: the hidden state is only applied once the script
+   has flagged the page with .js-reveal.
+   -------------------------------------------------------------------------- */
+
+.js-reveal .about__media,
+.js-reveal .about__content > * {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-reveal .about.is-visible .about__media,
+.js-reveal .about.is-visible .about__content > * {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .about.is-visible .about__content > *:nth-child(2) { transition-delay: 80ms; }
+.js-reveal .about.is-visible .about__content > *:nth-child(3) { transition-delay: 140ms; }
+.js-reveal .about.is-visible .about__content > *:nth-child(4) { transition-delay: 200ms; }
+.js-reveal .about.is-visible .about__content > *:nth-child(5) { transition-delay: 260ms; }
+
+@media (prefers-reduced-motion: reduce) {
+
+    .about__cta,
+    .about__cta-icon {
+        transition: none;
+    }
+
+    .about__cta:hover,
+    .about__cta:focus-visible,
+    .about__cta:hover .about__cta-icon {
+        transform: none;
+    }
+
+    .js-reveal .about__media,
+    .js-reveal .about__content > * {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   About — responsive
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+    .about__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+/* Tablet: keep the two columns but give the text more room */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .about__container {
+        grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    }
+
+    .about__title-kicker { font-size: 22px; }
+    .about__title-name { font-size: 25px; }
+}
+
+/* Narrow screens: portrait above the text */
+@media (max-width: 767px) {
+
+    .about {
+        padding-block: 48px 56px;
+    }
+
+    .about__container {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: var(--space-lg);
+    }
+
+    .about__media {
+        max-width: 320px;
+    }
+
+    .about__title-kicker { font-size: 21px; }
+    .about__title-name { font-size: 24px; }
 }
