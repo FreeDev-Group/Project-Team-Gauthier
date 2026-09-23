@@ -61,16 +61,12 @@ main {
     height: 100%;
     /* Wider frame than the photo: crop top and bottom, keep the presenter
        and the screen in view */
-    object-fit: cover;
-    /* 38%: keeps the faces, the screen and the table inside the frame */
-    object-position: 50% 38%;
-    /* Very slow zoom: the scene breathes without pulling the eye away */
-    animation: hero-zoom 28s var(--ease-in-out) infinite alternate;
-}
-
-@keyframes hero-zoom {
-    from { transform: scale(1); }
-    to { transform: scale(1.07); }
+    /* contain, not cover: the whole photo stays visible at the section's
+       current height. It sits on the right and the purple fills the left,
+       under the text — the mockup's own composition.
+       No zoom here: scaling would crop the edges again. */
+    object-fit: contain;
+    object-position: 100% 50%;
 }
 
 /* Opaque purple behind the text, fading out over the photo.
@@ -199,14 +195,18 @@ main {
     }
 
     .hero__image {
-        object-position: 62% 30%;
+        /* Whole photo as a band at the bottom, text on the purple above */
+        object-position: 50% 100%;
     }
 
+    /* Opaque where the text sits, clear over the photo band underneath */
     .hero__overlay {
         background: linear-gradient(
             180deg,
-            rgba(30, 6, 54, 0.82) 0%,
-            rgba(30, 6, 54, 0.9) 100%
+            rgba(30, 6, 54, 0.96) 0%,
+            rgba(30, 6, 54, 0.92) 42%,
+            rgba(30, 6, 54, 0.45) 62%,
+            rgba(30, 6, 54, 0.18) 100%
         );
     }
 
@@ -327,7 +327,6 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
 
-    .hero__image,
     .hero__scroll-icon {
         animation: none;
     }
@@ -623,4 +622,675 @@ main {
 
     .about__title-kicker { font-size: 21px; }
     .about__title-name { font-size: 24px; }
+}
+
+
+/* ==========================================================================
+   3. Services
+   Mockup (column 1, right after About): white band, centred title, then
+   three cards of 138px with a 10px gap, starting at 9.5% of the width.
+   Each card: purple disc with a gold icon, bold two-line title, grey
+   description, "Outcomes" link with a gold arrow.
+   ========================================================================== */
+
+.services {
+    padding-block: 48px 64px;
+    background-color: var(--color-white);
+}
+
+/* Same width and gutters as the hero, About, the navbar and the footer */
+.services__container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.services__title {
+    margin: 0 0 28px;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--home-ink);
+}
+
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   Card
+   -------------------------------------------------------------------------- */
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ECE9E4;
+    border-radius: 12px;
+    background-color: var(--color-white);
+    box-shadow: 0 14px 30px -26px rgba(10, 7, 5, 0.55);
+    transition: transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-in-out),
+                border-color var(--duration-base) var(--ease-in-out);
+}
+
+.service-card:hover,
+.service-card:focus-within {
+    transform: translateY(-3px);
+    border-color: rgba(228, 155, 63, 0.55);
+    box-shadow: 0 18px 34px -22px rgba(10, 7, 5, 0.45);
+}
+
+.service-card__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background-color: var(--home-purple);
+    color: var(--home-gold);
+}
+
+/* Icons are CSS masks: never inline SVG, which Live Server would break */
+.service-card__icon {
+    display: block;
+    width: 22px;
+    height: 22px;
+    background-color: currentColor;
+    -webkit-mask: var(--service-icon) center / contain no-repeat;
+    mask: var(--service-icon) center / contain no-repeat;
+}
+
+.service-card__icon--strategy {
+    --service-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='16' y='16' width='6' height='6' rx='1'/%3E%3Crect x='2' y='16' width='6' height='6' rx='1'/%3E%3Crect x='9' y='2' width='6' height='6' rx='1'/%3E%3Cpath d='M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3'/%3E%3Cpath d='M12 12V8'/%3E%3C/svg%3E");
+}
+
+.service-card__icon--reporting {
+    --service-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='9' x='3' y='3' rx='1'/%3E%3Crect width='7' height='5' x='14' y='3' rx='1'/%3E%3Crect width='7' height='9' x='14' y='12' rx='1'/%3E%3Crect width='7' height='5' x='3' y='16' rx='1'/%3E%3C/svg%3E");
+}
+
+.service-card__icon--predictive {
+    --service-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3v16a2 2 0 0 0 2 2h16'/%3E%3Cpath d='M7 16v-4'/%3E%3Cpath d='M12 16v-8'/%3E%3Cpath d='M17 16v-6'/%3E%3C/svg%3E");
+}
+
+.service-card__title {
+    margin: 18px 0 8px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: var(--fw-bold);
+    line-height: 1.3;
+    color: var(--home-ink);
+}
+
+.service-card__text {
+    /* flex: 1 keeps every "Outcomes" link on the same baseline */
+    flex: 1;
+    margin: 0 0 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #5F5C55;
+}
+
+.service-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    align-self: flex-start;
+    font-size: 15px;
+    font-weight: var(--fw-semibold);
+    color: var(--home-ink);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.service-card__link:hover,
+.service-card__link:focus-visible {
+    color: var(--home-purple);
+}
+
+.service-card__link:focus-visible {
+    outline: 2px solid var(--home-gold);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+.service-card__arrow {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: var(--home-gold);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.service-card__link:hover .service-card__arrow,
+.service-card__link:focus-visible .service-card__arrow {
+    transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   Services — reveal on scroll (same mechanism as About)
+   -------------------------------------------------------------------------- */
+
+.js-reveal .services__title,
+.js-reveal .service-card {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-reveal .services.is-visible .services__title,
+.js-reveal .services.is-visible .service-card {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .services.is-visible .service-card:nth-child(1) { transition-delay: 80ms; }
+.js-reveal .services.is-visible .service-card:nth-child(2) { transition-delay: 160ms; }
+.js-reveal .services.is-visible .service-card:nth-child(3) { transition-delay: 240ms; }
+
+/* --------------------------------------------------------------------------
+   Services — responsive
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+    .services__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+@media (max-width: 767px) {
+
+    .services {
+        padding-block: 40px 48px;
+    }
+
+    .services__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 575px) {
+
+    .services__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .service-card,
+    .service-card__link,
+    .service-card__arrow {
+        transition: none;
+    }
+
+    .service-card:hover,
+    .service-card:focus-within,
+    .service-card__link:hover .service-card__arrow {
+        transform: none;
+    }
+
+    .js-reveal .services__title,
+    .js-reveal .service-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+/* ==========================================================================
+   4. Case Studies
+   Mockup (column 2): purple band 228px tall, centred cream title, then one
+   white card (360 x 150, i.e. 83% of the column) holding the case on the
+   left and its chart on the right.
+   ========================================================================== */
+
+.case-studies {
+    padding-block: 48px 64px;
+    background-color: var(--home-purple);
+}
+
+/* Same width and gutters as every other section */
+.case-studies__container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.case-studies__title {
+    margin: 0 0 28px;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--home-cream);
+}
+
+/* --------------------------------------------------------------------------
+   Card
+   -------------------------------------------------------------------------- */
+
+.case-card {
+    display: grid;
+    /* Mockup: the text takes a bit more room than the chart */
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: center;
+    /* 83% of the column in the mockup, centred */
+    max-width: 83%;
+    margin-inline: auto;
+    padding: 28px;
+    border-radius: 16px;
+    background-color: var(--color-white);
+    box-shadow: 0 26px 50px -30px rgba(0, 0, 0, 0.75);
+}
+
+.case-card__name {
+    margin: 0 0 18px;
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: var(--fw-bold);
+    line-height: 1.3;
+    color: var(--home-ink);
+}
+
+.case-card__facts {
+    margin: 0;
+}
+
+/* Thin rule between rows, as in the mockup */
+.case-card__fact + .case-card__fact {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #ECE9E4;
+}
+
+.case-card__label {
+    display: inline;
+    font-size: 16px;
+    font-weight: var(--fw-bold);
+    color: var(--home-ink);
+}
+
+.case-card__value {
+    display: inline;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--home-text);
+}
+
+/* --------------------------------------------------------------------------
+   Chart
+   Drawn as inline SVG: no data file and no image to ship.
+   -------------------------------------------------------------------------- */
+
+.case-card__chart {
+    margin: 0;
+    padding: 12px;
+    border: 1px solid #ECE9E4;
+    border-radius: 10px;
+    background-color: var(--color-white);
+}
+
+.case-card__chart-title {
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.04em;
+    color: var(--home-text);
+}
+
+.case-card__graph {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.case-card__grid line,
+.case-card__axis {
+    stroke: #E8E6E1;
+    stroke-width: 1;
+}
+
+.case-card__area {
+    /* Light blue wash under the curves, as in the mockup */
+    fill: rgba(72, 110, 194, 0.12);
+}
+
+.case-card__line {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.case-card__line--actual {
+    stroke: var(--home-purple);
+}
+
+.case-card__line--forecast {
+    stroke: var(--home-gold);
+}
+
+.case-card__legend {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: 8px;
+}
+
+.case-card__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--home-text);
+}
+
+.case-card__legend-item::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+}
+
+.case-card__legend-item--actual::before { background-color: var(--home-purple); }
+.case-card__legend-item--forecast::before { background-color: var(--home-gold); }
+
+/* --------------------------------------------------------------------------
+   Case Studies — reveal on scroll
+   -------------------------------------------------------------------------- */
+
+.js-reveal .case-studies__title,
+.js-reveal .case-card {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-reveal .case-studies.is-visible .case-studies__title,
+.js-reveal .case-studies.is-visible .case-card {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .case-studies.is-visible .case-card { transition-delay: 100ms; }
+
+/* --------------------------------------------------------------------------
+   Case Studies — responsive
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+    .case-studies__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+@media (max-width: 991px) {
+
+    .case-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .case-studies {
+        padding-block: 40px 48px;
+    }
+
+    /* Chart below the case, as the card is too narrow for two columns */
+    .case-card {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .js-reveal .case-studies__title,
+    .js-reveal .case-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — creative layer
+   The section is about data, so the data draws itself: the curves are
+   traced, the area fades in and the result counts up (home.js).
+   -------------------------------------------------------------------------- */
+
+/* Soft glow behind the card, same idea as the footer lights */
+.case-studies {
+    position: relative;
+    isolation: isolate;
+}
+
+.case-studies::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(760px 320px at 50% 0%, rgba(126, 72, 204, 0.22), transparent 70%),
+        radial-gradient(520px 260px at 85% 100%, rgba(228, 155, 63, 0.10), transparent 70%);
+    pointer-events: none;
+}
+
+.case-card {
+    transition: transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.case-card:hover,
+.case-card:focus-within {
+    transform: translateY(-3px);
+    box-shadow: 0 32px 56px -30px rgba(0, 0, 0, 0.8);
+}
+
+.case-card__eyebrow {
+    margin: 0 0 6px;
+    font-size: 11px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--home-gold);
+}
+
+/* The figure itself, picked out without shouting */
+.case-card__stat {
+    font-weight: var(--fw-bold);
+    color: var(--home-purple);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Curves are traced once the section shows. The hidden state sits behind
+   .js-reveal so the chart is complete when JavaScript is off. */
+.js-reveal .case-card__line {
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+}
+
+.js-reveal .case-card__area {
+    opacity: 0;
+}
+
+.js-reveal .case-studies.is-visible .case-card__line {
+    animation: case-draw 1500ms var(--ease-out) forwards;
+}
+
+.js-reveal .case-studies.is-visible .case-card__line--forecast {
+    animation-delay: 220ms;
+}
+
+.js-reveal .case-studies.is-visible .case-card__area {
+    animation: case-fade 700ms var(--ease-in-out) 900ms forwards;
+}
+
+@keyframes case-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes case-fade {
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .case-card,
+    .case-card:hover,
+    .case-card:focus-within {
+        transform: none;
+        transition: none;
+    }
+
+    .js-reveal .case-card__line {
+        stroke-dasharray: none;
+        stroke-dashoffset: 0;
+        animation: none;
+    }
+
+    .js-reveal .case-card__area {
+        opacity: 1;
+        animation: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — button to the Case Studies page
+   -------------------------------------------------------------------------- */
+
+.case-studies__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-height: 40px;
+    margin-top: 28px;
+    padding: 9px 22px;
+    border-radius: 6px;
+    background-color: var(--home-gold);
+    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    color: var(--home-purple);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-in-out);
+}
+
+/* Centred under the card */
+.case-studies__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.case-studies__title,
+.case-card {
+    align-self: stretch;
+}
+
+.case-studies__cta:hover,
+.case-studies__cta:focus-visible {
+    background-color: var(--home-gold-hover);
+    color: var(--home-purple);
+    transform: translateY(-1px);
+    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25),
+                0 12px 26px -12px rgba(228, 155, 63, 0.8);
+}
+
+.case-studies__cta:focus-visible {
+    outline: 2px solid var(--home-cream);
+    outline-offset: 3px;
+}
+
+.case-studies__cta-icon {
+    display: block;
+    flex: none;
+    width: 15px;
+    height: 15px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.case-studies__cta:hover .case-studies__cta-icon,
+.case-studies__cta:focus-visible .case-studies__cta-icon {
+    transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — staggered entrance for the card content and the button
+   -------------------------------------------------------------------------- */
+
+.js-reveal .case-card__eyebrow,
+.js-reveal .case-card__name,
+.js-reveal .case-card__fact,
+.js-reveal .case-card__chart,
+.js-reveal .case-studies__cta {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 450ms var(--ease-out), transform 450ms var(--ease-out);
+}
+
+.js-reveal .case-studies.is-visible .case-card__eyebrow,
+.js-reveal .case-studies.is-visible .case-card__name,
+.js-reveal .case-studies.is-visible .case-card__fact,
+.js-reveal .case-studies.is-visible .case-card__chart,
+.js-reveal .case-studies.is-visible .case-studies__cta {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .case-studies.is-visible .case-card__eyebrow   { transition-delay: 160ms; }
+.js-reveal .case-studies.is-visible .case-card__name      { transition-delay: 220ms; }
+.js-reveal .case-studies.is-visible .case-card__chart     { transition-delay: 260ms; }
+.js-reveal .case-studies.is-visible .case-card__fact:nth-child(1) { transition-delay: 300ms; }
+.js-reveal .case-studies.is-visible .case-card__fact:nth-child(2) { transition-delay: 360ms; }
+.js-reveal .case-studies.is-visible .case-card__fact:nth-child(3) { transition-delay: 420ms; }
+.js-reveal .case-studies.is-visible .case-studies__cta    { transition-delay: 520ms; }
+
+@media (prefers-reduced-motion: reduce) {
+
+    .case-studies__cta,
+    .case-studies__cta-icon {
+        transition: none;
+    }
+
+    .case-studies__cta:hover,
+    .case-studies__cta:focus-visible,
+    .case-studies__cta:hover .case-studies__cta-icon {
+        transform: none;
+    }
+
+    .js-reveal .case-card__eyebrow,
+    .js-reveal .case-card__name,
+    .js-reveal .case-card__fact,
+    .js-reveal .case-card__chart,
+    .js-reveal .case-studies__cta {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }

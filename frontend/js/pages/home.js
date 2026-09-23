@@ -18,7 +18,7 @@
  * fully readable when JavaScript is off or IntersectionObserver is missing.
  */
 function initHomeReveal() {
-    var sections = document.querySelectorAll(".hero, .about");
+    var sections = document.querySelectorAll(".hero, .about, .services, .case-studies");
 
     if (!sections.length) return;
 
@@ -35,11 +35,43 @@ function initHomeReveal() {
         entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
             entry.target.classList.add("is-visible");
+            countUp(entry.target);
             observer.unobserve(entry.target);
         });
     }, { threshold: 0.15, rootMargin: "0px 0px -10% 0px" });
 
     sections.forEach(function (section) { observer.observe(section); });
+}
+
+/**
+ * Count a figure up to its final value once its section is visible.
+ * The element already holds the final number, so nothing is lost when
+ * JavaScript is off or motion is reduced.
+ * @param {HTMLElement} section
+ */
+function countUp(section) {
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
+    section.querySelectorAll("[data-count-to]").forEach(function (node) {
+        var target = Number(node.dataset.countTo);
+        if (!isFinite(target)) return;
+
+        var duration = 1100;
+        var start = 0;
+
+        function step(now) {
+            if (!start) start = now;
+            var progress = Math.min(1, (now - start) / duration);
+            // ease-out so the last digits settle gently
+            var eased = 1 - Math.pow(1 - progress, 3);
+            node.textContent = String(Math.round(target * eased));
+            if (progress < 1) window.requestAnimationFrame(step);
+        }
+
+        node.textContent = "0";
+        window.requestAnimationFrame(step);
+    });
 }
 
 /**
