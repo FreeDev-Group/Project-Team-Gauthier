@@ -886,9 +886,10 @@ main {
 
 .case-card {
     display: grid;
-    /* Mockup: the text takes a bit more room than the chart */
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    gap: 32px;
+    /* Photo of the client team, the case itself, then its chart */
+    grid-template-columns: minmax(0, 240px) minmax(0, 1.1fr) minmax(0, 300px);
+    grid-template-areas: "photo body chart";
+    gap: 28px;
     align-items: center;
     /* 83% of the column in the mockup, centred */
     max-width: 83%;
@@ -1054,9 +1055,13 @@ main {
         padding-block: 40px 48px;
     }
 
-    /* Chart below the case, as the card is too narrow for two columns */
+    /* Everything stacks: photo, case, chart */
     .case-card {
         grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "photo"
+            "body"
+            "chart";
         gap: 20px;
         padding: 20px;
     }
@@ -1179,7 +1184,8 @@ main {
    -------------------------------------------------------------------------- */
 
 .case-studies__cta {
-    display: inline-flex;
+    display: flex;
+    width: fit-content;
     align-items: center;
     gap: var(--space-2xs);
     min-height: 40px;
@@ -1198,16 +1204,11 @@ main {
                 box-shadow var(--duration-fast) var(--ease-in-out);
 }
 
-/* Centred under the card */
-.case-studies__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.case-studies__title,
-.case-card {
-    align-self: stretch;
+/* Centred under the card.
+   The container stays a block: making it a flex column cancelled the card's
+   auto margins, and the card shrank to the width of its text. */
+.case-studies__cta {
+    margin-inline: auto;
 }
 
 .case-studies__cta:hover,
@@ -1289,6 +1290,121 @@ main {
     .js-reveal .case-card__fact,
     .js-reveal .case-card__chart,
     .js-reveal .case-studies__cta {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — chart size and end points
+   -------------------------------------------------------------------------- */
+
+/* Keeps the chart at a readable size once the card stacks */
+.case-card__chart {
+    max-width: 460px;
+    margin-inline: auto;
+}
+
+/* A dot marks the last value of each curve */
+.case-card__dot {
+    stroke: var(--color-white);
+    stroke-width: 2;
+}
+
+.case-card__dot--actual { fill: var(--home-purple); }
+.case-card__dot--forecast { fill: var(--home-gold); }
+
+.js-reveal .case-card__dot {
+    opacity: 0;
+}
+
+.js-reveal .case-studies.is-visible .case-card__dot {
+    animation: case-fade 400ms var(--ease-out) 1500ms forwards;
+}
+
+.js-reveal .case-studies.is-visible .case-card__dot--forecast {
+    animation-delay: 1700ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .js-reveal .case-card__dot {
+        opacity: 1;
+        animation: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — client photo
+   The mockup's own case-study photo does not exist in assets/, so the
+   meeting-room shot is reused with a tight crop on the seated team: a very
+   different framing from the hero. Swap the src the day a dedicated photo
+   lands in assets/images/home-image/.
+   -------------------------------------------------------------------------- */
+
+.case-card__media { grid-area: photo; margin: 0; }
+.case-card__body  { grid-area: body; }
+.case-card__chart { grid-area: chart; }
+
+.case-card__photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    /* Tight on the people sitting at the table */
+    object-position: 38% 72%;
+    /* Arch top, as in the mockup's case-study image */
+    border-radius: 120px 120px 12px 12px;
+    /* The shot is a touch dark against the white card */
+    filter: brightness(1.07) saturate(1.04);
+}
+
+/* Between 992 and 1199px the three columns get cramped: the chart moves
+   under the case, next to the photo */
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    .case-card {
+        grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+        grid-template-areas:
+            "photo body"
+            "photo chart";
+        align-items: start;
+        row-gap: 20px;
+    }
+
+    .case-card__photo {
+        aspect-ratio: 3 / 5;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .case-card__photo {
+        aspect-ratio: 16 / 10;
+        max-width: 420px;
+        margin-inline: auto;
+        border-radius: 90px 90px 12px 12px;
+    }
+}
+
+/* The photo joins the staggered entrance */
+.js-reveal .case-card__media {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 450ms var(--ease-out), transform 450ms var(--ease-out);
+}
+
+.js-reveal .case-studies.is-visible .case-card__media {
+    opacity: 1;
+    transform: none;
+    transition-delay: 120ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .js-reveal .case-card__media {
         opacity: 1;
         transform: none;
         transition: none;
