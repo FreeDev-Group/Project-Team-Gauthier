@@ -1,27 +1,368 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Consultancy — Insights</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/pages/insights.css">
-</head>
-<body>
-
-    <!-- Navbar is injected here (components/navbar.html) -->
+    <meta
+      name="description"
+      content="Discover data strategy, analytics, digital transformation, and business intelligence insights for modern organizations."
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/pages/insights.css" />
+  </head>
+  <body>
     <header id="navbar-placeholder"></header>
 
-    <main>
-        <!-- Insights page content -->
+    <main class="page page--insights">
+      <section class="insights-hero" aria-labelledby="insights-hero-title">
+        <div class="container insights-hero__container">
+          <div class="insights-hero__content">
+            <p class="eyebrow">Insights</p>
+            <h1 id="insights-hero-title">
+              Data thinking for smarter growth decisions
+            </h1>
+            <p class="insights-hero__description">
+              Explore the ideas, trends, and practical frameworks shaping modern
+              data strategy, analytics, and digital transformation across
+              ambitious organizations.
+            </p>
+
+            <div class="insights-hero__actions">
+              <a class="btn btn--primary" href="#featured-insight"
+                >Read featured insight</a
+              >
+              <a class="btn btn--secondary" href="#insight-library"
+                >Browse all articles</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="insights-hero__visual"
+            aria-label="Data strategy dashboard illustration"
+          >
+            <div class="insight-visual-card">
+              <div class="insight-visual-card__top">
+                <span>Analytics trend</span>
+                <span class="chip">Q4</span>
+              </div>
+              <div class="insight-visual-card__chart">
+                <span class="line line--one"></span>
+                <span class="line line--two"></span>
+                <span class="line line--three"></span>
+              </div>
+              <div class="insight-visual-card__stats">
+                <div>
+                  <strong>74%</strong>
+                  <span>Data leaders investing in AI</span>
+                </div>
+                <div>
+                  <strong>3.2x</strong>
+                  <span>Faster insight cycles</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="insights-stats section"
+        aria-label="Key insights statistics"
+      >
+        <div class="container">
+          <div class="stats-grid">
+            <article class="stat-card">
+              <span class="stat-card__value">48%</span>
+              <span class="stat-card__label"
+                >of leaders say data strategy drives growth</span
+              >
+            </article>
+            <article class="stat-card">
+              <span class="stat-card__value">31%</span>
+              <span class="stat-card__label"
+                >efficiency gains from BI modernization</span
+              >
+            </article>
+            <article class="stat-card">
+              <span class="stat-card__value">2.4x</span>
+              <span class="stat-card__label"
+                >faster decisions with aligned dashboards</span
+              >
+            </article>
+            <article class="stat-card">
+              <span class="stat-card__value">89%</span>
+              <span class="stat-card__label"
+                >of teams need better reporting clarity</span
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="featured-insight section"
+        id="featured-insight"
+        aria-labelledby="featured-insight-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <div class="section-heading__content">
+              <p class="section-kicker">Featured insight</p>
+              <h2 id="featured-insight-title">
+                How to turn data into business decisions that stick
+              </h2>
+            </div>
+            <p class="section-heading__description">
+              Strategy alone is not enough. The most effective organizations
+              align data, operating rhythms, and leadership decisions to turn
+              insight into consistent action.
+            </p>
+          </div>
+
+          <article class="featured-article">
+            <div class="featured-article__media">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                alt="Consultants reviewing a dashboard and planning business strategy"
+              />
+            </div>
+
+            <div class="featured-article__content">
+              <div class="article-meta">
+                <span class="badge">Data Strategy</span>
+                <span class="meta-date">6 min read</span>
+              </div>
+
+              <h3>
+                Why strong data strategy is less about technology and more about
+                decision quality
+              </h3>
+
+              <p>
+                Many teams invest in dashboards, AI tools, and reporting
+                platforms without creating the operating discipline needed to
+                use them effectively. A stronger approach starts with
+                decision-making, data clarity, and organizational
+                accountability.
+              </p>
+
+              <ul>
+                <li>Define a limited set of critical business decisions</li>
+                <li>Use governance to protect trust in every KPI</li>
+                <li>Turn insights into daily operating rituals</li>
+              </ul>
+
+              <a class="text-link" href="contact.html">
+                Read more
+                <img
+                  src="../assets/icons/chevron-right.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="insight-library section"
+        id="insight-library"
+        aria-labelledby="insight-library-title"
+      >
+        <div class="container">
+          <div class="library-header">
+            <div class="section-heading section-heading--compact">
+              <div class="section-heading__content">
+                <p class="section-kicker">Resource library</p>
+                <h2 id="insight-library-title">Explore the latest insights</h2>
+              </div>
+            </div>
+
+            <div class="filter-group" aria-label="Filter insights by category">
+              <button
+                class="filter-button is-active"
+                type="button"
+                data-filter="all"
+                aria-pressed="true"
+              >
+                All
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-filter="data-strategy"
+                aria-pressed="false"
+              >
+                Data Strategy
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-filter="ai"
+                aria-pressed="false"
+              >
+                Data &amp; AI
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-filter="analytics"
+                aria-pressed="false"
+              >
+                Analytics
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-filter="transformation"
+                aria-pressed="false"
+              >
+                Transformation
+              </button>
+            </div>
+          </div>
+
+          <div class="insight-grid">
+            <article class="insight-card" data-category="data-strategy">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"
+                alt="Business leaders planning a data strategy workshop"
+              />
+              <div class="insight-card__body">
+                <div class="article-meta">
+                  <span class="badge">Data Strategy</span>
+                  <span class="meta-date">7 min read</span>
+                </div>
+                <h3>
+                  How to define a roadmap that balances ambition with
+                  operational reality
+                </h3>
+                <p>
+                  Frameworks for turning strategic priorities into realistic
+                  analytics programs and decision systems.
+                </p>
+                <a href="contact.html">Read more</a>
+              </div>
+            </article>
+
+            <article class="insight-card" data-category="analytics">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
+                alt="Analytics dashboard and KPI reporting on a monitor"
+              />
+              <div class="insight-card__body">
+                <div class="article-meta">
+                  <span class="badge">Analytics</span>
+                  <span class="meta-date">5 min read</span>
+                </div>
+                <h3>What the best executive dashboards have in common</h3>
+                <p>
+                  Learn how leading teams build reporting systems that simplify
+                  decision-making instead of adding noise.
+                </p>
+                <a href="contact.html">Read more</a>
+              </div>
+            </article>
+
+            <article class="insight-card" data-category="ai">
+              <img
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80"
+                alt="AI and machine learning dashboard visualization"
+              />
+              <div class="insight-card__body">
+                <div class="article-meta">
+                  <span class="badge">Data &amp; AI</span>
+                  <span class="meta-date">8 min read</span>
+                </div>
+                <h3>
+                  From AI curiosity to business value: a practical adoption
+                  model
+                </h3>
+                <p>
+                  Three signals that tell you whether your AI roadmap is
+                  delivering value or just creating headlines.
+                </p>
+                <a href="contact.html">Read more</a>
+              </div>
+            </article>
+
+            <article class="insight-card" data-category="transformation">
+              <img
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
+                alt="Digital transformation planning session around a table"
+              />
+              <div class="insight-card__body">
+                <div class="article-meta">
+                  <span class="badge">Transformation</span>
+                  <span class="meta-date">6 min read</span>
+                </div>
+                <h3>
+                  How digital transformation succeeds when teams focus on
+                  adoption
+                </h3>
+                <p>
+                  Operational change becomes much easier when reporting and
+                  process design are built around real workflows.
+                </p>
+                <a href="contact.html">Read more</a>
+              </div>
+            </article>
+
+            <article class="insight-card" data-category="analytics">
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80"
+                alt="Analyst reviewing growth metrics and financial performance"
+              />
+              <div class="insight-card__body">
+                <div class="article-meta">
+                  <span class="badge">Analytics</span>
+                  <span class="meta-date">4 min read</span>
+                </div>
+                <h3>
+                  Why business intelligence is only useful when it drives action
+                </h3>
+                <p>
+                  Moving from static reporting to decision-ready analytics
+                  requires better measurement and ownership.
+                </p>
+                <a href="contact.html">Read more</a>
+              </div>
+            </article>
+
+            <article class="insight-card" data-category="data-strategy">
+              <img
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80"
+                alt="Team aligning a data strategy and business process review"
+              />
+              <div class="insight-card__body">
+                <div class="article-meta">
+                  <span class="badge">Data Strategy</span>
+                  <span class="meta-date">9 min read</span>
+                </div>
+                <h3>
+                  Designing a data governance model that supports business
+                  velocity
+                </h3>
+                <p>
+                  Strong governance does not slow teams down when it is built to
+                  support clarity, trust, and accountability.
+                </p>
+                <a href="contact.html">Read more</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <!-- Footer is injected here (components/footer.html) -->
     <footer id="footer-placeholder"></footer>
 
     <script src="../js/components/navbar.js"></script>
     <script src="../js/components/footer.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/pages/insights.js"></script>
-</body>
+  </body>
 </html>

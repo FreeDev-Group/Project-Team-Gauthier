@@ -4,19 +4,224 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Consultancy — Industries</title>
+    <meta name="description" content="Explore how data consulting creates measurable value across finance, healthcare, retail, manufacturing, energy, and public sector organizations.">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/pages/industries.css">
 </head>
 <body>
-
-    <!-- Navbar is injected here (components/navbar.html) -->
     <header id="navbar-placeholder"></header>
 
-    <main>
-        <!-- Industries page content -->
+    <main class="page page--industries">
+        <section class="industries-hero" aria-labelledby="industries-hero-title">
+            <div class="container industries-hero__container">
+                <div class="industries-hero__content">
+                    <p class="eyebrow">Industries</p>
+                    <h1 id="industries-hero-title">Data strategy tailored to the realities of each sector</h1>
+                    <p class="industries-hero__description">
+                        Every industry faces different operational constraints, regulatory pressures,
+                        and growth opportunities. We design solutions that match your environment,
+                        your data maturity, and the outcomes you need to achieve.
+                    </p>
+
+                    <div class="industries-hero__actions">
+                        <a class="btn btn--primary" href="contact.html">Talk to an expert</a>
+                        <a class="btn btn--secondary" href="#industry-grid">Explore sectors</a>
+                    </div>
+                </div>
+
+                <div class="industries-hero__visual" aria-label="Industry analytics illustration">
+                    <div class="industry-visual-card">
+                        <div class="industry-visual-card__header">
+                            <span>Portfolio overview</span>
+                            <span class="chip">Live</span>
+                        </div>
+                        <div class="industry-visual-card__chart">
+                            <span class="bar bar--one"></span>
+                            <span class="bar bar--two"></span>
+                            <span class="bar bar--three"></span>
+                            <span class="bar bar--four"></span>
+                            <span class="bar bar--five"></span>
+                        </div>
+                        <div class="industry-visual-card__stats">
+                            <div>
+                                <strong>+28%</strong>
+                                <span>Operational efficiency</span>
+                            </div>
+                            <div>
+                                <strong>91%</strong>
+                                <span>Forecast confidence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="industries-overview section" aria-label="Industry data value overview">
+            <div class="container">
+                <div class="overview-grid">
+                    <article class="overview-card">
+                        <img src="../assets/icons/gauge.svg" alt="" aria-hidden="true">
+                        <h2>Sector-specific analytics</h2>
+                        <p>We translate business realities into measurable performance models, dashboards, and decision rules.</p>
+                    </article>
+                    <article class="overview-card">
+                        <img src="../assets/icons/database.svg" alt="" aria-hidden="true">
+                        <h2>Practical data foundations</h2>
+                        <p>We improve the quality, structure, and governance needed to support confident action at scale.</p>
+                    </article>
+                    <article class="overview-card">
+                        <img src="../assets/icons/trending-up.svg" alt="" aria-hidden="true">
+                        <h2>Business impact</h2>
+                        <p>Our work helps teams reduce waste, improve forecasting, and unlock better strategic choices.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="industry-directory section" id="industry-grid" aria-labelledby="industry-grid-title">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="section-heading__content">
+                        <p class="section-kicker">Industry expertise</p>
+                        <h2 id="industry-grid-title">Where we create the most value</h2>
+                    </div>
+                    <p class="section-heading__description">
+                        From operational optimization to customer intelligence, we help organizations turn data into
+                        strategy, action, and measurable growth.
+                    </p>
+                </div>
+
+                <div class="industry-grid">
+                    <article class="industry-card">
+                        <div class="industry-card__icon"><img src="../assets/icons/chart-pie.svg" alt="" aria-hidden="true"></div>
+                        <h3>Finance &amp; Banking</h3>
+                        <p>We support risk visibility, portfolio insight, and customer intelligence for faster, smarter decisions.</p>
+                        <ul>
+                            <li>Credit risk and forecasting</li>
+                            <li>KPI-driven portfolio reporting</li>
+                            <li>Customer behavior analytics</li>
+                        </ul>
+                        <a href="contact.html">Explore solutions</a>
+                    </article>
+
+                    <article class="industry-card">
+                        <div class="industry-card__icon"><img src="../assets/icons/shield-check.svg" alt="" aria-hidden="true"></div>
+                        <h3>Healthcare</h3>
+                        <p>We improve care operations, patient flows, and service quality through more actionable reporting.</p>
+                        <ul>
+                            <li>Operational performance dashboards</li>
+                            <li>Patient journey analytics</li>
+                            <li>Clinical trend monitoring</li>
+                        </ul>
+                        <a href="contact.html">Explore solutions</a>
+                    </article>
+
+                    <article class="industry-card">
+                        <div class="industry-card__icon"><img src="../assets/icons/trending-up.svg" alt="" aria-hidden="true"></div>
+                        <h3>Retail &amp; E-commerce</h3>
+                        <p>We align demand forecasting, merchandising, and digital channels to reduce waste and increase revenue.</p>
+                        <ul>
+                            <li>Demand planning</li>
+                            <li>Marketing and funnel insight</li>
+                            <li>Inventory optimization</li>
+                        </ul>
+                        <a href="contact.html">Explore solutions</a>
+                    </article>
+
+                    <article class="industry-card">
+                        <div class="industry-card__icon"><img src="../assets/icons/workflow.svg" alt="" aria-hidden="true"></div>
+                        <h3>Telecommunications</h3>
+                        <p>We improve service performance, retention models, and operational forecasting for complex customer environments.</p>
+                        <ul>
+                            <li>Retention and churn analytics</li>
+                            <li>Network performance tracking</li>
+                            <li>Customer segmentation</li>
+                        </ul>
+                        <a href="contact.html">Explore solutions</a>
+                    </article>
+
+                    <article class="industry-card">
+                        <div class="industry-card__icon"><img src="../assets/icons/settings.svg" alt="" aria-hidden="true"></div>
+                        <h3>Manufacturing</h3>
+                        <p>We capture throughput, quality, and maintenance data to help teams reduce friction and improve efficiency.</p>
+                        <ul>
+                            <li>Production analytics</li>
+                            <li>Maintenance monitoring</li>
+                            <li>Quality and yield insights</li>
+                        </ul>
+                        <a href="contact.html">Explore solutions</a>
+                    </article>
+
+                    <article class="industry-card">
+                        <div class="industry-card__icon"><img src="../assets/icons/target.svg" alt="" aria-hidden="true"></div>
+                        <h3>Education</h3>
+                        <p>We help institutions understand enrollment patterns, learner performance, and resource planning.</p>
+                        <ul>
+                            <li>Student success analytics</li>
+                            <li>Enrollment forecasting</li>
+                            <li>Operational reporting</li>
+                        </ul>
+                        <a href="contact.html">Explore solutions</a>
+                    </article>
+
+                    <article class="industry-card">
+                        <div class="industry-card__icon"><img src="../assets/icons/file-chart-column.svg" alt="" aria-hidden="true"></div>
+                        <h3>Logistics &amp; Transportation</h3>
+                        <p>We connect route, fleet, and delivery data to reduce disruption and improve service reliability.</p>
+                        <ul>
+                            <li>Fleet performance analysis</li>
+                            <li>Route optimization</li>
+                            <li>Delivery KPI dashboards</li>
+                        </ul>
+                        <a href="contact.html">Explore solutions</a>
+                    </article>
+
+                    <article class="industry-card">
+                        <div class="industry-card__icon"><img src="../assets/icons/sparkles.svg" alt="" aria-hidden="true"></div>
+                        <h3>Energy</h3>
+                        <p>We support operational visibility, demand models, and performance dashboards across critical infrastructures.</p>
+                        <ul>
+                            <li>Usage and demand forecasting</li>
+                            <li>Asset performance monitoring</li>
+                            <li>Energy efficiency insight</li>
+                        </ul>
+                        <a href="contact.html">Explore solutions</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="industries-approach section" aria-labelledby="industrial-approach-title">
+            <div class="container">
+                <div class="section-heading section-heading--compact">
+                    <div class="section-heading__content">
+                        <p class="section-kicker">How we work</p>
+                        <h2 id="industrial-approach-title">A tailored approach to real stakeholder needs</h2>
+                    </div>
+                </div>
+
+                <div class="approach-steps">
+                    <article>
+                        <span>01</span>
+                        <h3>Assess your landscape</h3>
+                        <p>We identify the business context, key decision points, and data maturity across the organization.</p>
+                    </article>
+                    <article>
+                        <span>02</span>
+                        <h3>Prioritize the highest-value opportunities</h3>
+                        <p>We focus the roadmap on the analytics and process changes most likely to create measurable gain.</p>
+                    </article>
+                    <article>
+                        <span>03</span>
+                        <h3>Build for adoption</h3>
+                        <p>We keep solution design practical, intuitive, and aligned with the people who need to act on it.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer is injected here (components/footer.html) -->
     <footer id="footer-placeholder"></footer>
 
     <script src="../js/components/navbar.js"></script>
