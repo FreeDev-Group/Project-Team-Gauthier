@@ -99,11 +99,49 @@ function initHeroScrollCue() {
 }
 
 /**
+ * Gentle parallax on the About portrait: it drifts a few pixels as the
+ * section crosses the viewport. Skipped when motion is reduced, and the
+ * image keeps its normal position if this never runs.
+ */
+function initParallax() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var image = document.querySelector(".about__image");
+    if (!image) return;
+
+    var section = image.closest(".about");
+    var queued = false;
+    var AMPLITUDE = 14;
+
+    function update() {
+        queued = false;
+        var box = section.getBoundingClientRect();
+        var limit = window.innerHeight + box.height;
+        if (box.bottom < 0 || box.top > window.innerHeight) return;
+
+        // -1 when the section enters from the bottom, +1 when it leaves
+        var progress = 1 - ((box.bottom + box.height) / limit) * 2;
+        image.style.setProperty("--parallax", (progress * AMPLITUDE).toFixed(1) + "px");
+    }
+
+    function queue() {
+        if (queued) return;
+        queued = true;
+        window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue);
+    update();
+}
+
+/**
  * Initialise the Home page.
  */
 function initHomePage() {
     initHomeReveal();
     initHeroScrollCue();
+    initParallax();
 }
 
 document.addEventListener("DOMContentLoaded", initHomePage);

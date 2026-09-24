@@ -384,19 +384,29 @@ main {
     pointer-events: none;
 }
 
-.about__image {
+/* The frame does the cropping, so the gold outline behind it is never clipped */
+.about__frame {
     position: relative;
-    width: 100%;
-    /* The width/height attributes map to CSS height, which would win over
-       aspect-ratio: height must be reset here */
-    height: auto;
+    display: block;
     /* 176/186 of the mockup: a near-square portrait */
     aspect-ratio: 176 / 186;
-    /* The file is a wider frame: crop the sides, keep the subject centred */
-    object-fit: cover;
-    object-position: 48% 50%;
+    overflow: hidden;
     border-radius: 9px;
     box-shadow: 0 18px 36px -24px rgba(10, 7, 5, 0.45);
+}
+
+.about__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    /* The width/height attributes map to CSS height, which would win here */
+    height: 100%;
+    object-fit: cover;
+    /* Framing measured against the mockup: the subject sits centred, with
+       the same margin above the head and the crossed arms in view. */
+    object-position: 10% 0%;
+    transform: scale(1.1);
+    transform-origin: 10% 0%;
 }
 
 /* --------------------------------------------------------------------------
@@ -2047,5 +2057,175 @@ main {
     .industry-card__arrow {
         opacity: 1;
         transform: none;
+    }
+}
+
+/* ==========================================================================
+   Page-wide finish
+   One visual rhythm across every section: a gold accent under each title,
+   hairlines between bands, parallax on the two photographs and a shared
+   hover language. Nothing here adds content.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Gold accent under every section title
+   -------------------------------------------------------------------------- */
+
+.services__title,
+.case-studies__title,
+.industries__title,
+.insights__title {
+    position: relative;
+    padding-bottom: 14px;
+}
+
+.services__title::after,
+.case-studies__title::after,
+.industries__title::after,
+.insights__title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 46px;
+    height: 3px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--home-gold), rgba(228, 155, 63, 0.35));
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 600ms var(--ease-out) 120ms;
+}
+
+/* The bar draws itself when the section arrives */
+.services.is-visible .services__title::after,
+.case-studies.is-visible .case-studies__title::after,
+.industries.is-visible .industries__title::after,
+.insights.is-visible .insights__title::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Without JS the bar is simply there */
+html:not(.js-reveal) .services__title::after,
+html:not(.js-reveal) .case-studies__title::after,
+html:not(.js-reveal) .industries__title::after,
+html:not(.js-reveal) .insights__title::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Hairline between the light bands, echoing the hero's gold edge
+   -------------------------------------------------------------------------- */
+
+.about,
+.services,
+.insights {
+    position: relative;
+}
+
+.about::before,
+.services::before,
+.insights::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(228, 155, 63, 0.35) 50%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+   3. Parallax on the two photographs (home.js sets --parallax)
+   -------------------------------------------------------------------------- */
+
+.hero__image,
+.about__image {
+    will-change: transform;
+}
+
+.about__image {
+    transform: scale(1.1) translateY(var(--parallax, 0px));
+}
+
+/* --------------------------------------------------------------------------
+   4. Services — the badge answers the pointer, like the Industries cards
+   -------------------------------------------------------------------------- */
+
+.service-card__badge {
+    transition: transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.service-card:hover .service-card__badge,
+.service-card:focus-within .service-card__badge {
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 0 0 6px rgba(30, 6, 54, 0.06);
+}
+
+.service-card__icon {
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.service-card:hover .service-card__icon,
+.service-card:focus-within .service-card__icon {
+    transform: scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   5. About — the checked list ticks in one after another
+   -------------------------------------------------------------------------- */
+
+.js-reveal .about__item {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 420ms var(--ease-out), transform 420ms var(--ease-out);
+}
+
+.js-reveal .about.is-visible .about__item {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .about.is-visible .about__item:nth-child(1) { transition-delay: 320ms; }
+.js-reveal .about.is-visible .about__item:nth-child(2) { transition-delay: 400ms; }
+.js-reveal .about.is-visible .about__item:nth-child(3) { transition-delay: 480ms; }
+
+.about__check {
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.about__item:hover .about__check {
+    transform: scale(1.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .services__title::after,
+    .case-studies__title::after,
+    .industries__title::after,
+    .insights__title::after {
+        transform: translateX(-50%) scaleX(1);
+        transition: none;
+    }
+
+    .about__image {
+        transform: scale(1.1);
+    }
+
+    .service-card__badge,
+    .service-card__icon,
+    .about__check {
+        transition: none;
+    }
+
+    .service-card:hover .service-card__badge,
+    .service-card:hover .service-card__icon,
+    .about__item:hover .about__check {
+        transform: none;
+    }
+
+    .js-reveal .about__item {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 }
