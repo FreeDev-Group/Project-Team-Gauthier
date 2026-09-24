@@ -18,7 +18,7 @@
  * fully readable when JavaScript is off or IntersectionObserver is missing.
  */
 function initHomeReveal() {
-    var sections = document.querySelectorAll(".hero, .about, .services, .case-studies, .industries");
+    var sections = document.querySelectorAll(".hero, .about, .services, .case-studies, .industries, .insights");
 
     if (!sections.length) return;
 

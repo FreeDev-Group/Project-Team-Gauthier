@@ -1637,3 +1637,415 @@ main {
         transition: none;
     }
 }
+
+/* ==========================================================================
+   6. Insights
+   Mockup (column 3): white band 213px tall, centred title, three articles
+   of 101px with an 8px gap. Each one: 16/10 thumbnail, small grey date,
+   bold two-line title, grey excerpt. No border, no shadow: editorial style.
+   ========================================================================== */
+
+.insights {
+    padding-block: 48px 56px;
+    background-color: var(--color-white);
+}
+
+.insights__container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.insights__title {
+    margin: 0 0 28px;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--home-ink);
+}
+
+.insights__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   Article
+   -------------------------------------------------------------------------- */
+
+.insight-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.insight-card__thumb {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+/* The thumbnail is the only thing that moves on hover: the card has no frame */
+.insight-card {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.insight-card__link:hover .insight-card__thumb,
+.insight-card__link:focus-visible .insight-card__thumb {
+    transform: scale(1.04);
+}
+
+.insight-card__date {
+    display: block;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #7A776F;
+}
+
+.insight-card__title {
+    margin: 6px 0 8px;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: var(--fw-bold);
+    line-height: 1.35;
+    color: var(--home-ink);
+    transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.insight-card__link:hover .insight-card__title,
+.insight-card__link:focus-visible .insight-card__title {
+    color: var(--home-purple);
+}
+
+.insight-card__excerpt {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #5F5C55;
+}
+
+.insight-card__link:focus-visible {
+    outline: 2px solid var(--home-gold);
+    outline-offset: 4px;
+    border-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Button to the Insights page
+   -------------------------------------------------------------------------- */
+
+.insights__cta {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-height: 40px;
+    margin: 32px auto 0;
+    padding: 9px 22px;
+    border: 1px solid rgba(30, 6, 54, 0.25);
+    border-radius: 6px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    color: var(--home-purple);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-in-out),
+                border-color var(--duration-fast) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out);
+}
+
+.insights__cta:hover,
+.insights__cta:focus-visible {
+    border-color: var(--home-purple);
+    background-color: rgba(30, 6, 54, 0.05);
+    color: var(--home-purple);
+    transform: translateY(-1px);
+}
+
+.insights__cta:focus-visible {
+    outline: 2px solid var(--home-gold);
+    outline-offset: 3px;
+}
+
+.insights__cta-icon {
+    display: block;
+    flex: none;
+    width: 15px;
+    height: 15px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.insights__cta:hover .insights__cta-icon,
+.insights__cta:focus-visible .insights__cta-icon {
+    transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   Insights — reveal on scroll
+   -------------------------------------------------------------------------- */
+
+.js-reveal .insights__title,
+.js-reveal .insight-card,
+.js-reveal .insights__cta {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-reveal .insights.is-visible .insights__title,
+.js-reveal .insights.is-visible .insight-card,
+.js-reveal .insights.is-visible .insights__cta {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .insights.is-visible .insight-card:nth-child(1) { transition-delay: 90ms; }
+.js-reveal .insights.is-visible .insight-card:nth-child(2) { transition-delay: 170ms; }
+.js-reveal .insights.is-visible .insight-card:nth-child(3) { transition-delay: 250ms; }
+.js-reveal .insights.is-visible .insights__cta { transition-delay: 330ms; }
+
+/* --------------------------------------------------------------------------
+   Insights — responsive
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+    .insights__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+@media (max-width: 767px) {
+
+    .insights {
+        padding-block: 40px 48px;
+    }
+
+    .insights__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .insights__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .insight-card__thumb,
+    .insight-card__title,
+    .insights__cta,
+    .insights__cta-icon {
+        transition: none;
+    }
+
+    .insight-card__link:hover .insight-card__thumb,
+    .insights__cta:hover,
+    .insights__cta:hover .insights__cta-icon {
+        transform: none;
+    }
+
+    .js-reveal .insights__title,
+    .js-reveal .insight-card,
+    .js-reveal .insights__cta {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   SaaS card treatment — Industries and Insights
+   Both grids become proper product cards: a framed surface, an icon badge,
+   a clear affordance and one move on hover. Nothing here invents content.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Industries — clickable cards
+   -------------------------------------------------------------------------- */
+
+.industry-card {
+    /* the padding now lives on the link, which fills the card */
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+}
+
+.industry-card__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 100%;
+    padding: 20px 14px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.industry-card__link:focus-visible {
+    outline: 2px solid var(--home-gold);
+    outline-offset: -4px;
+    border-radius: 12px;
+}
+
+/* Icon badge with a soft ring, the usual SaaS feature card */
+.industry-card__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    border: 1px solid rgba(228, 155, 63, 0.35);
+    border-radius: var(--radius-full);
+    background: radial-gradient(circle at 50% 35%, rgba(228, 155, 63, 0.18), rgba(228, 155, 63, 0.04));
+    transition: transform var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-in-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.industry-card:hover .industry-card__badge,
+.industry-card:focus-within .industry-card__badge {
+    transform: translateY(-2px) scale(1.04);
+    border-color: var(--home-gold);
+    box-shadow: 0 0 0 6px rgba(228, 155, 63, 0.08);
+}
+
+.industry-card__icon {
+    width: 32px;
+    height: 32px;
+}
+
+/* Arrow appears on hover, so the card reads as clickable */
+.industry-card__arrow {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: var(--home-gold);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity var(--duration-base) var(--ease-in-out),
+                transform var(--duration-base) var(--ease-out);
+}
+
+.industry-card:hover .industry-card__arrow,
+.industry-card:focus-within .industry-card__arrow {
+    opacity: 1;
+    transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Insights — article cards
+   -------------------------------------------------------------------------- */
+
+.insight-card {
+    display: flex;
+    overflow: hidden;
+    border: 1px solid #ECE9E4;
+    border-radius: 14px;
+    background-color: var(--color-white);
+    box-shadow: 0 14px 30px -26px rgba(10, 7, 5, 0.55);
+    transition: transform var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-in-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.insight-card:hover,
+.insight-card:focus-within {
+    transform: translateY(-4px);
+    border-color: rgba(228, 155, 63, 0.55);
+    box-shadow: 0 20px 36px -22px rgba(10, 7, 5, 0.45);
+}
+
+.insight-card__link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* The thumbnail is flush with the top of the card */
+.insight-card__thumb {
+    border-radius: 0;
+}
+
+.insight-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px 18px 18px;
+}
+
+.insight-card__date {
+    margin-top: 0;
+}
+
+/* Pushes "Read article" to the bottom, so all three line up */
+.insight-card__excerpt {
+    flex: 1;
+    margin-bottom: 14px;
+}
+
+.insight-card__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: var(--fw-semibold);
+    color: var(--home-purple);
+}
+
+.insight-card__more-icon {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: var(--home-gold);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.insight-card:hover .insight-card__more-icon,
+.insight-card:focus-within .insight-card__more-icon {
+    transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .industry-card__badge,
+    .industry-card__arrow,
+    .insight-card,
+    .insight-card__more-icon {
+        transition: none;
+    }
+
+    .industry-card:hover .industry-card__badge,
+    .industry-card:hover .industry-card__arrow,
+    .insight-card:hover,
+    .insight-card:hover .insight-card__more-icon {
+        transform: none;
+    }
+
+    .industry-card__arrow {
+        opacity: 1;
+        transform: none;
+    }
+}
