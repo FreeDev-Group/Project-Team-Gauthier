@@ -12,8 +12,321 @@
     <!-- Navbar is injected here (components/navbar.html) -->
     <header id="navbar-placeholder"></header>
 
-        <!-- Home page content -->
     <main>
+
+        <!-- ============ 1. Hero ============ -->
+        <section class="hero" aria-labelledby="hero-title">
+            <img class="hero__image" src="assets/images/home-image/section-hero-image.png"
+                 alt="" width="1672" height="941" fetchpriority="high" decoding="async">
+            <div class="hero__overlay" aria-hidden="true"></div>
+
+            <div class="hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title" id="hero-title">Data Consulting That Drives Business Growth</h1>
+                    <p class="hero__subtitle">
+                        We help organizations turn data into better decisions,
+                        measurable performance, and strategic advantage.
+                    </p>
+                    <a class="hero__cta" href="pages/contact.html">Book a Free Strategy Call</a>
+                </div>
+            </div>
+
+            <a class="hero__scroll" href="#about-title">
+                <span>Scroll</span>
+                <span class="hero__scroll-icon" aria-hidden="true"></span>
+            </a>
+        </section>
+
+        <!-- ============ 2. About ============ -->
+        <section class="about" aria-labelledby="about-title">
+            <div class="about__container">
+
+                <figure class="about__media">
+                    <span class="about__frame">
+                        <img class="about__image" src="assets/images/home-image/about-image-section.png"
+                             alt="Consultant at Data Consultancy" width="1536" height="1024"
+                             loading="lazy" decoding="async">
+                    </span>
+                </figure>
+
+
+                <div class="about__content">
+                    <h2 class="about__title" id="about-title">
+                        <span class="about__title-kicker">About</span>
+                        <span class="about__title-name">DATA CONSULTANCE</span>
+                    </h2>
+
+                    <p class="about__lead">
+                        We help organizations turn data into better decisions,
+                        measurable performance, and strategic advantage.
+                    </p>
+
+                    <p class="about__note">Short, client-focused consulting engagements.</p>
+
+                    <ul class="about__list">
+                        <li class="about__item">
+                            <span class="about__check" aria-hidden="true"></span>
+                            Trusted by growing companies
+                        </li>
+                        <li class="about__item">
+                            <span class="about__check" aria-hidden="true"></span>
+                            Focused on measurable outcomes
+                        </li>
+                        <li class="about__item">
+                            <span class="about__check" aria-hidden="true"></span>
+                            Transparent, actionable guidance
+                        </li>
+                    </ul>
+
+                    <a class="about__cta" href="pages/about.html">
+                        Learn more about us
+                        <span class="about__cta-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============ 3. Services ============ -->
+        <section class="services" aria-labelledby="services-title">
+            <div class="services__container">
+                <h2 class="services__title" id="services-title">Services</h2>
+
+                <ul class="services__grid">
+                    <li class="service-card">
+                        <span class="service-card__badge" aria-hidden="true">
+                            <span class="service-card__icon service-card__icon--strategy"></span>
+                        </span>
+                        <h3 class="service-card__title">Data Strategy &amp; Governance</h3>
+                        <p class="service-card__text">
+                            Data readiness, governance, and strategic planning.
+                        </p>
+                        <a class="service-card__link" href="pages/services.html">
+                            Outcomes
+                            <span class="service-card__arrow" aria-hidden="true"></span>
+                        </a>
+                    </li>
+
+                    <li class="service-card">
+                        <span class="service-card__badge" aria-hidden="true">
+                            <span class="service-card__icon service-card__icon--reporting"></span>
+                        </span>
+                        <h3 class="service-card__title">Business Intelligence &amp; Reporting</h3>
+                        <p class="service-card__text">
+                            Dashboards, analytics and business insights.
+                        </p>
+                        <a class="service-card__link" href="pages/services.html">
+                            Outcomes
+                            <span class="service-card__arrow" aria-hidden="true"></span>
+                        </a>
+                    </li>
+
+                    <li class="service-card">
+                        <span class="service-card__badge" aria-hidden="true">
+                            <span class="service-card__icon service-card__icon--predictive"></span>
+                        </span>
+                        <h3 class="service-card__title">Predictive Analytics</h3>
+                        <p class="service-card__text">
+                            Forecasting trends and predictive modeling.
+                        </p>
+                        <a class="service-card__link" href="pages/services.html">
+                            Outcomes
+                            <span class="service-card__arrow" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ 4. Case Studies ============ -->
+        <!-- The chart is inline SVG: allowed here because this page has a
+             closing body tag, which Live Server injects into first. Never do
+             this in components/*.html, which have none. -->
+        <section class="case-studies" aria-labelledby="case-studies-title">
+            <div class="case-studies__container">
+                <h2 class="case-studies__title" id="case-studies-title">Case Studies</h2>
+
+                <article class="case-card">
+                    <figure class="case-card__media">
+                        <img class="case-card__photo" src="assets/images/home-image/section-hero-image.png"
+                             alt="Client team reviewing forecasts around a meeting table"
+                             width="1672" height="941" loading="lazy" decoding="async">
+                    </figure>
+
+                    <div class="case-card__body">
+                        <p class="case-card__eyebrow">Featured case</p>
+                        <h3 class="case-card__name">Retail Client Forecasting</h3>
+
+                        <dl class="case-card__facts">
+                            <div class="case-card__fact">
+                                <dt class="case-card__label">Problem:</dt>
+                                <dd class="case-card__value">Stockouts and overstock issues</dd>
+                            </div>
+                            <div class="case-card__fact">
+                                <dt class="case-card__label">Solution:</dt>
+                                <dd class="case-card__value">Predictive model + automated reporting</dd>
+                            </div>
+                            <div class="case-card__fact">
+                                <dt class="case-card__label">Result:</dt>
+                                <dd class="case-card__value"><span class="case-card__stat" data-count-to="18">18</span>% better forecasting accuracy</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <figure class="case-card__chart">
+                        <figcaption class="case-card__chart-title">Client forecasting</figcaption>
+                        <svg class="case-card__graph" viewBox="0 0 320 170" role="img"
+                             aria-label="Two rising curves comparing forecast and actual demand">
+                            <g class="case-card__grid">
+                                <line x1="30" y1="20" x2="310" y2="20"/>
+                                <line x1="30" y1="55" x2="310" y2="55"/>
+                                <line x1="30" y1="90" x2="310" y2="90"/>
+                                <line x1="30" y1="125" x2="310" y2="125"/>
+                            </g>
+                            <line class="case-card__axis" x1="30" y1="140" x2="310" y2="140"/>
+                            <path class="case-card__area"
+                                  d="M30 126 L58 124 L86 114 L114 113 L142 103 L170 100 L198 86 L226 80 L254 64 L282 54 L310 34 L310 140 L30 140 Z"/>
+                            <path class="case-card__line case-card__line--actual"
+                                  d="M30 126 L58 124 L86 114 L114 113 L142 103 L170 100 L198 86 L226 80 L254 64 L282 54 L310 34"/>
+                            <path class="case-card__line case-card__line--forecast"
+                                  d="M30 120 L58 117 L86 109 L114 105 L142 96 L170 91 L198 79 L226 71 L254 56 L282 45 L310 26"/>
+                            <circle class="case-card__dot case-card__dot--actual" cx="310" cy="34" r="3.5"/>
+                            <circle class="case-card__dot case-card__dot--forecast" cx="310" cy="26" r="3.5"/>
+                        </svg>
+                        <ul class="case-card__legend">
+                            <li class="case-card__legend-item case-card__legend-item--actual">Actual</li>
+                            <li class="case-card__legend-item case-card__legend-item--forecast">Forecast</li>
+                        </ul>
+                    </figure>
+                </article>
+
+                <a class="case-studies__cta" href="pages/case-studies.html">
+                    View all case studies
+                    <span class="case-studies__cta-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============ 5. Industries ============ -->
+        <section class="industries" aria-labelledby="industries-title">
+            <div class="industries__container">
+                <h2 class="industries__title" id="industries-title">Industries</h2>
+
+                <ul class="industries__grid">
+                    <li class="industry-card">
+                        <a class="industry-card__link" href="pages/industries.html">
+                            <span class="industry-card__badge" aria-hidden="true">
+                                <span class="industry-card__icon industry-card__icon--finance"></span>
+                            </span>
+                            <h3 class="industry-card__name">Finance &amp; Banking</h3>
+                            <span class="industry-card__arrow" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="industry-card">
+                        <a class="industry-card__link" href="pages/industries.html">
+                            <span class="industry-card__badge" aria-hidden="true">
+                                <span class="industry-card__icon industry-card__icon--health"></span>
+                            </span>
+                            <h3 class="industry-card__name">Healthcare</h3>
+                            <span class="industry-card__arrow" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="industry-card">
+                        <a class="industry-card__link" href="pages/industries.html">
+                            <span class="industry-card__badge" aria-hidden="true">
+                                <span class="industry-card__icon industry-card__icon--retail"></span>
+                            </span>
+                            <h3 class="industry-card__name">Retail &amp; E-Commerce</h3>
+                            <span class="industry-card__arrow" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="industry-card">
+                        <a class="industry-card__link" href="pages/industries.html">
+                            <span class="industry-card__badge" aria-hidden="true">
+                                <span class="industry-card__icon industry-card__icon--tech"></span>
+                            </span>
+                            <h3 class="industry-card__name">Tech Startups</h3>
+                            <span class="industry-card__arrow" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <a class="industries__cta" href="pages/industries.html">
+                    Explore industries
+                    <span class="industries__cta-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============ 6. Insights ============ -->
+        <section class="insights" aria-labelledby="insights-title">
+            <div class="insights__container">
+                <h2 class="insights__title" id="insights-title">Insights</h2>
+
+                <ul class="insights__grid">
+                    <li class="insight-card">
+                        <a class="insight-card__link" href="pages/insights.html">
+                            <img class="insight-card__thumb" src="assets/images/backgrounds/light/bg-light-1.jpg"
+                                 alt="" width="2480" height="1748" loading="lazy" decoding="async">
+                            <span class="insight-card__body">
+                            <time class="insight-card__date" datetime="2023-04-11">Apr 11, 2023</time>
+                            <h3 class="insight-card__title">How to Turn Data Into Decisions</h3>
+                            <p class="insight-card__excerpt">
+                                Turning reports into decisions your teams can act on.
+                            </p>
+                            <span class="insight-card__more">
+                                Read article
+                                <span class="insight-card__more-icon" aria-hidden="true"></span>
+                            </span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="insight-card">
+                        <a class="insight-card__link" href="pages/insights.html">
+                            <img class="insight-card__thumb" src="assets/images/backgrounds/dark/bg-dark-5.jpg"
+                                 alt="" width="3000" height="1822" loading="lazy" decoding="async">
+                            <span class="insight-card__body">
+                            <time class="insight-card__date" datetime="2023-04-17">Apr 17, 2023</time>
+                            <h3 class="insight-card__title">Data-Driven Strategy for Businesses</h3>
+                            <p class="insight-card__excerpt">
+                                Where data changes the plan, not just the reporting.
+                            </p>
+                            <span class="insight-card__more">
+                                Read article
+                                <span class="insight-card__more-icon" aria-hidden="true"></span>
+                            </span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="insight-card">
+                        <a class="insight-card__link" href="pages/insights.html">
+                            <img class="insight-card__thumb" src="assets/images/backgrounds/light/bg-light-3.jpg"
+                                 alt="" width="5065" height="3500" loading="lazy" decoding="async">
+                            <span class="insight-card__body">
+                            <time class="insight-card__date" datetime="2023-05-02">May 2, 2023</time>
+                            <h3 class="insight-card__title">Modern Data Analytics Approaches</h3>
+                            <p class="insight-card__excerpt">
+                                Dashboards, models and the habits that keep them useful.
+                            </p>
+                            <span class="insight-card__more">
+                                Read article
+                                <span class="insight-card__more-icon" aria-hidden="true"></span>
+                            </span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <a class="insights__cta" href="pages/insights.html">
+                    Read all insights
+                    <span class="insights__cta-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Next Home sections go here -->
 
     </main>
 

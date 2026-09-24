@@ -2,6 +2,2230 @@
    home.css — Home page styles
    Owner: Mugisho
 
-   Scoped to frontend/index.html.
-   Use the tokens from base/variables.css. Do not hardcode values.
+   Scoped to frontend/index.html. Every rule is prefixed by its section
+   (.hero__*, ...), so nothing leaks into the navbar, the footer or other pages.
+
+   Source of truth: assets/images/mockup/final-work-output.png.
+   Mockup values are scaled x1.9, the factor that turns the mockup navbar
+   (40px) into the real one (73px).
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Page tokens
+   Brand colours sampled from the mockup. base/variables.css still holds
+   #000000 placeholders for them, so they stay local until the Phase 0
+   token pass (same values as navbar.css and footer.css).
+   -------------------------------------------------------------------------- */
+
+/* home.css is linked by index.html only, so <main> scopes these to the Home */
+main {
+    --home-purple: #1E0636;
+    --home-cream: #F9F2DF;
+    --home-gold: #E49B3F;
+    --home-gold-hover: #F0AE57;
+    --home-ink: #0A0705;
+    --home-text: #33302A;
+    --home-teal: #24707B;
+}
+
+/* ==========================================================================
+   1. Hero
+   Mockup: 544 x 232 px. Text starts at 9% (the logo's edge) and is centred
+   vertically; the photo shows through on the right behind a purple fade.
+   ========================================================================== */
+
+.hero {
+    position: relative;
+    /* Keeps the z-index of the layers below inside the hero, so they never
+       compete with the sticky navbar */
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    /* Mockup proportion (232/544), trimmed to 196/544 so the band stays
+       compact: 519px at 1440px instead of 614px.
+       width: 100% is required, otherwise min-height makes aspect-ratio
+       widen the box past the viewport. */
+    width: 100%;
+    aspect-ratio: 544 / 196;
+    min-height: 380px;
+    max-height: 560px;
+    overflow: hidden;
+    background-color: var(--home-purple);
+}
+
+.hero__image {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    /* Wider frame than the photo: crop top and bottom, keep the presenter
+       and the screen in view */
+    /* contain, not cover: the whole photo stays visible at the section's
+       current height. It sits on the right and the purple fills the left,
+       under the text — the mockup's own composition.
+       No zoom here: scaling would crop the edges again. */
+    object-fit: contain;
+    object-position: 100% 50%;
+}
+
+/* Opaque purple behind the text, fading out over the photo.
+   Measured on the mockup: fully purple up to ~30% of the width, already
+   half transparent at 45%, light from 65%. */
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        90deg,
+        rgba(30, 6, 54, 0.95) 0%,
+        rgba(30, 6, 54, 0.9) 30%,
+        rgba(30, 6, 54, 0.5) 46%,
+        rgba(30, 6, 54, 0.22) 66%,
+        rgba(30, 6, 54, 0.1) 100%
+    );
+}
+
+/* Same width and gutters as the navbar and the footer */
+.hero__container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding: var(--space-xl) var(--container-padding);
+}
+
+.hero__content {
+    max-width: 600px;
+}
+
+.hero__title {
+    /* 13em breaks "Data Consulting That / Drives Business Growth" on two
+       lines, as in the mockup */
+    max-width: 13em;
+    /* Mockup x1.9: 30px between the title and the subtitle */
+    margin: 0 0 14px;
+    font-family: inherit;
+    /* 44px: first line 442px wide and a 52px line pitch, as in the mockup */
+    font-size: clamp(2rem, 1.2rem + 2.4vw, 2.75rem);
+    font-weight: var(--fw-bold);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    color: var(--home-cream);
+}
+
+.hero__subtitle {
+    max-width: 31em;
+    /* Mockup x1.9: 26px line pitch, 35px down to the button */
+    margin: 0 0 28px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(249, 242, 223, 0.88);
+}
+
+.hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Mockup x1.9: 244 x 40px */
+    min-height: 40px;
+    padding: 9px 24px;
+    border-radius: 6px;
+    background-color: var(--home-gold);
+    /* Thin darker rim, as on the mockup button */
+    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    color: var(--home-purple);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-in-out);
+}
+
+.hero__cta:hover,
+.hero__cta:focus-visible {
+    background-color: var(--home-gold-hover);
+    color: var(--home-purple);
+    transform: translateY(-1px);
+    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25),
+                0 10px 24px -10px rgba(228, 155, 63, 0.75);
+}
+
+.hero__cta:focus-visible {
+    outline: 2px solid var(--home-cream);
+    outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Hero — responsive
+   -------------------------------------------------------------------------- */
+
+/* Same gutters as .navbar__inner from 768px */
+@media (min-width: 768px) {
+
+    .hero__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+/* Tablet: the text covers more of the photo, so the fade reaches further */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .hero__overlay {
+        background: linear-gradient(
+            90deg,
+            rgba(30, 6, 54, 0.92) 0%,
+            rgba(30, 6, 54, 0.85) 50%,
+            rgba(30, 6, 54, 0.45) 78%,
+            rgba(30, 6, 54, 0.2) 100%
+        );
+    }
+}
+
+/* Narrow screens: the photo sits behind the whole text block, so the
+   purple becomes an even veil instead of a side fade */
+@media (max-width: 767px) {
+
+    .hero {
+        /* Portrait screens cannot show a landscape photo whole without a
+           huge empty band: back to a cropped background here */
+        aspect-ratio: auto;
+        min-height: 0;
+    }
+
+    .hero__image {
+        /* Whole photo as a band at the bottom, text on the purple above */
+        object-position: 50% 100%;
+    }
+
+    /* Opaque where the text sits, clear over the photo band underneath */
+    .hero__overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(30, 6, 54, 0.96) 0%,
+            rgba(30, 6, 54, 0.92) 42%,
+            rgba(30, 6, 54, 0.45) 62%,
+            rgba(30, 6, 54, 0.18) 100%
+        );
+    }
+
+    .hero__container {
+        padding-block: var(--space-2xl);
+    }
+
+    .hero__subtitle {
+        font-size: var(--fs-base);
+    }
+}
+
+@media (max-width: 479px) {
+
+    .hero__cta {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero__cta {
+        transition: none;
+    }
+
+    .hero__cta:hover,
+    .hero__cta:focus-visible {
+        transform: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Hero — gold edge, scroll cue and text entrance
+   -------------------------------------------------------------------------- */
+
+/* Thin gold line on the bottom edge, echoing the navbar */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(228, 155, 63, 0.75) 50%, transparent);
+}
+
+.hero__scroll {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(249, 242, 223, 0.75);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-in-out),
+                opacity var(--duration-base) var(--ease-in-out);
+}
+
+.hero__scroll:hover,
+.hero__scroll:focus-visible {
+    color: var(--home-cream);
+}
+
+.hero__scroll:focus-visible {
+    outline: 2px solid var(--home-cream);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.hero__scroll-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+    animation: hero-cue 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes hero-cue {
+    0%, 100% { transform: translateY(0); opacity: 0.75; }
+    50%      { transform: translateY(5px); opacity: 1; }
+}
+
+/* home.js hides the cue as soon as the page scrolls */
+.hero--scrolled .hero__scroll {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Text entrance, same mechanism as the About reveal */
+.js-reveal .hero__content > * {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+}
+
+.js-reveal .hero.is-visible .hero__content > * {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .hero.is-visible .hero__content > *:nth-child(2) { transition-delay: 110ms; }
+.js-reveal .hero.is-visible .hero__content > *:nth-child(3) { transition-delay: 220ms; }
+
+@media (max-width: 767px) {
+
+    .hero__scroll {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero__scroll-icon {
+        animation: none;
+    }
+
+    .js-reveal .hero__content > * {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   2. About
+   Mockup: cream band, 544 x 235px, right after the hero.
+   Portrait on the left (176 x 186px, rounded), text on the right starting
+   at 48% of the width. Photo and text are centred on each other.
+   ========================================================================== */
+
+.about {
+    /* Mockup x1.9: 447px tall in all */
+    padding-block: 56px 64px;
+    background-color: var(--home-cream);
+}
+
+/* Same width and gutters as the hero, the navbar and the footer */
+.about__container {
+    display: grid;
+    /* Photo on the left, text filling the rest up to the container edge */
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    align-items: center;
+    column-gap: clamp(32px, 5vw, 72px);
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+/* --------------------------------------------------------------------------
+   Portrait
+   -------------------------------------------------------------------------- */
+
+/* Thin gold frame offset behind the portrait: depth without another asset */
+.about__media {
+    position: relative;
+    margin: 0;
+}
+
+.about__media::before {
+    content: "";
+    position: absolute;
+    inset: 18px -18px -18px 18px;
+    border: 2px solid var(--home-gold);
+    border-radius: 9px;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+/* The frame does the cropping, so the gold outline behind it is never clipped */
+.about__frame {
+    position: relative;
+    display: block;
+    /* 176/186 of the mockup: a near-square portrait */
+    aspect-ratio: 176 / 186;
+    overflow: hidden;
+    border-radius: 9px;
+    box-shadow: 0 18px 36px -24px rgba(10, 7, 5, 0.45);
+}
+
+.about__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    /* The width/height attributes map to CSS height, which would win here */
+    height: 100%;
+    object-fit: cover;
+    /* Framing measured against the mockup: the subject sits centred, with
+       the same margin above the head and the crossed arms in view. */
+    object-position: 10% 0%;
+    transform: scale(1.1);
+    transform-origin: 10% 0%;
+}
+
+/* --------------------------------------------------------------------------
+   Text
+   -------------------------------------------------------------------------- */
+
+.about__title {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 15px;
+    font-family: inherit;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--home-ink);
+}
+
+.about__title-kicker {
+    font-size: 28px;
+    font-weight: var(--fw-bold);
+}
+
+.about__title-name {
+    /* 306px wide, as in the mockup */
+    font-size: 31px;
+    font-weight: var(--fw-bold);
+}
+
+.about__lead {
+    max-width: 36em;
+    margin: 0 0 19px;
+    font-size: var(--fs-base);
+    line-height: 1.5;
+    color: var(--home-text);
+}
+
+.about__note {
+    margin: 0 0 27px;
+    font-size: var(--fs-base);
+    line-height: 1.5;
+    color: var(--home-text);
+}
+
+/* --------------------------------------------------------------------------
+   Checked list
+   -------------------------------------------------------------------------- */
+
+.about__list {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.about__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: var(--fs-base);
+    line-height: 1.4;
+    color: var(--home-ink);
+}
+
+/* Teal disc with the white tick from assets/icons/check.svg.
+   A CSS mask lets the file be recoloured; it is never inline SVG, which
+   Live Server would break. */
+.about__check {
+    display: block;
+    flex: none;
+    width: 23px;
+    height: 23px;
+    border-radius: var(--radius-full);
+    background-color: var(--home-teal);
+    position: relative;
+}
+
+.about__check::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 13px;
+    height: 13px;
+    background-color: var(--color-white);
+    -webkit-mask: url("../../assets/icons/check.svg") center / contain no-repeat;
+    mask: url("../../assets/icons/check.svg") center / contain no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   About — button to the About page
+   -------------------------------------------------------------------------- */
+
+.about__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-height: 40px;
+    margin-top: 28px;
+    padding: 9px 22px;
+    border-radius: 6px;
+    background-color: var(--home-purple);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    color: var(--home-cream);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-in-out);
+}
+
+.about__cta:hover,
+.about__cta:focus-visible {
+    background-color: #2A0B47;
+    color: var(--home-cream);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px -12px rgba(30, 6, 54, 0.6);
+}
+
+.about__cta:focus-visible {
+    outline: 2px solid var(--home-purple);
+    outline-offset: 3px;
+}
+
+/* Arrow as a CSS mask: never inline SVG, which Live Server would break */
+.about__cta-icon {
+    display: block;
+    flex: none;
+    width: 15px;
+    height: 15px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.about__cta:hover .about__cta-icon,
+.about__cta:focus-visible .about__cta-icon {
+    transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   About — reveal on scroll
+   home.js adds .is-visible when the section enters the viewport. Without JS
+   everything stays visible: the hidden state is only applied once the script
+   has flagged the page with .js-reveal.
+   -------------------------------------------------------------------------- */
+
+.js-reveal .about__media,
+.js-reveal .about__content > * {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-reveal .about.is-visible .about__media,
+.js-reveal .about.is-visible .about__content > * {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .about.is-visible .about__content > *:nth-child(2) { transition-delay: 80ms; }
+.js-reveal .about.is-visible .about__content > *:nth-child(3) { transition-delay: 140ms; }
+.js-reveal .about.is-visible .about__content > *:nth-child(4) { transition-delay: 200ms; }
+.js-reveal .about.is-visible .about__content > *:nth-child(5) { transition-delay: 260ms; }
+
+@media (prefers-reduced-motion: reduce) {
+
+    .about__cta,
+    .about__cta-icon {
+        transition: none;
+    }
+
+    .about__cta:hover,
+    .about__cta:focus-visible,
+    .about__cta:hover .about__cta-icon {
+        transform: none;
+    }
+
+    .js-reveal .about__media,
+    .js-reveal .about__content > * {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   About — responsive
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+    .about__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+/* Tablet: keep the two columns but give the text more room */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .about__container {
+        grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    }
+
+    .about__title-kicker { font-size: 22px; }
+    .about__title-name { font-size: 25px; }
+}
+
+/* Narrow screens: portrait above the text */
+@media (max-width: 767px) {
+
+    .about {
+        padding-block: 48px 56px;
+    }
+
+    .about__container {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: var(--space-lg);
+    }
+
+    .about__media {
+        max-width: 320px;
+    }
+
+    .about__title-kicker { font-size: 21px; }
+    .about__title-name { font-size: 24px; }
+}
+
+
+/* ==========================================================================
+   3. Services
+   Mockup (column 1, right after About): white band, centred title, then
+   three cards of 138px with a 10px gap, starting at 9.5% of the width.
+   Each card: purple disc with a gold icon, bold two-line title, grey
+   description, "Outcomes" link with a gold arrow.
+   ========================================================================== */
+
+.services {
+    padding-block: 48px 64px;
+    background-color: var(--color-white);
+}
+
+/* Same width and gutters as the hero, About, the navbar and the footer */
+.services__container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.services__title {
+    margin: 0 0 28px;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--home-ink);
+}
+
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   Card
+   -------------------------------------------------------------------------- */
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ECE9E4;
+    border-radius: 12px;
+    background-color: var(--color-white);
+    box-shadow: 0 14px 30px -26px rgba(10, 7, 5, 0.55);
+    transition: transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-in-out),
+                border-color var(--duration-base) var(--ease-in-out);
+}
+
+.service-card:hover,
+.service-card:focus-within {
+    transform: translateY(-3px);
+    border-color: rgba(228, 155, 63, 0.55);
+    box-shadow: 0 18px 34px -22px rgba(10, 7, 5, 0.45);
+}
+
+.service-card__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background-color: var(--home-purple);
+    color: var(--home-gold);
+}
+
+/* Icons are CSS masks: never inline SVG, which Live Server would break */
+.service-card__icon {
+    display: block;
+    width: 22px;
+    height: 22px;
+    background-color: currentColor;
+    -webkit-mask: var(--service-icon) center / contain no-repeat;
+    mask: var(--service-icon) center / contain no-repeat;
+}
+
+.service-card__icon--strategy {
+    --service-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='16' y='16' width='6' height='6' rx='1'/%3E%3Crect x='2' y='16' width='6' height='6' rx='1'/%3E%3Crect x='9' y='2' width='6' height='6' rx='1'/%3E%3Cpath d='M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3'/%3E%3Cpath d='M12 12V8'/%3E%3C/svg%3E");
+}
+
+.service-card__icon--reporting {
+    --service-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='9' x='3' y='3' rx='1'/%3E%3Crect width='7' height='5' x='14' y='3' rx='1'/%3E%3Crect width='7' height='9' x='14' y='12' rx='1'/%3E%3Crect width='7' height='5' x='3' y='16' rx='1'/%3E%3C/svg%3E");
+}
+
+.service-card__icon--predictive {
+    --service-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3v16a2 2 0 0 0 2 2h16'/%3E%3Cpath d='M7 16v-4'/%3E%3Cpath d='M12 16v-8'/%3E%3Cpath d='M17 16v-6'/%3E%3C/svg%3E");
+}
+
+.service-card__title {
+    margin: 18px 0 8px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: var(--fw-bold);
+    line-height: 1.3;
+    color: var(--home-ink);
+}
+
+.service-card__text {
+    /* flex: 1 keeps every "Outcomes" link on the same baseline */
+    flex: 1;
+    margin: 0 0 18px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #5F5C55;
+}
+
+.service-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    align-self: flex-start;
+    font-size: 15px;
+    font-weight: var(--fw-semibold);
+    color: var(--home-ink);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.service-card__link:hover,
+.service-card__link:focus-visible {
+    color: var(--home-purple);
+}
+
+.service-card__link:focus-visible {
+    outline: 2px solid var(--home-gold);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+.service-card__arrow {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: var(--home-gold);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.service-card__link:hover .service-card__arrow,
+.service-card__link:focus-visible .service-card__arrow {
+    transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   Services — reveal on scroll (same mechanism as About)
+   -------------------------------------------------------------------------- */
+
+.js-reveal .services__title,
+.js-reveal .service-card {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-reveal .services.is-visible .services__title,
+.js-reveal .services.is-visible .service-card {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .services.is-visible .service-card:nth-child(1) { transition-delay: 80ms; }
+.js-reveal .services.is-visible .service-card:nth-child(2) { transition-delay: 160ms; }
+.js-reveal .services.is-visible .service-card:nth-child(3) { transition-delay: 240ms; }
+
+/* --------------------------------------------------------------------------
+   Services — responsive
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+    .services__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+@media (max-width: 767px) {
+
+    .services {
+        padding-block: 40px 48px;
+    }
+
+    .services__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 575px) {
+
+    .services__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .service-card,
+    .service-card__link,
+    .service-card__arrow {
+        transition: none;
+    }
+
+    .service-card:hover,
+    .service-card:focus-within,
+    .service-card__link:hover .service-card__arrow {
+        transform: none;
+    }
+
+    .js-reveal .services__title,
+    .js-reveal .service-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+/* ==========================================================================
+   4. Case Studies
+   Mockup (column 2): purple band 228px tall, centred cream title, then one
+   white card (360 x 150, i.e. 83% of the column) holding the case on the
+   left and its chart on the right.
+   ========================================================================== */
+
+.case-studies {
+    padding-block: 48px 64px;
+    background-color: var(--home-purple);
+}
+
+/* Same width and gutters as every other section */
+.case-studies__container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.case-studies__title {
+    margin: 0 0 28px;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--home-cream);
+}
+
+/* --------------------------------------------------------------------------
+   Card
+   -------------------------------------------------------------------------- */
+
+.case-card {
+    display: grid;
+    /* Photo of the client team, the case itself, then its chart */
+    grid-template-columns: minmax(0, 240px) minmax(0, 1.1fr) minmax(0, 300px);
+    grid-template-areas: "photo body chart";
+    gap: 28px;
+    align-items: center;
+    /* 83% of the column in the mockup, centred */
+    max-width: 83%;
+    margin-inline: auto;
+    padding: 28px;
+    border-radius: 16px;
+    background-color: var(--color-white);
+    box-shadow: 0 26px 50px -30px rgba(0, 0, 0, 0.75);
+}
+
+.case-card__name {
+    margin: 0 0 18px;
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: var(--fw-bold);
+    line-height: 1.3;
+    color: var(--home-ink);
+}
+
+.case-card__facts {
+    margin: 0;
+}
+
+/* Thin rule between rows, as in the mockup */
+.case-card__fact + .case-card__fact {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #ECE9E4;
+}
+
+.case-card__label {
+    display: inline;
+    font-size: 16px;
+    font-weight: var(--fw-bold);
+    color: var(--home-ink);
+}
+
+.case-card__value {
+    display: inline;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--home-text);
+}
+
+/* --------------------------------------------------------------------------
+   Chart
+   Drawn as inline SVG: no data file and no image to ship.
+   -------------------------------------------------------------------------- */
+
+.case-card__chart {
+    margin: 0;
+    padding: 12px;
+    border: 1px solid #ECE9E4;
+    border-radius: 10px;
+    background-color: var(--color-white);
+}
+
+.case-card__chart-title {
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.04em;
+    color: var(--home-text);
+}
+
+.case-card__graph {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.case-card__grid line,
+.case-card__axis {
+    stroke: #E8E6E1;
+    stroke-width: 1;
+}
+
+.case-card__area {
+    /* Light blue wash under the curves, as in the mockup */
+    fill: rgba(72, 110, 194, 0.12);
+}
+
+.case-card__line {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.case-card__line--actual {
+    stroke: var(--home-purple);
+}
+
+.case-card__line--forecast {
+    stroke: var(--home-gold);
+}
+
+.case-card__legend {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: 8px;
+}
+
+.case-card__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--home-text);
+}
+
+.case-card__legend-item::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+}
+
+.case-card__legend-item--actual::before { background-color: var(--home-purple); }
+.case-card__legend-item--forecast::before { background-color: var(--home-gold); }
+
+/* --------------------------------------------------------------------------
+   Case Studies — reveal on scroll
+   -------------------------------------------------------------------------- */
+
+.js-reveal .case-studies__title,
+.js-reveal .case-card {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-reveal .case-studies.is-visible .case-studies__title,
+.js-reveal .case-studies.is-visible .case-card {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .case-studies.is-visible .case-card { transition-delay: 100ms; }
+
+/* --------------------------------------------------------------------------
+   Case Studies — responsive
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+    .case-studies__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+@media (max-width: 991px) {
+
+    .case-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .case-studies {
+        padding-block: 40px 48px;
+    }
+
+    /* Everything stacks: photo, case, chart */
+    .case-card {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "photo"
+            "body"
+            "chart";
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .js-reveal .case-studies__title,
+    .js-reveal .case-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — creative layer
+   The section is about data, so the data draws itself: the curves are
+   traced, the area fades in and the result counts up (home.js).
+   -------------------------------------------------------------------------- */
+
+/* Soft glow behind the card, same idea as the footer lights */
+.case-studies {
+    position: relative;
+    isolation: isolate;
+}
+
+.case-studies::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(760px 320px at 50% 0%, rgba(126, 72, 204, 0.22), transparent 70%),
+        radial-gradient(520px 260px at 85% 100%, rgba(228, 155, 63, 0.10), transparent 70%);
+    pointer-events: none;
+}
+
+.case-card {
+    transition: transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.case-card:hover,
+.case-card:focus-within {
+    transform: translateY(-3px);
+    box-shadow: 0 32px 56px -30px rgba(0, 0, 0, 0.8);
+}
+
+.case-card__eyebrow {
+    margin: 0 0 6px;
+    font-size: 11px;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--home-gold);
+}
+
+/* The figure itself, picked out without shouting */
+.case-card__stat {
+    font-weight: var(--fw-bold);
+    color: var(--home-purple);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Curves are traced once the section shows. The hidden state sits behind
+   .js-reveal so the chart is complete when JavaScript is off. */
+.js-reveal .case-card__line {
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+}
+
+.js-reveal .case-card__area {
+    opacity: 0;
+}
+
+.js-reveal .case-studies.is-visible .case-card__line {
+    animation: case-draw 1500ms var(--ease-out) forwards;
+}
+
+.js-reveal .case-studies.is-visible .case-card__line--forecast {
+    animation-delay: 220ms;
+}
+
+.js-reveal .case-studies.is-visible .case-card__area {
+    animation: case-fade 700ms var(--ease-in-out) 900ms forwards;
+}
+
+@keyframes case-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes case-fade {
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .case-card,
+    .case-card:hover,
+    .case-card:focus-within {
+        transform: none;
+        transition: none;
+    }
+
+    .js-reveal .case-card__line {
+        stroke-dasharray: none;
+        stroke-dashoffset: 0;
+        animation: none;
+    }
+
+    .js-reveal .case-card__area {
+        opacity: 1;
+        animation: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — button to the Case Studies page
+   -------------------------------------------------------------------------- */
+
+.case-studies__cta {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-height: 40px;
+    margin-top: 28px;
+    padding: 9px 22px;
+    border-radius: 6px;
+    background-color: var(--home-gold);
+    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    color: var(--home-purple);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-in-out);
+}
+
+/* Centred under the card.
+   The container stays a block: making it a flex column cancelled the card's
+   auto margins, and the card shrank to the width of its text. */
+.case-studies__cta {
+    margin-inline: auto;
+}
+
+.case-studies__cta:hover,
+.case-studies__cta:focus-visible {
+    background-color: var(--home-gold-hover);
+    color: var(--home-purple);
+    transform: translateY(-1px);
+    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25),
+                0 12px 26px -12px rgba(228, 155, 63, 0.8);
+}
+
+.case-studies__cta:focus-visible {
+    outline: 2px solid var(--home-cream);
+    outline-offset: 3px;
+}
+
+.case-studies__cta-icon {
+    display: block;
+    flex: none;
+    width: 15px;
+    height: 15px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.case-studies__cta:hover .case-studies__cta-icon,
+.case-studies__cta:focus-visible .case-studies__cta-icon {
+    transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — staggered entrance for the card content and the button
+   -------------------------------------------------------------------------- */
+
+.js-reveal .case-card__eyebrow,
+.js-reveal .case-card__name,
+.js-reveal .case-card__fact,
+.js-reveal .case-card__chart,
+.js-reveal .case-studies__cta {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 450ms var(--ease-out), transform 450ms var(--ease-out);
+}
+
+.js-reveal .case-studies.is-visible .case-card__eyebrow,
+.js-reveal .case-studies.is-visible .case-card__name,
+.js-reveal .case-studies.is-visible .case-card__fact,
+.js-reveal .case-studies.is-visible .case-card__chart,
+.js-reveal .case-studies.is-visible .case-studies__cta {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .case-studies.is-visible .case-card__eyebrow   { transition-delay: 160ms; }
+.js-reveal .case-studies.is-visible .case-card__name      { transition-delay: 220ms; }
+.js-reveal .case-studies.is-visible .case-card__chart     { transition-delay: 260ms; }
+.js-reveal .case-studies.is-visible .case-card__fact:nth-child(1) { transition-delay: 300ms; }
+.js-reveal .case-studies.is-visible .case-card__fact:nth-child(2) { transition-delay: 360ms; }
+.js-reveal .case-studies.is-visible .case-card__fact:nth-child(3) { transition-delay: 420ms; }
+.js-reveal .case-studies.is-visible .case-studies__cta    { transition-delay: 520ms; }
+
+@media (prefers-reduced-motion: reduce) {
+
+    .case-studies__cta,
+    .case-studies__cta-icon {
+        transition: none;
+    }
+
+    .case-studies__cta:hover,
+    .case-studies__cta:focus-visible,
+    .case-studies__cta:hover .case-studies__cta-icon {
+        transform: none;
+    }
+
+    .js-reveal .case-card__eyebrow,
+    .js-reveal .case-card__name,
+    .js-reveal .case-card__fact,
+    .js-reveal .case-card__chart,
+    .js-reveal .case-studies__cta {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — chart size and end points
+   -------------------------------------------------------------------------- */
+
+/* Keeps the chart at a readable size once the card stacks */
+.case-card__chart {
+    max-width: 460px;
+    margin-inline: auto;
+}
+
+/* A dot marks the last value of each curve */
+.case-card__dot {
+    stroke: var(--color-white);
+    stroke-width: 2;
+}
+
+.case-card__dot--actual { fill: var(--home-purple); }
+.case-card__dot--forecast { fill: var(--home-gold); }
+
+.js-reveal .case-card__dot {
+    opacity: 0;
+}
+
+.js-reveal .case-studies.is-visible .case-card__dot {
+    animation: case-fade 400ms var(--ease-out) 1500ms forwards;
+}
+
+.js-reveal .case-studies.is-visible .case-card__dot--forecast {
+    animation-delay: 1700ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .js-reveal .case-card__dot {
+        opacity: 1;
+        animation: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Case Studies — client photo
+   The mockup's own case-study photo does not exist in assets/, so the
+   meeting-room shot is reused with a tight crop on the seated team: a very
+   different framing from the hero. Swap the src the day a dedicated photo
+   lands in assets/images/home-image/.
+   -------------------------------------------------------------------------- */
+
+.case-card__media { grid-area: photo; margin: 0; }
+.case-card__body  { grid-area: body; }
+.case-card__chart { grid-area: chart; }
+
+.case-card__photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    /* Tight on the people sitting at the table */
+    object-position: 38% 72%;
+    /* Arch top, as in the mockup's case-study image */
+    border-radius: 120px 120px 12px 12px;
+    /* The shot is a touch dark against the white card */
+    filter: brightness(1.07) saturate(1.04);
+}
+
+/* Between 992 and 1199px the three columns get cramped: the chart moves
+   under the case, next to the photo */
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    .case-card {
+        grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+        grid-template-areas:
+            "photo body"
+            "photo chart";
+        align-items: start;
+        row-gap: 20px;
+    }
+
+    .case-card__photo {
+        aspect-ratio: 3 / 5;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .case-card__photo {
+        aspect-ratio: 16 / 10;
+        max-width: 420px;
+        margin-inline: auto;
+        border-radius: 90px 90px 12px 12px;
+    }
+}
+
+/* The photo joins the staggered entrance */
+.js-reveal .case-card__media {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 450ms var(--ease-out), transform 450ms var(--ease-out);
+}
+
+.js-reveal .case-studies.is-visible .case-card__media {
+    opacity: 1;
+    transform: none;
+    transition-delay: 120ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .js-reveal .case-card__media {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   5. Industries
+   Mockup (column 3): purple band 164px tall, centred cream title, then four
+   73px cards with an 8px gap. Each card is transparent with a thin gold
+   border, an outlined gold icon and the name in cream underneath.
+   ========================================================================== */
+
+.industries {
+    padding-block: 48px 56px;
+    background-color: var(--home-purple);
+}
+
+.industries__container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.industries__title {
+    margin: 0 0 28px;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--home-cream);
+}
+
+.industries__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Card
+   -------------------------------------------------------------------------- */
+
+.industry-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 158px;
+    padding: 18px 12px;
+    border: 1px solid rgba(228, 155, 63, 0.45);
+    border-radius: 14px;
+    text-align: center;
+    transition: border-color var(--duration-base) var(--ease-in-out),
+                background-color var(--duration-base) var(--ease-in-out),
+                transform var(--duration-base) var(--ease-out);
+}
+
+.industry-card:hover,
+.industry-card:focus-within {
+    border-color: var(--home-gold);
+    background-color: rgba(228, 155, 63, 0.08);
+    transform: translateY(-3px);
+}
+
+/* Outlined icons, drawn as CSS masks: no file to add */
+.industry-card__icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: var(--home-gold);
+    -webkit-mask: var(--industry-icon) center / contain no-repeat;
+    mask: var(--industry-icon) center / contain no-repeat;
+}
+
+.industry-card__icon--finance {
+    --industry-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 22h18'/%3E%3Cpath d='M6 18v-7'/%3E%3Cpath d='M10 18v-7'/%3E%3Cpath d='M14 18v-7'/%3E%3Cpath d='M18 18v-7'/%3E%3Cpath d='M4 11h16'/%3E%3Cpath d='m12 2 9 6H3l9-6z'/%3E%3C/svg%3E");
+}
+
+.industry-card__icon--health {
+    --industry-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='13' x='3' y='7' rx='2'/%3E%3Cpath d='M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2'/%3E%3Cpath d='M12 11v5'/%3E%3Cpath d='M9.5 13.5h5'/%3E%3C/svg%3E");
+}
+
+.industry-card__icon--retail {
+    --industry-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='20' r='1.5'/%3E%3Ccircle cx='18' cy='20' r='1.5'/%3E%3Cpath d='M2 3h2.2l2.3 11.4a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 2-1.6L21 7H5'/%3E%3C/svg%3E");
+}
+
+.industry-card__icon--tech {
+    --industry-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z'/%3E%3Cpath d='m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z'/%3E%3Cpath d='M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0'/%3E%3Cpath d='M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5'/%3E%3C/svg%3E");
+}
+
+.industry-card__name {
+    margin: 0;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: var(--fw-semibold);
+    line-height: 1.35;
+    color: var(--home-cream);
+}
+
+/* --------------------------------------------------------------------------
+   Button to the Industries page
+   -------------------------------------------------------------------------- */
+
+.industries__cta {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-height: 40px;
+    margin: 28px auto 0;
+    padding: 9px 22px;
+    border: 1px solid rgba(228, 155, 63, 0.55);
+    border-radius: 6px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    color: var(--home-cream);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-in-out),
+                border-color var(--duration-fast) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out);
+}
+
+.industries__cta:hover,
+.industries__cta:focus-visible {
+    border-color: var(--home-gold);
+    background-color: rgba(228, 155, 63, 0.12);
+    color: var(--home-cream);
+    transform: translateY(-1px);
+}
+
+.industries__cta:focus-visible {
+    outline: 2px solid var(--home-cream);
+    outline-offset: 3px;
+}
+
+.industries__cta-icon {
+    display: block;
+    flex: none;
+    width: 15px;
+    height: 15px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.industries__cta:hover .industries__cta-icon,
+.industries__cta:focus-visible .industries__cta-icon {
+    transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   Industries — reveal on scroll
+   -------------------------------------------------------------------------- */
+
+.js-reveal .industries__title,
+.js-reveal .industry-card,
+.js-reveal .industries__cta {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-reveal .industries.is-visible .industries__title,
+.js-reveal .industries.is-visible .industry-card,
+.js-reveal .industries.is-visible .industries__cta {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .industries.is-visible .industry-card:nth-child(1) { transition-delay: 90ms; }
+.js-reveal .industries.is-visible .industry-card:nth-child(2) { transition-delay: 160ms; }
+.js-reveal .industries.is-visible .industry-card:nth-child(3) { transition-delay: 230ms; }
+.js-reveal .industries.is-visible .industry-card:nth-child(4) { transition-delay: 300ms; }
+.js-reveal .industries.is-visible .industries__cta { transition-delay: 380ms; }
+
+/* --------------------------------------------------------------------------
+   Industries — responsive
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+    .industries__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+@media (max-width: 767px) {
+
+    .industries {
+        padding-block: 40px 48px;
+    }
+
+    /* Two by two: the cards are small, a single column would stretch them */
+    .industries__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .industry-card {
+        min-height: 136px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .industry-card,
+    .industries__cta,
+    .industries__cta-icon {
+        transition: none;
+    }
+
+    .industry-card:hover,
+    .industry-card:focus-within,
+    .industries__cta:hover,
+    .industries__cta:hover .industries__cta-icon {
+        transform: none;
+    }
+
+    .js-reveal .industries__title,
+    .js-reveal .industry-card,
+    .js-reveal .industries__cta {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   6. Insights
+   Mockup (column 3): white band 213px tall, centred title, three articles
+   of 101px with an 8px gap. Each one: 16/10 thumbnail, small grey date,
+   bold two-line title, grey excerpt. No border, no shadow: editorial style.
+   ========================================================================== */
+
+.insights {
+    padding-block: 48px 56px;
+    background-color: var(--color-white);
+}
+
+.insights__container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.insights__title {
+    margin: 0 0 28px;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--home-ink);
+}
+
+.insights__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   Article
+   -------------------------------------------------------------------------- */
+
+.insight-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.insight-card__thumb {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+/* The thumbnail is the only thing that moves on hover: the card has no frame */
+.insight-card {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.insight-card__link:hover .insight-card__thumb,
+.insight-card__link:focus-visible .insight-card__thumb {
+    transform: scale(1.04);
+}
+
+.insight-card__date {
+    display: block;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #7A776F;
+}
+
+.insight-card__title {
+    margin: 6px 0 8px;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: var(--fw-bold);
+    line-height: 1.35;
+    color: var(--home-ink);
+    transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.insight-card__link:hover .insight-card__title,
+.insight-card__link:focus-visible .insight-card__title {
+    color: var(--home-purple);
+}
+
+.insight-card__excerpt {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #5F5C55;
+}
+
+.insight-card__link:focus-visible {
+    outline: 2px solid var(--home-gold);
+    outline-offset: 4px;
+    border-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Button to the Insights page
+   -------------------------------------------------------------------------- */
+
+.insights__cta {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-height: 40px;
+    margin: 32px auto 0;
+    padding: 9px 22px;
+    border: 1px solid rgba(30, 6, 54, 0.25);
+    border-radius: 6px;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
+    line-height: 1.25;
+    color: var(--home-purple);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-in-out),
+                border-color var(--duration-fast) var(--ease-in-out),
+                transform var(--duration-fast) var(--ease-out);
+}
+
+.insights__cta:hover,
+.insights__cta:focus-visible {
+    border-color: var(--home-purple);
+    background-color: rgba(30, 6, 54, 0.05);
+    color: var(--home-purple);
+    transform: translateY(-1px);
+}
+
+.insights__cta:focus-visible {
+    outline: 2px solid var(--home-gold);
+    outline-offset: 3px;
+}
+
+.insights__cta-icon {
+    display: block;
+    flex: none;
+    width: 15px;
+    height: 15px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.insights__cta:hover .insights__cta-icon,
+.insights__cta:focus-visible .insights__cta-icon {
+    transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   Insights — reveal on scroll
+   -------------------------------------------------------------------------- */
+
+.js-reveal .insights__title,
+.js-reveal .insight-card,
+.js-reveal .insights__cta {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-reveal .insights.is-visible .insights__title,
+.js-reveal .insights.is-visible .insight-card,
+.js-reveal .insights.is-visible .insights__cta {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .insights.is-visible .insight-card:nth-child(1) { transition-delay: 90ms; }
+.js-reveal .insights.is-visible .insight-card:nth-child(2) { transition-delay: 170ms; }
+.js-reveal .insights.is-visible .insight-card:nth-child(3) { transition-delay: 250ms; }
+.js-reveal .insights.is-visible .insights__cta { transition-delay: 330ms; }
+
+/* --------------------------------------------------------------------------
+   Insights — responsive
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+    .insights__container {
+        padding-inline: calc(var(--container-padding) + 0.5rem);
+    }
+}
+
+@media (max-width: 767px) {
+
+    .insights {
+        padding-block: 40px 48px;
+    }
+
+    .insights__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .insights__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .insight-card__thumb,
+    .insight-card__title,
+    .insights__cta,
+    .insights__cta-icon {
+        transition: none;
+    }
+
+    .insight-card__link:hover .insight-card__thumb,
+    .insights__cta:hover,
+    .insights__cta:hover .insights__cta-icon {
+        transform: none;
+    }
+
+    .js-reveal .insights__title,
+    .js-reveal .insight-card,
+    .js-reveal .insights__cta {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   SaaS card treatment — Industries and Insights
+   Both grids become proper product cards: a framed surface, an icon badge,
+   a clear affordance and one move on hover. Nothing here invents content.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Industries — clickable cards
+   -------------------------------------------------------------------------- */
+
+.industry-card {
+    /* the padding now lives on the link, which fills the card */
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+}
+
+.industry-card__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 100%;
+    padding: 20px 14px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.industry-card__link:focus-visible {
+    outline: 2px solid var(--home-gold);
+    outline-offset: -4px;
+    border-radius: 12px;
+}
+
+/* Icon badge with a soft ring, the usual SaaS feature card */
+.industry-card__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    border: 1px solid rgba(228, 155, 63, 0.35);
+    border-radius: var(--radius-full);
+    background: radial-gradient(circle at 50% 35%, rgba(228, 155, 63, 0.18), rgba(228, 155, 63, 0.04));
+    transition: transform var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-in-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.industry-card:hover .industry-card__badge,
+.industry-card:focus-within .industry-card__badge {
+    transform: translateY(-2px) scale(1.04);
+    border-color: var(--home-gold);
+    box-shadow: 0 0 0 6px rgba(228, 155, 63, 0.08);
+}
+
+.industry-card__icon {
+    width: 32px;
+    height: 32px;
+}
+
+/* Arrow appears on hover, so the card reads as clickable */
+.industry-card__arrow {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: var(--home-gold);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity var(--duration-base) var(--ease-in-out),
+                transform var(--duration-base) var(--ease-out);
+}
+
+.industry-card:hover .industry-card__arrow,
+.industry-card:focus-within .industry-card__arrow {
+    opacity: 1;
+    transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Insights — article cards
+   -------------------------------------------------------------------------- */
+
+.insight-card {
+    display: flex;
+    overflow: hidden;
+    border: 1px solid #ECE9E4;
+    border-radius: 14px;
+    background-color: var(--color-white);
+    box-shadow: 0 14px 30px -26px rgba(10, 7, 5, 0.55);
+    transition: transform var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-in-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.insight-card:hover,
+.insight-card:focus-within {
+    transform: translateY(-4px);
+    border-color: rgba(228, 155, 63, 0.55);
+    box-shadow: 0 20px 36px -22px rgba(10, 7, 5, 0.45);
+}
+
+.insight-card__link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* The thumbnail is flush with the top of the card */
+.insight-card__thumb {
+    border-radius: 0;
+}
+
+.insight-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px 18px 18px;
+}
+
+.insight-card__date {
+    margin-top: 0;
+}
+
+/* Pushes "Read article" to the bottom, so all three line up */
+.insight-card__excerpt {
+    flex: 1;
+    margin-bottom: 14px;
+}
+
+.insight-card__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: var(--fw-semibold);
+    color: var(--home-purple);
+}
+
+.insight-card__more-icon {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: var(--home-gold);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.insight-card:hover .insight-card__more-icon,
+.insight-card:focus-within .insight-card__more-icon {
+    transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .industry-card__badge,
+    .industry-card__arrow,
+    .insight-card,
+    .insight-card__more-icon {
+        transition: none;
+    }
+
+    .industry-card:hover .industry-card__badge,
+    .industry-card:hover .industry-card__arrow,
+    .insight-card:hover,
+    .insight-card:hover .insight-card__more-icon {
+        transform: none;
+    }
+
+    .industry-card__arrow {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ==========================================================================
+   Page-wide finish
+   One visual rhythm across every section: a gold accent under each title,
+   hairlines between bands, parallax on the two photographs and a shared
+   hover language. Nothing here adds content.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Gold accent under every section title
+   -------------------------------------------------------------------------- */
+
+.services__title,
+.case-studies__title,
+.industries__title,
+.insights__title {
+    position: relative;
+    padding-bottom: 14px;
+}
+
+.services__title::after,
+.case-studies__title::after,
+.industries__title::after,
+.insights__title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 46px;
+    height: 3px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--home-gold), rgba(228, 155, 63, 0.35));
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 600ms var(--ease-out) 120ms;
+}
+
+/* The bar draws itself when the section arrives */
+.services.is-visible .services__title::after,
+.case-studies.is-visible .case-studies__title::after,
+.industries.is-visible .industries__title::after,
+.insights.is-visible .insights__title::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Without JS the bar is simply there */
+html:not(.js-reveal) .services__title::after,
+html:not(.js-reveal) .case-studies__title::after,
+html:not(.js-reveal) .industries__title::after,
+html:not(.js-reveal) .insights__title::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Hairline between the light bands, echoing the hero's gold edge
+   -------------------------------------------------------------------------- */
+
+.about,
+.services,
+.insights {
+    position: relative;
+}
+
+.about::before,
+.services::before,
+.insights::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(228, 155, 63, 0.35) 50%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+   3. Parallax on the two photographs (home.js sets --parallax)
+   -------------------------------------------------------------------------- */
+
+.hero__image,
+.about__image {
+    will-change: transform;
+}
+
+.about__image {
+    transform: scale(1.1) translateY(var(--parallax, 0px));
+}
+
+/* --------------------------------------------------------------------------
+   4. Services — the badge answers the pointer, like the Industries cards
+   -------------------------------------------------------------------------- */
+
+.service-card__badge {
+    transition: transform var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.service-card:hover .service-card__badge,
+.service-card:focus-within .service-card__badge {
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 0 0 6px rgba(30, 6, 54, 0.06);
+}
+
+.service-card__icon {
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.service-card:hover .service-card__icon,
+.service-card:focus-within .service-card__icon {
+    transform: scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   5. About — the checked list ticks in one after another
+   -------------------------------------------------------------------------- */
+
+.js-reveal .about__item {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 420ms var(--ease-out), transform 420ms var(--ease-out);
+}
+
+.js-reveal .about.is-visible .about__item {
+    opacity: 1;
+    transform: none;
+}
+
+.js-reveal .about.is-visible .about__item:nth-child(1) { transition-delay: 320ms; }
+.js-reveal .about.is-visible .about__item:nth-child(2) { transition-delay: 400ms; }
+.js-reveal .about.is-visible .about__item:nth-child(3) { transition-delay: 480ms; }
+
+.about__check {
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+.about__item:hover .about__check {
+    transform: scale(1.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .services__title::after,
+    .case-studies__title::after,
+    .industries__title::after,
+    .insights__title::after {
+        transform: translateX(-50%) scaleX(1);
+        transition: none;
+    }
+
+    .about__image {
+        transform: scale(1.1);
+    }
+
+    .service-card__badge,
+    .service-card__icon,
+    .about__check {
+        transition: none;
+    }
+
+    .service-card:hover .service-card__badge,
+    .service-card:hover .service-card__icon,
+    .about__item:hover .about__check {
+        transform: none;
+    }
+
+    .js-reveal .about__item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

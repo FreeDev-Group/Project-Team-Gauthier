@@ -288,25 +288,6 @@ Bottom text:
 ```
 
 ---
-
-# Recommended Folder Structure
-
-```
-data-consultance-site
-│
-├── index.html
-├── css
-│   └── style.css
-│
-├── js
-│   └── script.js
-│
-├── images
-│   ├── hero-image.jpg
-│   ├── consultant.jpg
-│   ├── chart.png
-│
-└── README.md
 ```
 
 ---
