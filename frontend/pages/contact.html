@@ -1,809 +1,1381 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Data Consultancy — Contact</title>
+
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/pages/contact.css">
 </head>
+
 <body>
 
     <!-- Navbar is injected here (components/navbar.html) -->
     <header id="navbar-placeholder"></header>
 
+
     <main>
-    <!-- Contact page content -->
 
-    <!-- Hero -->
-    <section
-        class="contact-hero"
-        id="contact-hero"
-        aria-labelledby="contact-hero-title"
-    >
-        <div class="container contact-hero__container">
+        <!-- =========================================================
+             HERO
+             ========================================================= -->
 
-            <div class="contact-hero__content">
-                <p class="contact-hero__eyebrow">Contact Us</p>
+        <section
+            class="contact-hero"
+            id="contact-hero"
+            aria-labelledby="contact-hero-title"
+        >
+            <div class="contact-hero__background" aria-hidden="true"></div>
+            <div class="contact-hero__overlay" aria-hidden="true"></div>
 
-                <h1
-                    class="contact-hero__title"
-                    id="contact-hero-title"
+            <div class="container contact-hero__container">
+
+                <div
+                    class="contact-hero__content"
+                    data-contact-reveal
                 >
-                    Let's turn your data into
-                    <span>better decisions</span>
-                </h1>
-
-                <p class="contact-hero__description">
-                    Tell us about your goals, challenges, or ideas.
-                    We're ready to help you transform complex data into
-                    clear insights and practical solutions.
-                </p>
-
-                <a
-                    class="contact-hero__button"
-                    href="#contact-form"
-                >
-                    Start a Conversation
-                    <img
-                        src="../assets/icons/chevron-right.svg"
-                        alt=""
-                        width="18"
-                        height="18"
-                    >
-                </a>
-            </div>
-
-            <div class="contact-hero__visual">
-                <img
-                    class="contact-hero__image"
-                    src="../assets/images/backgrounds/dark/contact-hero.png"
-                    alt="Professional data consultancy workspace with an analytics dashboard"
-                >
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- Contact Form and Information -->
-    <section
-        class="contact-main section"
-        id="contact-form"
-        aria-labelledby="contact-main-title"
-    >
-        <div class="container">
-
-            <div class="contact-heading">
-                <div class="contact-heading__content">
-                    <p class="contact-section__eyebrow">
-                        Get in Touch
+                    <p class="contact-hero__eyebrow">
+                        Contact Us
                     </p>
 
-                    <h2
-                        class="contact-heading__title"
-                        id="contact-main-title"
+                    <h1
+                        class="contact-hero__title"
+                        id="contact-hero-title"
                     >
-                        Let's talk about your project
-                    </h2>
+                        Turn your<br>
+                        data ideas into<br>
+                        <span>real impact.</span>
+                    </h1>
+
+                    <p class="contact-hero__description">
+                        Have a question, a project, or a data challenge?
+                        Our team is ready to listen and help you find
+                        the right solution.
+                    </p>
+
+
+                    <div class="contact-hero__benefits">
+
+                        <div class="contact-hero-benefit">
+                            <span class="contact-hero-benefit__icon">
+                                <img
+                                    src="../assets/icons/message-circle.svg"
+                                    alt=""
+                                    width="20"
+                                    height="20"
+                                >
+                            </span>
+
+                            <div>
+                                <strong>Direct Contact</strong>
+                                <p>Reach our team directly.</p>
+                            </div>
+                        </div>
+
+
+                        <div class="contact-hero-benefit">
+                            <span class="contact-hero-benefit__icon">
+                                <img
+                                    src="../assets/icons/target.svg"
+                                    alt=""
+                                    width="20"
+                                    height="20"
+                                >
+                            </span>
+
+                            <div>
+                                <strong>Clear Next Steps</strong>
+                                <p>Start with your needs and goals.</p>
+                            </div>
+                        </div>
+
+
+                        <div class="contact-hero-benefit">
+                            <span class="contact-hero-benefit__icon">
+                                <img
+                                    src="../assets/icons/shield-check.svg"
+                                    alt=""
+                                    width="20"
+                                    height="20"
+                                >
+                            </span>
+
+                            <div>
+                                <strong>Confidential</strong>
+                                <p>Your information is handled with care.</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <p class="contact-heading__description">
-                    Share a few details about what you need. We'll review
-                    your request and get back to you within one hour.
-                </p>
             </div>
+        </section>
 
 
-            <div class="contact-main__layout">
+        <!-- =========================================================
+             MOVING TICKER
+             ========================================================= -->
 
-                <!-- Contact Form -->
-                <form
-                    class="contact-form"
-                    id="contact-project-form"
-                    novalidate
-                >
-                    <div class="contact-form__heading">
-                        <h3 class="contact-form__title">
-                            Send Us a Message
-                        </h3>
+        <div
+            class="contact-ticker"
+            aria-label="DATA Consultancy services"
+        >
+            <div class="contact-ticker__viewport">
 
-                        <p class="contact-form__description">
-                            Complete the form below and tell us how we can help.
-                        </p>
+                <div class="contact-ticker__track">
+
+                    <div class="contact-ticker__group">
+                        <span>Data Solutions</span>
+                        <i aria-hidden="true">✦</i>
+
+                        <span>Let's Talk</span>
+                        <i aria-hidden="true">✦</i>
+
+                        <span>Data Strategy</span>
+                        <i aria-hidden="true">✦</i>
+
+                        <span>Business Intelligence</span>
+                        <i aria-hidden="true">✦</i>
+
+                        <span>Predictive Analytics</span>
+                        <i aria-hidden="true">✦</i>
+
+                        <span>Custom Solutions</span>
+                        <i aria-hidden="true">✦</i>
                     </div>
 
 
-                    <div class="contact-form__grid">
-
-                        <div class="contact-form__field">
-                            <label
-                                class="contact-form__label"
-                                for="contact-name"
-                            >
-                                Full Name
-                            </label>
-
-                            <input
-                                class="contact-form__control"
-                                type="text"
-                                id="contact-name"
-                                name="name"
-                                autocomplete="name"
-                                placeholder="Your full name"
-                                required
-                                aria-describedby="contact-name-error"
-                            >
-
-                            <p
-                                class="contact-form__error"
-                                id="contact-name-error"
-                                aria-live="polite"
-                            ></p>
-                        </div>
-
-
-                        <div class="contact-form__field">
-                            <label
-                                class="contact-form__label"
-                                for="contact-email"
-                            >
-                                Email Address
-                            </label>
-
-                            <input
-                                class="contact-form__control"
-                                type="email"
-                                id="contact-email"
-                                name="email"
-                                autocomplete="email"
-                                placeholder="you@example.com"
-                                required
-                                aria-describedby="contact-email-error"
-                            >
-
-                            <p
-                                class="contact-form__error"
-                                id="contact-email-error"
-                                aria-live="polite"
-                            ></p>
-                        </div>
-
-
-                        <div class="contact-form__field">
-                            <label
-                                class="contact-form__label"
-                                for="contact-company"
-                            >
-                                Company / Organization
-                            </label>
-
-                            <input
-                                class="contact-form__control"
-                                type="text"
-                                id="contact-company"
-                                name="company"
-                                autocomplete="organization"
-                                placeholder="Your organization"
-                            >
-                        </div>
-
-
-                        <div class="contact-form__field">
-                            <label
-                                class="contact-form__label"
-                                for="contact-service"
-                            >
-                                Service of Interest
-                            </label>
-
-                            <select
-                                class="contact-form__control contact-form__select"
-                                id="contact-service"
-                                name="service"
-                            >
-                                <option value="">
-                                    Select a service
-                                </option>
-
-                                <option value="data-analysis">
-                                    Data Analysis
-                                </option>
-
-                                <option value="business-intelligence">
-                                    Business Intelligence
-                                </option>
-
-                                <option value="data-strategy">
-                                    Data Strategy
-                                </option>
-
-                                <option value="reporting">
-                                    Reporting &amp; Dashboards
-                                </option>
-
-                                <option value="other">
-                                    Other
-                                </option>
-                            </select>
-                        </div>
-
-
-                        <div class="contact-form__field contact-form__field--full">
-                            <label
-                                class="contact-form__label"
-                                for="contact-message"
-                            >
-                                Tell Us About Your Project
-                            </label>
-
-                            <textarea
-                                class="contact-form__control contact-form__control--textarea"
-                                id="contact-message"
-                                name="message"
-                                rows="6"
-                                placeholder="Tell us about your goals, challenges, or questions..."
-                                required
-                                aria-describedby="contact-message-error"
-                            ></textarea>
-
-                            <p
-                                class="contact-form__error"
-                                id="contact-message-error"
-                                aria-live="polite"
-                            ></p>
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        class="contact-form__submit"
-                        type="submit"
+                    <div
+                        class="contact-ticker__group"
+                        aria-hidden="true"
                     >
-                        Send Message
+                        <span>Data Solutions</span>
+                        <i>✦</i>
+
+                        <span>Let's Talk</span>
+                        <i>✦</i>
+
+                        <span>Data Strategy</span>
+                        <i>✦</i>
+
+                        <span>Business Intelligence</span>
+                        <i>✦</i>
+
+                        <span>Predictive Analytics</span>
+                        <i>✦</i>
+
+                        <span>Custom Solutions</span>
+                        <i>✦</i>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- =========================================================
+             CONTACT FORM + INFORMATION
+             ========================================================= -->
+
+        <section
+            class="contact-conversation"
+            id="contact-form"
+            aria-labelledby="contact-form-title"
+        >
+            <div class="container contact-conversation__container">
+
+
+                <!-- FORM CARD -->
+
+                <div
+                    class="contact-form-card"
+                    data-contact-reveal
+                >
+
+                    <div class="contact-form-card__header">
+
+                        <p class="contact-eyebrow">
+                            Send a Message
+                        </p>
+
+                        <h2
+                            class="contact-form-card__title"
+                            id="contact-form-title"
+                        >
+                            How can we help you?
+                        </h2>
+
+                        <p class="contact-form-card__description">
+                            Fill in the form below and tell us about
+                            your project, question, or challenge.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        class="contact-form"
+                        id="contact-project-form"
+                        data-contact-form
+                        novalidate
+                    >
+
+                        <div class="contact-form__grid">
+
+
+                            <!-- Full name -->
+
+                            <div class="contact-form__field">
+
+                                <label
+                                    class="contact-form__label"
+                                    for="contact-name"
+                                >
+                                    Full Name
+                                    <span aria-hidden="true">*</span>
+                                </label>
+
+                                <input
+                                    class="contact-form__control"
+                                    type="text"
+                                    id="contact-name"
+                                    name="name"
+                                    autocomplete="name"
+                                    placeholder="Your full name"
+                                    required
+                                    aria-describedby="contact-name-error"
+                                >
+
+                                <p
+                                    class="contact-form__error"
+                                    id="contact-name-error"
+                                    aria-live="polite"
+                                ></p>
+
+                            </div>
+
+
+                            <!-- Email -->
+
+                            <div class="contact-form__field">
+
+                                <label
+                                    class="contact-form__label"
+                                    for="contact-email"
+                                >
+                                    Email Address
+                                    <span aria-hidden="true">*</span>
+                                </label>
+
+                                <input
+                                    class="contact-form__control"
+                                    type="email"
+                                    id="contact-email"
+                                    name="email"
+                                    autocomplete="email"
+                                    placeholder="you@example.com"
+                                    required
+                                    aria-describedby="contact-email-error"
+                                >
+
+                                <p
+                                    class="contact-form__error"
+                                    id="contact-email-error"
+                                    aria-live="polite"
+                                ></p>
+
+                            </div>
+
+
+                            <!-- Company -->
+
+                            <div class="contact-form__field">
+
+                                <label
+                                    class="contact-form__label"
+                                    for="contact-company"
+                                >
+                                    Company / Organization
+                                </label>
+
+                                <input
+                                    class="contact-form__control"
+                                    type="text"
+                                    id="contact-company"
+                                    name="company"
+                                    autocomplete="organization"
+                                    placeholder="Your organization"
+                                >
+
+                            </div>
+
+
+                            <!-- Service -->
+
+                            <div class="contact-form__field">
+
+                                <label
+                                    class="contact-form__label"
+                                    for="contact-service"
+                                >
+                                    Service of Interest
+                                </label>
+
+                                <select
+                                    class="contact-form__control contact-form__select"
+                                    id="contact-service"
+                                    name="service"
+                                >
+                                    <option value="">
+                                        Select a service
+                                    </option>
+
+                                    <option value="data-strategy-governance">
+                                        Data Strategy &amp; Governance
+                                    </option>
+
+                                    <option value="business-intelligence-reporting">
+                                        Business Intelligence &amp; Reporting
+                                    </option>
+
+                                    <option value="predictive-analytics">
+                                        Predictive Analytics
+                                    </option>
+
+                                    <option value="data-solutions-implementation">
+                                        Data Solutions &amp; Implementation
+                                    </option>
+
+                                    <option value="custom-solution">
+                                        Other / Custom Solution
+                                    </option>
+                                </select>
+
+                            </div>
+
+
+                            <!-- Message -->
+
+                            <div
+                                class="contact-form__field
+                                       contact-form__field--full"
+                            >
+
+                                <label
+                                    class="contact-form__label"
+                                    for="contact-message"
+                                >
+                                    Tell Us About Your Project
+                                    <span aria-hidden="true">*</span>
+                                </label>
+
+                                <textarea
+                                    class="contact-form__control
+                                           contact-form__control--textarea"
+                                    id="contact-message"
+                                    name="message"
+                                    rows="6"
+                                    maxlength="1200"
+                                    placeholder="Tell us about your goals, challenges, or questions..."
+                                    required
+                                    aria-describedby="contact-message-error"
+                                ></textarea>
+
+
+                                <div class="contact-form__message-meta">
+
+                                    <p
+                                        class="contact-form__error"
+                                        id="contact-message-error"
+                                        aria-live="polite"
+                                    ></p>
+
+                                    <span
+                                        class="contact-form__counter"
+                                        data-message-counter
+                                        aria-hidden="true"
+                                    >
+                                        0 / 1200
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-form__footer">
+
+                            <button
+                                class="contact-form__submit"
+                                type="submit"
+                                data-contact-submit
+                            >
+                                <img
+                                    src="../assets/icons/message-circle.svg"
+                                    alt=""
+                                    width="18"
+                                    height="18"
+                                >
+
+                                <span data-submit-label>
+                                    Send Message
+                                </span>
+
+                                <img
+                                    src="../assets/icons/chevron-right.svg"
+                                    alt=""
+                                    width="18"
+                                    height="18"
+                                >
+                            </button>
+
+
+                            <p class="contact-form__privacy">
+
+                                <img
+                                    src="../assets/icons/shield-check.svg"
+                                    alt=""
+                                    width="15"
+                                    height="15"
+                                >
+
+                                Your information is used only to respond
+                                to your request.
+
+                            </p>
+
+                        </div>
+
+
+                        <p
+                            class="contact-form__success"
+                            role="status"
+                            aria-live="polite"
+                            hidden
+                        ></p>
+
+                    </form>
+
+                </div>
+
+
+                <!-- CONTACT INFORMATION CARD -->
+
+                <aside
+                    class="contact-info-card"
+                    aria-labelledby="contact-info-title"
+                    data-contact-reveal
+                    data-contact-reveal-delay="100"
+                >
+
+                    <div class="contact-info-card__header">
+
+                        <p class="contact-info-card__eyebrow">
+                            Prefer to reach us directly?
+                        </p>
+
+                        <h2
+                            class="contact-info-card__title"
+                            id="contact-info-title"
+                        >
+                            Contact Information
+                        </h2>
+
+                        <p class="contact-info-card__description">
+                            Choose the most convenient way to get
+                            in touch with our team.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-info-card__list">
+
+
+                        <!-- Location -->
+
+                        <div class="contact-info-item">
+
+                            <span
+                                class="contact-info-item__icon
+                                       contact-info-item__icon--gold"
+                            >
+                                <img
+                                    src="../assets/icons/map-pin.svg"
+                                    alt=""
+                                    width="20"
+                                    height="20"
+                                >
+                            </span>
+
+                            <div class="contact-info-item__content">
+
+                                <strong>Location</strong>
+
+                                <p>
+                                    Bukavu, South Kivu<br>
+                                    Democratic Republic of the Congo
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- WhatsApp -->
+
+                        <div class="contact-info-item">
+
+                            <span
+                                class="contact-info-item__icon
+                                       contact-info-item__icon--lime"
+                            >
+                                <img
+                                    src="../assets/icons/message-circle.svg"
+                                    alt=""
+                                    width="20"
+                                    height="20"
+                                >
+                            </span>
+
+                            <div class="contact-info-item__content">
+
+                                <strong>WhatsApp</strong>
+
+                                <a
+                                    href="https://wa.me/243978494715"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    +243 978 494 715
+                                </a>
+
+                                <p>
+                                    Chat with us on WhatsApp.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="contact-info-item">
+
+                            <span
+                                class="contact-info-item__icon
+                                       contact-info-item__icon--gold"
+                            >
+                                <img
+                                    src="../assets/icons/mail.svg"
+                                    alt=""
+                                    width="20"
+                                    height="20"
+                                >
+                            </span>
+
+                            <div class="contact-info-item__content">
+
+                                <strong>Email</strong>
+
+                                <a href="mailto:gcherubala11@gmail.com">
+                                    gcherubala11@gmail.com
+                                </a>
+
+                                <p>
+                                    Send us an email.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        class="contact-info-card__action"
+                        href="#contact-form"
+                        data-contact-scroll
+                    >
+                        <span class="contact-info-card__action-icon">
+                            <img
+                                src="../assets/icons/message-circle.svg"
+                                alt=""
+                                width="20"
+                                height="20"
+                            >
+                        </span>
+
+                        <span class="contact-info-card__action-content">
+                            <strong>Start a Conversation</strong>
+                            <small>Tell us about your project.</small>
+                        </span>
 
                         <img
+                            class="contact-info-card__action-arrow"
                             src="../assets/icons/chevron-right.svg"
                             alt=""
                             width="18"
                             height="18"
                         >
-                    </button>
+                    </a>
 
-                    <p
-                        class="contact-form__success"
-                        role="status"
-                        aria-live="polite"
-                        hidden
-                    ></p>
-                </form>
+                </aside>
+
+            </div>
+        </section>
 
 
-                <!-- Contact Information -->
-                <aside
-                    class="contact-info"
-                    aria-label="Contact information"
+        <!-- =========================================================
+             LOCATION
+             ========================================================= -->
+
+        <section
+            class="contact-location"
+            id="contact-location"
+            aria-labelledby="contact-location-title"
+        >
+            <div class="container contact-location__container">
+
+
+                <!-- LOCATION TEXT -->
+
+                <div
+                    class="contact-location__content"
+                    data-contact-reveal
                 >
-                    <div class="contact-info__heading">
-                        <p class="contact-section__eyebrow">
-                            Contact Information
-                        </p>
 
-                        <h3 class="contact-info__title">
-                            We're here when you need us
-                        </h3>
+                    <p class="contact-eyebrow">
+                        Our Location
+                    </p>
 
-                        <p class="contact-info__description">
-                            Reach out directly or send your request through
-                            the contact form.
-                        </p>
-                    </div>
+                    <h2
+                        class="contact-location__title"
+                        id="contact-location-title"
+                    >
+                        Visit us<br>
+                        <span>in Bukavu.</span>
+                    </h2>
 
-
-                    <div class="contact-info__list">
-
-                        <div class="contact-info__item">
-                            <div class="contact-info__icon">
-                                <img
-                                    src="../assets/icons/map-pin.svg"
-                                    alt=""
-                                    width="22"
-                                    height="22"
-                                >
-                            </div>
-
-                            <div>
-                                <p class="contact-info__label">
-                                    Our Location
-                                </p>
-
-                                <p class="contact-info__value">
-                                    Bukavu, South Kivu<br>
-                                    Democratic Republic of the Congo
-                                </p>
-                            </div>
-                        </div>
+                    <p class="contact-location__description">
+                        We're based in Bukavu, South Kivu, and can
+                        collaborate with organizations locally and beyond.
+                        Contact us to discuss your project and the most
+                        practical way to work together.
+                    </p>
 
 
-                        <div class="contact-info__item">
-                            <div class="contact-info__icon">
-                                <img
-                                    src="../assets/icons/phone.svg"
-                                    alt=""
-                                    width="22"
-                                    height="22"
-                                >
-                            </div>
+                    <a
+                        class="contact-location__button"
+                        href="https://www.google.com/maps/search/?api=1&query=Bukavu%2C+South+Kivu%2C+DRC"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            src="../assets/icons/map-pin.svg"
+                            alt=""
+                            width="18"
+                            height="18"
+                        >
 
-                            <div>
-                                <p class="contact-info__label">
-                                    Phone
-                                </p>
+                        <span>Get Directions</span>
 
-                                <p class="contact-info__value">
-                                    <a href="tel:+243978494715">+243 978 494 715</a>
-                                </p>
-                            </div>
-                        </div>
+                        <img
+                            src="../assets/icons/chevron-right.svg"
+                            alt=""
+                            width="17"
+                            height="17"
+                        >
+                    </a>
 
-
-                        <div class="contact-info__item">
-                            <div class="contact-info__icon">
-                                <img
-                                    src="../assets/icons/mail.svg"
-                                    alt=""
-                                    width="22"
-                                    height="22"
-                                >
-                            </div>
-
-                            <div>
-                                <p class="contact-info__label">
-                                    Email
-                                </p>
-
-                                <p class="contact-info__value">
-                                    <a href="mailto:gcherubala11@gmail.com">gcherubala11@gmail.com</a>
-                                </p>
-                            </div>
-                        </div>
+                </div>
 
 
-                        <div class="contact-info__item">
-                            <div class="contact-info__icon">
-                                <img
-                                    src="../assets/icons/clock.svg"
-                                    alt=""
-                                    width="22"
-                                    height="22"
-                                >
-                            </div>
+                <!-- REAL MAP -->
 
-                            <div>
-                                <p class="contact-info__label">
-                                    Availability
-                                </p>
+                <div
+                    class="contact-location__map"
+                    data-contact-reveal
+                    data-contact-reveal-delay="100"
+                >
 
-                                <p class="contact-info__value">
-                                    Available 24/7
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
+                    <iframe
+                        class="contact-location__iframe"
+                        title="Map showing Bukavu, South Kivu, Democratic Republic of the Congo"
+                        src="https://www.google.com/maps?q=Bukavu%2C%20South%20Kivu%2C%20DRC&z=13&output=embed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
 
 
-                    <div class="contact-info__response">
-                        <span class="contact-info__response-icon">
+                    <div class="contact-location__map-card">
+
+                        <span class="contact-location__map-icon">
                             <img
-                                src="../assets/icons/message-circle.svg"
+                                src="../assets/icons/map-pin.svg"
                                 alt=""
-                                width="22"
-                                height="22"
+                                width="19"
+                                height="19"
                             >
                         </span>
 
                         <div>
-                            <p class="contact-info__response-label">
-                                Response Time
-                            </p>
+                            <strong>DATA Consultancy</strong>
 
-                            <p class="contact-info__response-value">
-                                Within 1 hour
+                            <p>
+                                Bukavu, South Kivu<br>
+                                DRC
                             </p>
                         </div>
+
                     </div>
-                </aside>
+
+                </div>
 
             </div>
-        </div>
-    </section>
+        </section>
 
 
-    <!-- How We Can Help -->
-    <section
-        class="contact-help section"
-        id="how-we-can-help"
-        aria-labelledby="contact-help-title"
-    >
-        <div class="container">
+        <!-- =========================================================
+             WHY CONTACT US
+             ========================================================= -->
 
-            <div class="contact-heading">
-                <div class="contact-heading__content">
-                    <p class="contact-section__eyebrow">
-                        How We Can Help
+        <section
+            class="contact-help"
+            id="how-we-can-help"
+            aria-labelledby="contact-help-title"
+        >
+            <div class="container contact-help__container">
+
+
+                <!-- INTRO -->
+
+                <div
+                    class="contact-help__intro"
+                    data-contact-reveal
+                >
+
+                    <p class="contact-eyebrow">
+                        Why Contact Us?
                     </p>
 
                     <h2
-                        class="contact-heading__title"
+                        class="contact-help__title"
                         id="contact-help-title"
                     >
-                        Bring us your data challenges
+                        Bring us your<br>
+                        <span>data challenges.</span>
                     </h2>
+
+                    <p class="contact-help__description">
+                        Whether you need clearer reporting, stronger
+                        analytics, or a better data strategy, we can help
+                        you identify the right approach.
+                    </p>
+
+
+                    <a
+                        class="contact-help__button"
+                        href="services.html"
+                    >
+                        <span>Explore Our Services</span>
+
+                        <img
+                            src="../assets/icons/chevron-right.svg"
+                            alt=""
+                            width="18"
+                            height="18">
+                    </a>
                 </div>
 
-                <p class="contact-heading__description">
-                    Whether you need clearer reporting, stronger analytics,
-                    or a better data strategy, we can help identify the
-                    right approach.
-                </p>
+
+                <!-- SERVICE CARDS -->
+
+                <div class="contact-help__grid">
+
+
+                    <article
+                        class="contact-help-card"
+                        data-contact-reveal
+                    >
+
+                        <span class="contact-help-card__icon">
+                            <img
+                                src="../assets/icons/chart-no-axes-combined.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </span>
+
+                        <div class="contact-help-card__content">
+
+                            <h3>Data Analysis</h3>
+
+                            <p>
+                                Turn raw information into useful insights
+                                that support better decisions.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article
+                        class="contact-help-card"
+                        data-contact-reveal
+                        data-contact-reveal-delay="60"
+                    >
+
+                        <span class="contact-help-card__icon">
+                            <img
+                                src="../assets/icons/chart-pie.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </span>
+
+                        <div class="contact-help-card__content">
+
+                            <h3>Business Intelligence</h3>
+
+                            <p>
+                                Build clear dashboards and reporting tools
+                                that make performance easier to understand.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article
+                        class="contact-help-card"
+                        data-contact-reveal
+                        data-contact-reveal-delay="120"
+                    >
+
+                        <span class="contact-help-card__icon">
+                            <img
+                                src="../assets/icons/target.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </span>
+
+                        <div class="contact-help-card__content">
+
+                            <h3>Data Strategy</h3>
+
+                            <p>
+                                Align your data, priorities, and business
+                                goals around a practical plan for action.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article
+                        class="contact-help-card"
+                        data-contact-reveal
+                        data-contact-reveal-delay="180"
+                    >
+
+                        <span class="contact-help-card__icon">
+                            <img
+                                src="../assets/icons/settings.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </span>
+
+                        <div class="contact-help-card__content">
+
+                            <h3>Custom Solutions</h3>
+
+                            <p>
+                                Discuss a specific challenge and explore
+                                a solution designed around your needs.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
             </div>
+        </section>
 
 
-            <div class="contact-help__grid">
+        <!-- =========================================================
+             PROCESS
+             ========================================================= -->
 
-                <article class="contact-help-card">
-                    <div class="contact-help-card__icon">
-                        <img
-                            src="../assets/icons/chart-no-axes-combined.svg"
-                            alt=""
-                            width="26"
-                            height="26"
-                        >
-                    </div>
+        <section
+            class="contact-process"
+            id="what-happens-next"
+            aria-labelledby="contact-process-title"
+        >
+            <div
+                class="contact-process__background"
+                aria-hidden="true"
+            ></div>
 
-                    <h3 class="contact-help-card__title">
-                        Data Analysis
-                    </h3>
-
-                    <p class="contact-help-card__description">
-                        Turn raw information into useful insights that
-                        support better decisions.
-                    </p>
-                </article>
+            <div
+                class="contact-process__overlay"
+                aria-hidden="true"
+            ></div>
 
 
-                <article class="contact-help-card">
-                    <div class="contact-help-card__icon">
-                        <img
-                            src="../assets/icons/chart-pie.svg"
-                            alt=""
-                            width="26"
-                            height="26"
-                        >
-                    </div>
+            <div class="container contact-process__container">
 
-                    <h3 class="contact-help-card__title">
-                        Business Intelligence
-                    </h3>
-
-                    <p class="contact-help-card__description">
-                        Build clear dashboards and reporting tools that make
-                        performance easier to understand.
-                    </p>
-                </article>
-
-
-                <article class="contact-help-card">
-                    <div class="contact-help-card__icon">
-                        <img
-                            src="../assets/icons/target.svg"
-                            alt=""
-                            width="26"
-                            height="26"
-                        >
-                    </div>
-
-                    <h3 class="contact-help-card__title">
-                        Data Strategy
-                    </h3>
-
-                    <p class="contact-help-card__description">
-                        Align your data, priorities, and business goals around
-                        a practical plan for action.
-                    </p>
-                </article>
-
-
-                <article class="contact-help-card">
-                    <div class="contact-help-card__icon">
-                        <img
-                            src="../assets/icons/settings.svg"
-                            alt=""
-                            width="26"
-                            height="26"
-                        >
-                    </div>
-
-                    <h3 class="contact-help-card__title">
-                        Custom Solutions
-                    </h3>
-
-                    <p class="contact-help-card__description">
-                        Discuss a specific challenge and explore a solution
-                        designed around your organization's needs.
-                    </p>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- What Happens Next -->
-    <section
-        class="contact-process section"
-        id="what-happens-next"
-        aria-labelledby="contact-process-title"
-    >
-        <div class="container">
-
-            <div class="contact-heading contact-heading--center">
-                <p class="contact-section__eyebrow">
-                    What Happens Next?
-                </p>
-
-                <h2
-                    class="contact-heading__title"
-                    id="contact-process-title"
+                <div
+                    class="contact-process__header"
+                    data-contact-reveal
                 >
-                    A simple way to get started
-                </h2>
 
-                <p class="contact-heading__description">
-                    From your first message to the next conversation,
-                    we keep the process clear and straightforward.
-                </p>
-            </div>
-
-
-            <ol class="contact-process__steps">
-
-                <li class="contact-process__step">
-                    <span
-                        class="contact-process__number"
-                        aria-hidden="true"
-                    >
-                        01
-                    </span>
-
-                    <div class="contact-process__icon">
-                        <img
-                            src="../assets/icons/message-circle.svg"
-                            alt=""
-                            width="28"
-                            height="28"
-                        >
-                    </div>
-
-                    <h3 class="contact-process__step-title">
-                        Send Your Request
-                    </h3>
-
-                    <p class="contact-process__step-description">
-                        Tell us what you're working on and what you would
-                        like to achieve.
-                    </p>
-                </li>
-
-
-                <li class="contact-process__step">
-                    <span
-                        class="contact-process__number"
-                        aria-hidden="true"
-                    >
-                        02
-                    </span>
-
-                    <div class="contact-process__icon">
-                        <img
-                            src="../assets/icons/search.svg"
-                            alt=""
-                            width="28"
-                            height="28"
-                        >
-                    </div>
-
-                    <h3 class="contact-process__step-title">
-                        We Review Your Needs
-                    </h3>
-
-                    <p class="contact-process__step-description">
-                        We review your request and identify the most relevant
-                        questions and next steps.
-                    </p>
-                </li>
-
-
-                <li class="contact-process__step">
-                    <span
-                        class="contact-process__number"
-                        aria-hidden="true"
-                    >
-                        03
-                    </span>
-
-                    <div class="contact-process__icon">
-                        <img
-                            src="../assets/icons/calendar.svg"
-                            alt=""
-                            width="28"
-                            height="28"
-                        >
-                    </div>
-
-                    <h3 class="contact-process__step-title">
-                        Discuss the Next Steps
-                    </h3>
-
-                    <p class="contact-process__step-description">
-                        We connect with you to discuss the approach,
-                        priorities, and way forward.
-                    </p>
-                </li>
-
-            </ol>
-        </div>
-    </section>
-
-
-    <!-- Frequently Asked Questions -->
-    <section
-        class="contact-faq section"
-        id="contact-faq"
-        aria-labelledby="contact-faq-title"
-    >
-        <div class="container contact-faq__container">
-
-            <div class="contact-faq__intro">
-                <p class="contact-section__eyebrow">
-                    Frequently Asked Questions
-                </p>
-
-                <h2
-                    class="contact-faq__title"
-                    id="contact-faq-title"
-                >
-                    Questions before getting started?
-                </h2>
-
-                <p class="contact-faq__description">
-                    Here are a few quick answers about working with
-                    DATA Consultancy.
-                </p>
-            </div>
-
-
-            <div class="contact-faq__list">
-
-                <details class="contact-faq__item">
-                    <summary class="contact-faq__question">
-                        What types of organizations do you work with?
-                    </summary>
-
-                    <div class="contact-faq__answer">
-                        <p>
-                            We support organizations looking to make better
-                            use of their data, from growing businesses to
-                            institutions and other teams with analytical needs.
-                        </p>
-                    </div>
-                </details>
-
-
-                <details class="contact-faq__item">
-                    <summary class="contact-faq__question">
-                        What information should I include in my message?
-                    </summary>
-
-                    <div class="contact-faq__answer">
-                        <p>
-                            A short description of your goal, current challenge,
-                            available data, and expected outcome gives us a useful
-                            starting point.
-                        </p>
-                    </div>
-                </details>
-
-
-                <details class="contact-faq__item">
-                    <summary class="contact-faq__question">
-                        How quickly can I expect a response?
-                    </summary>
-
-                    <div class="contact-faq__answer">
-                        <p>
-                            Our target response time for new contact requests
-                            is within one hour.
-                        </p>
-                    </div>
-                </details>
-
-
-                <details class="contact-faq__item">
-                    <summary class="contact-faq__question">
-                        Can I contact you about a custom data project?
-                    </summary>
-
-                    <div class="contact-faq__answer">
-                        <p>
-                            Yes. You can describe the project through the form
-                            and select "Other" if it does not fit one of the
-                            listed service categories.
-                        </p>
-                    </div>
-                </details>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Final Call to Action -->
-    <section
-        class="contact-cta"
-        id="contact-final-cta"
-        aria-labelledby="contact-cta-title"
-    >
-        <div class="container">
-
-            <div class="contact-cta__box">
-
-                <div class="contact-cta__content">
-                    <p class="contact-cta__eyebrow">
-                        Ready to Get Started?
+                    <p class="contact-process__eyebrow">
+                        What Happens Next?
                     </p>
 
                     <h2
-                        class="contact-cta__title"
-                        id="contact-cta-title"
+                        class="contact-process__title"
+                        id="contact-process-title"
                     >
-                        Better data. Better decisions.
+                        A simple and
+                        <span>clear process.</span>
                     </h2>
 
-                    <p class="contact-cta__description">
-                        Start the conversation and tell us what you want
-                        to achieve with your data.
-                    </p>
                 </div>
 
-                <a
-                    class="contact-cta__button"
-                    href="#contact-form"
-                >
-                    Start a Conversation
 
-                    <img
-                        src="../assets/icons/chevron-right.svg"
-                        alt=""
-                        width="18"
-                        height="18"
+                <ol
+                    class="contact-process__steps"
+                    data-contact-process
+                >
+
+
+                    <li
+                        class="contact-process__step"
+                        data-process-step
                     >
-                </a>
+
+                        <span class="contact-process__number">
+                            01
+                        </span>
+
+                        <span class="contact-process__marker">
+                            <img
+                                src="../assets/icons/message-circle.svg"
+                                alt=""
+                                width="21"
+                                height="21"
+                            >
+                        </span>
+
+                        <h3>Send Your Request</h3>
+
+                        <p>
+                            Tell us what you're working on and
+                            what you would like to achieve.
+                        </p>
+
+                    </li>
+
+
+                    <li
+                        class="contact-process__step"
+                        data-process-step
+                    >
+
+                        <span class="contact-process__number">
+                            02
+                        </span>
+
+                        <span class="contact-process__marker">
+                            <img
+                                src="../assets/icons/search.svg"
+                                alt=""
+                                width="21"
+                                height="21"
+                            >
+                        </span>
+
+                        <h3>We Review Your Needs</h3>
+
+                        <p>
+                            We look at your request and identify
+                            the most relevant questions.
+                        </p>
+
+                    </li>
+
+
+                    <li
+                        class="contact-process__step"
+                        data-process-step
+                    >
+
+                        <span class="contact-process__number">
+                            03
+                        </span>
+
+                        <span class="contact-process__marker">
+                            <img
+                                src="../assets/icons/calendar.svg"
+                                alt=""
+                                width="21"
+                                height="21"
+                            >
+                        </span>
+
+                        <h3>Discuss the Next Steps</h3>
+
+                        <p>
+                            We connect with you to discuss the
+                            approach, priorities, and timeline.
+                        </p>
+
+                    </li>
+
+
+                    <li
+                        class="contact-process__step"
+                        data-process-step
+                    >
+
+                        <span class="contact-process__number">
+                            04
+                        </span>
+
+                        <span class="contact-process__marker">
+                            <img
+                                src="../assets/icons/check.svg"
+                                alt=""
+                                width="21"
+                                height="21"
+                            >
+                        </span>
+
+                        <h3>Move to Impact</h3>
+
+                        <p>
+                            When the direction is clear, we define
+                            how the work can move forward.
+                        </p>
+
+                    </li>
+
+                </ol>
 
             </div>
-        </div>
-    </section>
+        </section>
 
-</main>
+
+        <!-- =========================================================
+             FAQ
+             ========================================================= -->
+
+        <section
+            class="contact-faq"
+            id="contact-faq"
+            aria-labelledby="contact-faq-title"
+        >
+            <div class="container contact-faq__container">
+
+
+                <!-- FAQ INTRO -->
+
+                <div
+                    class="contact-faq__intro"
+                    data-contact-reveal
+                >
+
+                    <p class="contact-eyebrow">
+                        Frequently Asked Questions
+                    </p>
+
+                    <h2
+                        class="contact-faq__title"
+                        id="contact-faq-title"
+                    >
+                        Questions before<br>
+                        <span>getting started?</span>
+                    </h2>
+
+                    <p class="contact-faq__description">
+                        Here are a few quick answers about
+                        working with DATA Consultancy.
+                    </p>
+
+                </div>
+
+
+                <!-- FAQ LIST -->
+
+                <div
+                    class="contact-faq__list"
+                    data-contact-faq
+                >
+
+
+                    <details
+                        class="contact-faq__item"
+                        data-contact-reveal
+                    >
+                        <summary class="contact-faq__question">
+
+                            <span>
+                                What types of organizations do you work with?
+                            </span>
+
+                            <span
+                                class="contact-faq__plus"
+                                aria-hidden="true"
+                            >
+                                +
+                            </span>
+
+                        </summary>
+
+                        <div class="contact-faq__answer">
+                            <p>
+                                We work with organizations and teams that
+                                want to make better use of their data,
+                                reporting, analytics, and digital solutions.
+                            </p>
+                        </div>
+                    </details>
+
+
+                    <details
+                        class="contact-faq__item"
+                        data-contact-reveal
+                        data-contact-reveal-delay="40"
+                    >
+                        <summary class="contact-faq__question">
+
+                            <span>
+                                What information should I include in my message?
+                            </span>
+
+                            <span
+                                class="contact-faq__plus"
+                                aria-hidden="true"
+                            >
+                                +
+                            </span>
+
+                        </summary>
+
+                        <div class="contact-faq__answer">
+                            <p>
+                                Tell us your objective, the challenge you
+                                are facing, and what you would like to
+                                achieve. A complete project brief is not
+                                required.
+                            </p>
+                        </div>
+                    </details>
+
+
+                    <details
+                        class="contact-faq__item"
+                        data-contact-reveal
+                        data-contact-reveal-delay="80"
+                    >
+                        <summary class="contact-faq__question">
+
+                            <span>
+                                How quickly can I expect a response?
+                            </span>
+
+                            <span
+                                class="contact-faq__plus"
+                                aria-hidden="true"
+                            >
+                                +
+                            </span>
+
+                        </summary>
+
+                        <div class="contact-faq__answer">
+                            <p>
+                                We review incoming requests and respond
+                                as soon as possible based on availability
+                                and the nature of the request.
+                            </p>
+                        </div>
+                    </details>
+
+
+                    <details
+                        class="contact-faq__item"
+                        data-contact-reveal
+                        data-contact-reveal-delay="120"
+                    >
+                        <summary class="contact-faq__question">
+
+                            <span>
+                                Can I contact you about a custom data project?
+                            </span>
+
+                            <span
+                                class="contact-faq__plus"
+                                aria-hidden="true"
+                            >
+                                +
+                            </span>
+
+                        </summary>
+
+                        <div class="contact-faq__answer">
+                            <p>
+                                Yes. Choose "Other / Custom Solution"
+                                in the form and describe the challenge
+                                or idea you would like to explore.
+                            </p>
+                        </div>
+                    </details>
+
+
+                    <details
+                        class="contact-faq__item"
+                        data-contact-reveal
+                        data-contact-reveal-delay="160"
+                    >
+                        <summary class="contact-faq__question">
+
+                            <span>
+                                Do you work with clients outside Bukavu?
+                            </span>
+
+                            <span
+                                class="contact-faq__plus"
+                                aria-hidden="true"
+                            >
+                                +
+                            </span>
+
+                        </summary>
+
+                        <div class="contact-faq__answer">
+                            <p>
+                                DATA Consultancy is based in Bukavu and
+                                can collaborate remotely with organizations
+                                beyond the local market.
+                            </p>
+                        </div>
+                    </details>
+
+
+                    <details
+                        class="contact-faq__item"
+                        data-contact-reveal
+                        data-contact-reveal-delay="200"
+                    >
+                        <summary class="contact-faq__question">
+
+                            <span>
+                                Is my information kept confidential?
+                            </span>
+
+                            <span
+                                class="contact-faq__plus"
+                                aria-hidden="true"
+                            >
+                                +
+                            </span>
+
+                        </summary>
+
+                        <div class="contact-faq__answer">
+                            <p>
+                                Information shared through the contact form
+                                is intended only to help us understand and
+                                respond to your request.
+                            </p>
+                        </div>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+
+    <!-- =============================================================
+         FORM NOTIFICATION
+         Controlled by contact.js
+         ============================================================= -->
+
+    <div
+        class="contact-toast"
+        data-contact-toast
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        hidden
+    >
+
+        <div
+            class="contact-toast__icon"
+            aria-hidden="true"
+        >
+            ✓
+        </div>
+
+
+        <div class="contact-toast__content">
+
+            <strong data-toast-title>
+                Information validated
+            </strong>
+
+            <p data-toast-message>
+                Your information has been validated successfully.
+            </p>
+
+        </div>
+
+
+        <button
+            class="contact-toast__close"
+            type="button"
+            data-toast-close
+            aria-label="Close notification"
+        >
+            ×
+        </button>
+
+    </div>
+
 
     <!-- Footer is injected here (components/footer.html) -->
     <footer id="footer-placeholder"></footer>
+
 
     <script src="../js/components/navbar.js"></script>
     <script src="../js/components/footer.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/pages/contact.js"></script>
+
 </body>
 </html>

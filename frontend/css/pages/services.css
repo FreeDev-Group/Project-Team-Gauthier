@@ -216,7 +216,15 @@
     transform: rotate(-18deg);
     pointer-events: none;
 }
+/* =========================================================
+   SERVICES PAGE — GLOBAL CONTENT WIDTH
+   Keeps section content aligned while backgrounds remain full width.
+   ========================================================= */
 
+main .container {
+    width: min(1180px, calc(100% - 96px));
+    margin-inline: auto;
+}
 .services-hero__container {
     position: relative;
     z-index: 1;
