@@ -46,12 +46,17 @@
 }
 
 .insights-hero__container {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
-  align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3rem);
   min-height: 32rem;
   padding-block: clamp(4rem, 7vw, 6.5rem);
+}
+
+.insights-hero__intro {
+  max-width: 760px;
 }
 
 .insights-hero__content {
@@ -80,7 +85,8 @@
   background: currentColor;
 }
 
-.insights-hero h1 {
+.insights-hero h1,
+.insights-hero__intro h1 {
   margin-bottom: var(--space-sm);
   font-size: clamp(2.8rem, 5vw, 5.2rem);
   line-height: 0.96;
@@ -100,6 +106,44 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
+}
+
+.insights-hero__briefing {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.briefing-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 24px 60px rgba(17, 17, 17, 0.16);
+}
+
+.briefing-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.briefing-list {
+  display: grid;
+  gap: 0.8rem;
+  padding-left: 1rem;
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.6;
 }
 
 .btn {
@@ -139,11 +183,11 @@
 .insights-hero__visual {
   display: flex;
   justify-content: center;
-  padding: var(--space-xl) 0;
+  padding: 0;
 }
 
 .insight-visual-card {
-  width: min(100%, 34rem);
+  width: min(100%, 100%);
   padding: 1.4rem;
   border-radius: 1.5rem;
   background: rgba(255, 255, 255, 0.08);
@@ -166,7 +210,7 @@
   padding: 0.4rem 0.7rem;
   border-radius: var(--radius-full);
   background: rgba(245, 173, 36, 0.18);
-  color: var(--insights-gold-light);
+  color: var(--insights-gold);
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
