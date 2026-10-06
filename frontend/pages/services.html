@@ -1,27 +1,821 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Explore DATA Consultancy services in data strategy, business intelligence, predictive analytics, automation, dashboards, and decision support."
+    >
+
     <title>Data Consultancy — Services</title>
+
+    <!-- Site favicon -->
+<link rel="icon" type="image/x-icon" href="../assets/images/logo/logo-6.png">
+
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/pages/services.css">
 </head>
+
 <body>
 
     <!-- Navbar is injected here (components/navbar.html) -->
     <header id="navbar-placeholder"></header>
 
+
     <main>
-        <!-- Services page content -->
+
+        <!-- ================================================================
+             Services Hero
+             ================================================================ -->
+        <section
+            class="services-hero"
+            id="services-hero"
+            aria-labelledby="services-hero-title"
+        >
+            <div class="container services-hero__container">
+
+                <div
+                    class="services-hero__content"
+                    data-reveal="left"
+                >
+                    <p class="services-eyebrow services-hero__eyebrow">
+                        Services
+                    </p>
+
+                    <h1
+                        class="services-hero__title"
+                        id="services-hero-title"
+                    >
+                        From data<br>
+                        to <span>real impact.</span>
+                    </h1>
+
+                    <p class="services-hero__description">
+                        We deliver end-to-end data solutions that help
+                        organizations make better decisions, improve
+                        performance, and create sustainable growth.
+                    </p>
+
+                    <div class="services-hero__actions">
+                        <a
+                            class="services-button services-button--primary"
+                            href="#core-services"
+                            data-services-scroll
+                        >
+                            Explore Our Services
+                            <img
+                                src="../assets/icons/chevron-right.svg"
+                                alt=""
+                                width="18"
+                                height="18"
+                            >
+                        </a>
+
+                        <a
+                            class="services-button services-button--secondary"
+                            href="contact.html"
+                        >
+                            Talk to an Expert
+                        </a>
+                    </div>
+
+                    <div
+                        class="services-hero__metrics"
+                        data-reveal-group
+                    >
+                        <div class="services-metric" data-reveal-item>
+                            <div class="services-metric__icon">
+                                <img
+                                    src="../assets/icons/chart-no-axes-combined.svg"
+                                    alt=""
+                                    width="22"
+                                    height="22"
+                                >
+                            </div>
+
+                            <div>
+                                <strong class="services-metric__value">120+</strong>
+                                <span class="services-metric__label">
+                                    Projects delivered
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="services-metric" data-reveal-item>
+                            <div class="services-metric__icon">
+                                <img
+                                    src="../assets/icons/users.svg"
+                                    alt=""
+                                    width="22"
+                                    height="22"
+                                >
+                            </div>
+
+                            <div>
+                                <strong class="services-metric__value">50+</strong>
+                                <span class="services-metric__label">
+                                    Clients Supported
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="services-metric" data-reveal-item>
+                            <div class="services-metric__icon">
+                                <img
+                                    src="../assets/icons/trending-up.svg"
+                                    alt=""
+                                    width="22"
+                                    height="22"
+                                >
+                            </div>
+
+                            <div>
+                                <strong class="services-metric__value">95%</strong>
+                                <span class="services-metric__label">
+                                    Client satisfaction
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div
+                    class="services-hero__visual"
+                    data-reveal="right"
+                >
+                    <div class="services-hero__shape">
+                        <img
+                            class="services-hero__image"
+                            src="../assets/images/backgrounds/dark/services-hero.png"
+                            alt="Laptop displaying a data analytics dashboard in a modern workspace"
+                        >
+                    </div>
+
+                    <div
+                        class="services-hero__floating-note"
+                        aria-hidden="true"
+                    >
+                        <span>Better</span>
+                        <strong>Data</strong>
+                        <span>Decisions</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             Our Approach
+             ================================================================ -->
+        <section
+            class="services-approach section"
+            id="services-approach"
+            aria-labelledby="services-approach-title"
+        >
+            <div class="container services-approach__container">
+
+                <div
+                    class="services-approach__visual"
+                    data-reveal="left"
+                >
+                    <div class="services-approach__image-shape">
+                        <img
+                            class="services-approach__image"
+                            src="../assets/images/backgrounds/light/services-why-us.png"
+                            alt="Data consultants discussing analytics and business performance"
+                        >
+                    </div>
+
+                    <div class="services-approach__floating-card">
+                        <span>Strategy</span>
+                        <span>Analytics</span>
+                        <span>Implementation</span>
+                        <span>Support</span>
+                    </div>
+                </div>
+
+
+                <div
+                    class="services-approach__content"
+                    data-reveal="right"
+                >
+                    <p class="services-eyebrow">
+                        Our Approach
+                    </p>
+
+                    <h2
+                        class="services-section-title"
+                        id="services-approach-title"
+                    >
+                        Practical solutions for your
+                        <span>data challenges.</span>
+                    </h2>
+
+                    <p class="services-approach__description">
+                        We take a client-focused and collaborative approach,
+                        combining analytical expertise, industry knowledge,
+                        and modern tools to turn complex data into clear,
+                        actionable insights.
+                    </p>
+
+                    <div
+                        class="services-approach__steps"
+                        data-reveal-group
+                    >
+                        <article
+                            class="services-approach-step"
+                            data-reveal-item
+                        >
+                            <span class="services-approach-step__number">
+                                01
+                            </span>
+
+                            <div>
+                                <h3>Understand your goals</h3>
+                                <p>
+                                    We listen, assess your needs, and define
+                                    the right approach.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article
+                            class="services-approach-step"
+                            data-reveal-item
+                        >
+                            <span class="services-approach-step__number">
+                                02
+                            </span>
+
+                            <div>
+                                <h3>Design tailored solutions</h3>
+                                <p>
+                                    We build practical, data-driven solutions
+                                    for your context.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article
+                            class="services-approach-step"
+                            data-reveal-item
+                        >
+                            <span class="services-approach-step__number">
+                                03
+                            </span>
+
+                            <div>
+                                <h3>Deliver measurable results</h3>
+                                <p>
+                                    We implement, monitor, and support you
+                                    for lasting impact.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             Core Services
+             ================================================================ -->
+        <section
+            class="services-core section"
+            id="core-services"
+            aria-labelledby="core-services-title"
+        >
+            <div class="container">
+
+                <div
+                    class="services-heading services-heading--dark"
+                    data-reveal="up"
+                >
+                    <div>
+                        <p class="services-eyebrow services-eyebrow--light">
+                            Key Services
+                        </p>
+
+                        <h2
+                            class="services-heading__title"
+                            id="core-services-title"
+                        >
+                            End-to-end data services designed for
+                            <span>measurable results.</span>
+                        </h2>
+                    </div>
+
+                    <p class="services-heading__description">
+                        Whether you're starting your data journey or looking
+                        to scale, our services cover the entire lifecycle —
+                        from strategy to implementation and support.
+                    </p>
+                </div>
+
+
+                <div
+                    class="services-core__list"
+                    data-reveal-group
+                >
+
+                    <article
+                        class="services-service"
+                        id="data-strategy"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <span
+                            class="services-service__number"
+                            aria-hidden="true"
+                        >
+                            01
+                        </span>
+
+                        <div class="services-service__line">
+                            <span></span>
+                        </div>
+
+                        <div class="services-service__icon">
+                            <img
+                                src="../assets/icons/database.svg"
+                                alt=""
+                                width="26"
+                                height="26"
+                            >
+                        </div>
+
+                        <h3 class="services-service__title">
+                            Data Strategy<br>
+                            &amp; Governance
+                        </h3>
+
+                        <p class="services-service__description">
+                            Build a solid data foundation with clear strategy,
+                            data governance frameworks, and practical roadmaps.
+                        </p>
+
+                        <a
+                            class="services-service__link"
+                            href="#additional-services"
+                            data-services-scroll
+                        >
+                            Learn more
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </article>
+
+
+                    <article
+                        class="services-service"
+                        id="business-intelligence"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <span
+                            class="services-service__number"
+                            aria-hidden="true"
+                        >
+                            02
+                        </span>
+
+                        <div class="services-service__line">
+                            <span></span>
+                        </div>
+
+                        <div class="services-service__icon">
+                            <img
+                                src="../assets/icons/chart-no-axes-combined.svg"
+                                alt=""
+                                width="26"
+                                height="26"
+                            >
+                        </div>
+
+                        <h3 class="services-service__title">
+                            Business Intelligence<br>
+                            &amp; Reporting
+                        </h3>
+
+                        <p class="services-service__description">
+                            Transform your data into clear dashboards and
+                            reports that support better decision-making.
+                        </p>
+
+                        <a
+                            class="services-service__link"
+                            href="#additional-services"
+                            data-services-scroll
+                        >
+                            Learn more
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </article>
+
+
+                    <article
+                        class="services-service"
+                        id="predictive-analytics"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <span
+                            class="services-service__number"
+                            aria-hidden="true"
+                        >
+                            03
+                        </span>
+
+                        <div class="services-service__line">
+                            <span></span>
+                        </div>
+
+                        <div class="services-service__icon">
+                            <img
+                                src="../assets/icons/trending-up.svg"
+                                alt=""
+                                width="26"
+                                height="26"
+                            >
+                        </div>
+
+                        <h3 class="services-service__title">
+                            Predictive Analytics
+                        </h3>
+
+                        <p class="services-service__description">
+                            Use advanced analytics and predictive modeling
+                            to forecast trends and identify opportunities.
+                        </p>
+
+                        <a
+                            class="services-service__link"
+                            href="#additional-services"
+                            data-services-scroll
+                        >
+                            Learn more
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </article>
+
+
+                    <article
+                        class="services-service"
+                        id="data-solutions"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <span
+                            class="services-service__number"
+                            aria-hidden="true"
+                        >
+                            04
+                        </span>
+
+                        <div class="services-service__line">
+                            <span></span>
+                        </div>
+
+                        <div class="services-service__icon">
+                            <img
+                                src="../assets/icons/settings.svg"
+                                alt=""
+                                width="26"
+                                height="26"
+                            >
+                        </div>
+
+                        <h3 class="services-service__title">
+                            Data Solutions<br>
+                            &amp; Implementation
+                        </h3>
+
+                        <p class="services-service__description">
+                            Get practical, end-to-end support to clean,
+                            integrate, automate, and improve your data
+                            processes.
+                        </p>
+
+                        <a
+                            class="services-service__link"
+                            href="#additional-services"
+                            data-services-scroll
+                        >
+                            Learn more
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             Additional Services
+             ================================================================ -->
+        <section
+            class="services-more section"
+            id="additional-services"
+            aria-labelledby="additional-services-title"
+        >
+            <div class="container">
+
+                <div
+                    class="services-heading"
+                    data-reveal="up"
+                >
+                    <div>
+                        <p class="services-eyebrow">
+                            Additional Services
+                        </p>
+
+                        <h2
+                            class="services-heading__title"
+                            id="additional-services-title"
+                        >
+                            More ways
+                            <span>we can help</span>
+                        </h2>
+                    </div>
+
+                    <p class="services-heading__description">
+                        Beyond our core offerings, we provide complementary
+                        services to support your entire data journey.
+                    </p>
+                </div>
+
+
+                <div
+                    class="services-more__flow"
+                    data-reveal-group
+                >
+
+                    <article
+                        class="services-more-item"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <div class="services-more-item__icon">
+                            <img
+                                src="../assets/icons/sparkles.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </div>
+
+                        <h3>Data Cleaning &amp; Preparation</h3>
+                        <p>
+                            Clean, structure, and prepare your data for analysis.
+                        </p>
+                    </article>
+
+
+                    <article
+                        class="services-more-item"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <div class="services-more-item__icon">
+                            <img
+                                src="../assets/icons/chart-pie.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </div>
+
+                        <h3>Data Visualization &amp; Dashboards</h3>
+                        <p>
+                            Create clear and interactive visualizations.
+                        </p>
+                    </article>
+
+
+                    <article
+                        class="services-more-item"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <div class="services-more-item__icon">
+                            <img
+                                src="../assets/icons/file-chart-column.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </div>
+
+                        <h3>Statistical &amp; Business Analysis</h3>
+                        <p>
+                            Uncover trends, relationships, and opportunities.
+                        </p>
+                    </article>
+
+
+                    <article
+                        class="services-more-item"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <div class="services-more-item__icon">
+                            <img
+                                src="../assets/icons/workflow.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </div>
+
+                        <h3>Data Integration &amp; Automation</h3>
+                        <p>
+                            Connect data sources and automate reporting.
+                        </p>
+                    </article>
+
+
+                    <article
+                        class="services-more-item"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <div class="services-more-item__icon">
+                            <img
+                                src="../assets/icons/gauge.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </div>
+
+                        <h3>Performance Monitoring &amp; KPI Analytics</h3>
+                        <p>
+                            Define and track indicators that measure performance.
+                        </p>
+                    </article>
+
+
+                    <article
+                        class="services-more-item"
+                        data-service-card
+                        data-reveal-item
+                    >
+                        <div class="services-more-item__icon">
+                            <img
+                                src="../assets/icons/users.svg"
+                                alt=""
+                                width="24"
+                                height="24"
+                            >
+                        </div>
+
+                        <h3>Data Consulting &amp; Decision Support</h3>
+                        <p>
+                            Expert guidance for clearer, informed decisions.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================================================================
+             Real Impact
+             ================================================================ -->
+        <section
+            class="services-impact section"
+            id="services-impact"
+            aria-labelledby="services-impact-title"
+        >
+            <div class="container services-impact__container">
+
+                <div
+                    class="services-impact__content"
+                    data-reveal="left"
+                >
+                    <p class="services-eyebrow">
+                        Real Impact
+                    </p>
+
+                    <h2
+                        class="services-section-title"
+                        id="services-impact-title"
+                    >
+                        Turning complex data into
+                        <span>clear opportunities.</span>
+                    </h2>
+
+                    <p class="services-impact__description">
+                        Our solutions help organizations improve performance,
+                        reduce complexity, and make smarter decisions with
+                        greater confidence.
+                    </p>
+
+                    <a
+                        class="services-button services-button--primary"
+                        href="case-studies.html"
+                    >
+                        View Case Studies
+                        <img
+                            src="../assets/icons/chevron-right.svg"
+                            alt=""
+                            width="18"
+                            height="18"
+                        >
+                    </a>
+
+                    <div
+                        class="services-impact__metrics"
+                        data-reveal-group
+                    >
+                        <div
+                            class="services-impact-stat"
+                            data-reveal-item
+                        >
+                            <strong>2.7x</strong>
+                            <span>Average ROI</span>
+                        </div>
+
+                        <div
+                            class="services-impact-stat"
+                            data-reveal-item
+                        >
+                            <strong>41%</strong>
+                            <span>Faster reporting</span>
+                        </div>
+
+                        <div
+                            class="services-impact-stat"
+                            data-reveal-item
+                        >
+                            <strong>89%</strong>
+                            <span>Improved decision speed</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div
+                    class="services-impact__visual"
+                    data-reveal="right"
+                >
+                    <div class="services-impact__image-shape">
+                        <img
+                            src="../assets/images/backgrounds/light/services-why-us.png"
+                            alt="Business analytics workspace representing measurable data impact"
+                        >
+                    </div>
+
+                    <div class="services-impact__case">
+                        <p class="services-impact__case-label">
+                            From Data to Growth
+                        </p>
+
+                        <div class="services-impact__case-row">
+                            <span>Challenge</span>
+                            <strong>
+                                Fragmented data and slow reporting.
+                            </strong>
+                        </div>
+
+                        <div class="services-impact__case-row">
+                            <span>Solution</span>
+                            <strong>
+                                Integrated analytics and dashboards.
+                            </strong>
+                        </div>
+
+                        <div class="services-impact__case-row">
+                            <span>Result</span>
+                            <strong>
+                                Faster reporting and better decisions.
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </main>
+
 
     <!-- Footer is injected here (components/footer.html) -->
     <footer id="footer-placeholder"></footer>
+
 
     <script src="../js/components/navbar.js"></script>
     <script src="../js/components/footer.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/pages/services.js"></script>
+
 </body>
 </html>

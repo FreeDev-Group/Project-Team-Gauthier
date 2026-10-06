@@ -1,0 +1,664 @@
+/* ==========================================================================
+   main.css — Global entry point for all stylesheets
+   Owner: Mugisho (shared file — coordinate before editing)
+
+   Load order matters. Never change it lightly:
+     1. base       — reset, tokens, typography
+     2. components — reusable UI pieces
+
+   Page stylesheets (css/pages/*.css) are NOT imported here.
+   Each HTML page links its own page stylesheet AFTER main.css.
+   ========================================================================== */
+
+/* ---------- 1. BASE ---------- */
+@import url("base/reset.css");
+@import url("base/variables.css");
+@import url("base/typography.css");
+
+/* ---------- 2. COMPONENTS ---------- */
+@import url("components/navbar.css");
+@import url("components/footer.css");
+@import url("components/buttons.css");
+@import url("components/cards.css");
+@import url("components/forms.css");
+
+
+:root {
+    /* ==============================
+       BRAND COLORS
+    ================================= */
+
+    --color-primary: #321052;
+    --color-primary-light: #5b2088;
+    --color-primary-dark: #240b3b;
+
+    --color-accent: #fdc205;
+    --color-accent-hover: #f0b800;
+
+
+    /* ==============================
+       NEUTRAL COLORS
+    ================================= */
+
+    --color-white: #ffffff;
+
+    --color-text-primary: #242124;
+    --color-text-secondary: #6b6870;
+    --color-text-muted: #b4b3b3;
+
+    --color-border: #d8d5da;
+
+
+    /* ==============================
+       GLASS EFFECT
+    ================================= */
+
+    --color-glass: rgba(255, 255, 255, 0.10);
+    --color-glass-border: rgba(255, 255, 255, 0.30);
+
+
+    /* ==============================
+       OVERLAYS
+    ================================= */
+
+    --color-overlay-dark: rgba(0, 0, 0, 0.55);
+    --color-overlay-brand: rgba(50, 16, 82, 0.65);
+
+
+    /* ==============================
+       FEEDBACK COLORS
+    ================================= */
+
+    --color-error: #dc3545;
+    --color-success: #198754;
+
+
+    /* ==============================
+       SHADOWS
+    ================================= */
+
+    --shadow-card: 0 15px 50px rgba(40, 20, 50, 0.15);
+    --shadow-focus: 0 0 0 3px rgba(91, 32, 136, 0.15);
+
+
+    /* ==============================
+       TRANSITIONS
+    ================================= */
+
+    --transition-fast: 0.2s ease;
+}
+
+/* ---------- 3. GLOBAL LAYOUT HELPERS ---------- */
+/* ==========================================================================
+   LOGIN PAGE
+   ========================================================================== */
+
+
+/* ==============================
+   GENERAL
+================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.65)
+        ),
+        url("../assets/images/auth/login.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: var(--color-text-primary);
+
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+/* ==============================
+   BACKGROUND OVERLAY
+================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: var(--color-overlay-dark);
+
+    z-index: -1;
+}
+
+
+/* ==============================
+   MAIN CONTAINER
+================================= */
+
+.auth-container {
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+/* ==============================
+   BRAND SECTION
+================================= */
+
+.auth-brand {
+    color: var(--color-white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+.auth-brand::before {
+    content: "";
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border: 1px solid rgba(253, 194, 5, 0.30);
+
+    border-radius: 50%;
+
+    top: -100px;
+    right: -100px;
+}
+
+
+.auth-brand::after {
+    content: "";
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border: 1px solid rgba(253, 194, 5, 0.20);
+
+    border-radius: 50%;
+
+    bottom: -80px;
+    left: -80px;
+}
+
+
+/* ==============================
+   BRAND CONTENT
+================================= */
+
+.brand-content {
+    max-width: 500px;
+
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ==============================
+   LOGO
+================================= */
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 80px;
+}
+
+
+.logo span {
+    color: var(--color-accent);
+}
+
+
+/* ==============================
+   BRAND TEXT
+================================= */
+
+.brand-content h1 {
+    font-size: 52px;
+    line-height: 1.1;
+
+    margin-bottom: 25px;
+
+    color: var(--color-white);
+}
+
+
+.brand-content p {
+    font-size: 17px;
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.80);
+
+    max-width: 430px;
+}
+
+
+/* ==============================
+   AUTH SECTION
+================================= */
+
+.auth-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.051);
+}
+
+
+/* ==============================
+   AUTH CARD
+================================= */
+
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+
+    background: var(--color-glass);
+
+  backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    padding: 25px;
+
+    border: 1px solid var(--color-glass-border);
+    border-radius: 18px;
+
+    box-shadow: var(--shadow-card);
+
+    color: var(--color-white);
+
+    box-sizing: border-box;
+}
+
+
+/* ==============================
+   FORM HEADER
+================================= */
+
+.form-header {
+    margin-bottom: 30px;
+}
+
+
+.form-header h2 {
+    font-size: 35px;
+
+    color: var(--color-accent);
+
+    margin-bottom: 8px;
+}
+
+
+.form-header p {
+    color: rgba(255, 255, 255, 0.70);
+}
+
+
+/* ==============================
+   FORM GROUP
+================================= */
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+
+.form-group label {
+    display: block;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+    color: var(--color-white);
+}
+
+
+/* ==============================
+   INPUTS
+================================= */
+
+.form-group input {
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.90);
+
+    color: var(--color-text-primary);
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+}
+
+
+.form-group input::placeholder {
+    color: var(--color-text-secondary);
+    
+}
+
+
+.form-group input:focus {
+    border-color: var(--color-accent);
+
+    background: var(--color-white);
+
+    box-shadow: var(--shadow-focus);
+}
+
+
+/* ==============================
+   PASSWORD
+================================= */
+
+.password-wrapper {
+    position: relative;
+}
+
+
+.password-wrapper input {
+    padding-right: 65px;
+}
+
+
+.show-password {
+    position: absolute;
+
+    right: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+    background: transparent;
+
+    color: var(--color-primary-light);
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: color var(--transition-fast);
+}
+
+
+.show-password:hover {
+    color: var(--color-primary);
+}
+
+
+/* ==============================
+   FORM OPTIONS
+================================= */
+
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+    font-size: 13px;
+}
+
+
+.remember {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    cursor: pointer;
+
+    color: var(--color-white);
+}
+
+
+.remember input {
+    accent-color: var var(--color-accent);
+}
+
+
+.form-options a {
+    color: var(--color-accent);
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: color var(--transition-fast);
+}
+
+
+.form-options a:hover {
+    color: var(--color-accent-hover);
+
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   SUBMIT BUTTON
+================================= */
+
+.submit-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: var(--color-accent);
+
+    color: var(--color-primary);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+
+.submit-btn:hover {
+    background: var(--color-accent-hover);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(253, 194, 5, 0.25);
+}
+
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ==============================
+   SWITCH LOGIN / REGISTER
+================================= */
+
+.switch-form {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: rgba(255, 255, 255, 0.70);
+
+    font-size: 14px;
+}
+
+
+.switch-form button {
+    border: none;
+
+    background: none;
+
+    color: var(--color-accent);
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    margin-left: 8px;
+
+    transition: color var(--transition-fast);
+}
+
+
+.switch-form button:hover {
+    color: var(--color-accent-hover);
+
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   ERROR STATES
+================================= */
+
+.error-message {
+    display: block;
+
+    color: var(--color-error);
+
+    font-size: 12px;
+
+    margin-top: 6px;
+
+    min-height: 15px;
+}
+
+
+.input-error {
+    border-color: var(--color-error) !important;
+}
+
+
+/* ==============================
+   HIDDEN
+================================= */
+
+.hidden {
+    display: none;
+}
+
+
+/* ==============================
+   RESPONSIVE — TABLET
+================================= */
+
+@media (max-width: 900px) {
+
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .auth-brand {
+        min-height: 350px;
+
+        padding: 40px;
+    }
+
+
+    .logo {
+        margin-bottom: 35px;
+    }
+
+
+    .brand-content h1 {
+        font-size: 40px;
+    }
+
+
+    .auth-section {
+        padding: 40px 20px;
+    }
+}
+
+
+/* ==============================
+   RESPONSIVE — MOBILE
+================================= */
+
+@media (max-width: 500px) {
+
+    .auth-brand {
+        min-height: 300px;
+
+        padding: 30px 25px;
+    }
+
+
+    .brand-content h1 {
+        font-size: 32px;
+    }
+
+
+    .brand-content p {
+        font-size: 15px;
+    }
+
+
+    .logo {
+        font-size: 18px;
+
+        margin-bottom: 30px;
+    }
+
+
+    .auth-card {
+        padding: 25px 20px;
+
+        border-radius: 14px;
+    }
+
+
+    .form-header h2 {
+        font-size: 28px;
+    }
+
+
+    .form-options {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+}
