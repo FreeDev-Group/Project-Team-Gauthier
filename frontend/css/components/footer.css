@@ -29,17 +29,17 @@
    -------------------------------------------------------------------------- */
 
 .footer {
-    --footer-bg: #1D0735;
-    --footer-surface: #2A0B47;
-    --footer-title: #FBF2FF;
-    --footer-link: #CBBFD7;
-    --footer-muted: #9F90B3;
-    --footer-accent: #E49B3F;
-    --footer-accent-hover: #F0AE57;
-    --footer-accent-ink: #1E0636;
+    --footer-bg: #000000;
+    --footer-surface: rgba(255, 255, 255, 0.07);
+    --footer-title: #FFFFFF;
+    --footer-link: rgba(255, 255, 255, 0.78);
+    --footer-muted: rgba(255, 255, 255, 0.55);
+    --footer-accent: #FACC15;
+    --footer-accent-hover: #FDE047;
+    --footer-accent-ink: #000000;
     --footer-rule: rgba(255, 255, 255, 0.08);
-    --footer-tile-bg: #FDF7FF;
-    --footer-tile-ink: #140323;
+    --footer-tile-bg: #FFFFFF;
+    --footer-tile-ink: #000000;
 
     --footer-icon-size: 16px;
     --footer-tile-size: 32px;
@@ -50,8 +50,8 @@
     background-color: var(--footer-bg);
     /* Two soft lights give depth without adding elements */
     background-image:
-        radial-gradient(900px 420px at 100% 0%, rgba(126, 72, 204, 0.18), transparent 65%),
-        radial-gradient(700px 380px at 0% 100%, rgba(228, 155, 63, 0.06), transparent 70%);
+        radial-gradient(900px 420px at 100% 0%, rgba(22, 163, 74, 0.18), transparent 65%),
+        radial-gradient(700px 380px at 0% 100%, rgba(250, 204, 21, 0.06), transparent 70%);
     font-family: var(--font-primary);
     color: var(--footer-link);
 }
@@ -63,7 +63,7 @@
     top: 0;
     inset-inline: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(228, 155, 63, 0.7) 50%, transparent);
+    background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.7) 50%, transparent);
 }
 
 /* --------------------------------------------------------------------------
@@ -142,7 +142,7 @@
     overflow: hidden;
     border: 1px solid var(--footer-rule);
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--footer-surface) 0%, #230839 100%);
+    background: linear-gradient(135deg, var(--footer-surface) 0%, rgba(255, 255, 255, 0.03) 100%);
     box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.7);
 }
 
@@ -151,7 +151,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(420px 220px at 100% 0%, rgba(228, 155, 63, 0.16), transparent 70%);
+    background: radial-gradient(420px 220px at 100% 0%, rgba(250, 204, 21, 0.16), transparent 70%);
     pointer-events: none;
 }
 
@@ -208,7 +208,7 @@
     background-color: var(--footer-accent-hover);
     color: var(--footer-accent-ink);
     transform: translateY(-1px);
-    box-shadow: 0 10px 24px -10px rgba(228, 155, 63, 0.7);
+    box-shadow: 0 10px 24px -10px rgba(250, 204, 21, 0.7);
 }
 
 .footer__cta-button .footer__icon {
@@ -460,8 +460,8 @@
 
 .footer__contact-item:hover .footer__contact-badge,
 .footer__contact-item:focus-visible .footer__contact-badge {
-    border-color: rgba(228, 155, 63, 0.45);
-    background-color: rgba(228, 155, 63, 0.08);
+    border-color: rgba(250, 204, 21, 0.45);
+    background-color: rgba(250, 204, 21, 0.08);
 }
 
 /* --------------------------------------------------------------------------
@@ -583,7 +583,7 @@
 
 .footer__top:hover,
 .footer__top:focus-visible {
-    border-color: rgba(228, 155, 63, 0.5);
+    border-color: rgba(250, 204, 21, 0.5);
     color: var(--footer-title);
 }
 

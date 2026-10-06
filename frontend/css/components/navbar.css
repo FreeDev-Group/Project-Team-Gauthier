@@ -20,10 +20,10 @@
 
 .navbar {
     /* TEMP — migrate to base/variables.css (Phase 0) */
-    --navbar-ink: #070723;          /* logo ink, sampled from logo-2.jpg */
-    --navbar-accent: #E49B3F;       /* site gold, sampled from the hero CTA */
-    --navbar-link: #171717;
-    --navbar-link-hover: #1E0636;   /* brand deep purple */
+    --navbar-ink: #000000;          /* logo ink, sampled from logo-2.jpg */
+    --navbar-accent: #FACC15;       /* site gold, sampled from the hero CTA */
+    --navbar-link: #000000;
+    --navbar-link-hover: #000000;   /* brand deep purple */
 
     /* Layout */
     --navbar-bg: var(--color-white);
@@ -34,7 +34,7 @@
     position: relative;
     background-color: var(--navbar-bg);
     font-family: var(--font-primary);
-    border-bottom: 1px solid rgba(23, 23, 23, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 /* Sticky host.
@@ -254,7 +254,7 @@
 
 @media (min-width: 768px) {
     .navbar__menu {
-        box-shadow: 0 10px 24px rgba(7, 7, 35, 0.08);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
     }
 }
 

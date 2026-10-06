@@ -19,13 +19,13 @@
 
 /* home.css is linked by index.html only, so <main> scopes these to the Home */
 main {
-    --home-purple: #1E0636;
-    --home-cream: #F9F2DF;
-    --home-gold: #E49B3F;
-    --home-gold-hover: #F0AE57;
-    --home-ink: #0A0705;
-    --home-text: #33302A;
-    --home-teal: #24707B;
+    --home-purple: #000000;
+    --home-cream: #FFFFFF;
+    --home-gold: #FACC15;
+    --home-gold-hover: #FDE047;
+    --home-ink: #000000;
+    --home-text: rgba(0, 0, 0, 0.72);
+    --home-teal: #16A34A;
 }
 
 /* ==========================================================================
@@ -41,14 +41,12 @@ main {
     isolation: isolate;
     display: flex;
     align-items: center;
-    /* Mockup proportion (232/544), trimmed to 196/544 so the band stays
-       compact: 519px at 1440px instead of 614px.
+    /* Exact mockup proportion: the hero band is 232/544 of the width.
        width: 100% is required, otherwise min-height makes aspect-ratio
        widen the box past the viewport. */
     width: 100%;
-    aspect-ratio: 544 / 196;
-    min-height: 380px;
-    max-height: 560px;
+    aspect-ratio: 544 / 232;
+    min-height: 420px;
     overflow: hidden;
     background-color: var(--home-purple);
 }
@@ -59,14 +57,11 @@ main {
     z-index: -2;
     width: 100%;
     height: 100%;
-    /* Wider frame than the photo: crop top and bottom, keep the presenter
-       and the screen in view */
-    /* contain, not cover: the whole photo stays visible at the section's
-       current height. It sits on the right and the purple fills the left,
-       under the text — the mockup's own composition.
-       No zoom here: scaling would crop the edges again. */
-    object-fit: contain;
-    object-position: 100% 50%;
+    /* Exactly the mockup framing: the photo fills the band and is anchored
+       to the top. Measured against the mockup over 2 205 crop candidates —
+       cover with no zoom, top aligned, is the closest match. */
+    object-fit: cover;
+    object-position: 50% 0%;
 }
 
 /* Opaque purple behind the text, fading out over the photo.
@@ -78,11 +73,11 @@ main {
     z-index: -1;
     background: linear-gradient(
         90deg,
-        rgba(30, 6, 54, 0.95) 0%,
-        rgba(30, 6, 54, 0.9) 30%,
-        rgba(30, 6, 54, 0.5) 46%,
-        rgba(30, 6, 54, 0.22) 66%,
-        rgba(30, 6, 54, 0.1) 100%
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.9) 30%,
+        rgba(0, 0, 0, 0.5) 46%,
+        rgba(0, 0, 0, 0.22) 66%,
+        rgba(0, 0, 0, 0.1) 100%
     );
 }
 
@@ -119,7 +114,7 @@ main {
     margin: 0 0 28px;
     font-size: 17px;
     line-height: 1.55;
-    color: rgba(249, 242, 223, 0.88);
+    color: rgba(255, 255, 255, 0.88);
 }
 
 .hero__cta {
@@ -132,7 +127,7 @@ main {
     border-radius: 6px;
     background-color: var(--home-gold);
     /* Thin darker rim, as on the mockup button */
-    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
     font-size: var(--fs-base);
     font-weight: var(--fw-semibold);
     line-height: 1.25;
@@ -148,8 +143,8 @@ main {
     background-color: var(--home-gold-hover);
     color: var(--home-purple);
     transform: translateY(-1px);
-    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25),
-                0 10px 24px -10px rgba(228, 155, 63, 0.75);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25),
+                0 10px 24px -10px rgba(250, 204, 21, 0.75);
 }
 
 .hero__cta:focus-visible {
@@ -175,10 +170,10 @@ main {
     .hero__overlay {
         background: linear-gradient(
             90deg,
-            rgba(30, 6, 54, 0.92) 0%,
-            rgba(30, 6, 54, 0.85) 50%,
-            rgba(30, 6, 54, 0.45) 78%,
-            rgba(30, 6, 54, 0.2) 100%
+            rgba(0, 0, 0, 0.92) 0%,
+            rgba(0, 0, 0, 0.85) 50%,
+            rgba(0, 0, 0, 0.45) 78%,
+            rgba(0, 0, 0, 0.2) 100%
         );
     }
 }
@@ -203,10 +198,10 @@ main {
     .hero__overlay {
         background: linear-gradient(
             180deg,
-            rgba(30, 6, 54, 0.96) 0%,
-            rgba(30, 6, 54, 0.92) 42%,
-            rgba(30, 6, 54, 0.45) 62%,
-            rgba(30, 6, 54, 0.18) 100%
+            rgba(0, 0, 0, 0.96) 0%,
+            rgba(0, 0, 0, 0.92) 42%,
+            rgba(0, 0, 0, 0.45) 62%,
+            rgba(0, 0, 0, 0.18) 100%
         );
     }
 
@@ -249,7 +244,7 @@ main {
     inset-inline: 0;
     bottom: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(228, 155, 63, 0.75) 50%, transparent);
+    background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.75) 50%, transparent);
 }
 
 .hero__scroll {
@@ -265,7 +260,7 @@ main {
     font-weight: var(--fw-semibold);
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(249, 242, 223, 0.75);
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
     transition: color var(--duration-fast) var(--ease-in-out),
                 opacity var(--duration-base) var(--ease-in-out);
@@ -348,7 +343,8 @@ main {
 .about {
     /* Mockup x1.9: 447px tall in all */
     padding-block: 56px 64px;
-    background-color: var(--home-cream);
+    /* Yellow wash: the warm band of the mockup, in the new palette */
+    background-color: rgba(250, 204, 21, 0.16);
 }
 
 /* Same width and gutters as the hero, the navbar and the footer */
@@ -392,7 +388,7 @@ main {
     aspect-ratio: 176 / 186;
     overflow: hidden;
     border-radius: 9px;
-    box-shadow: 0 18px 36px -24px rgba(10, 7, 5, 0.45);
+    box-shadow: 0 18px 36px -24px rgba(0, 0, 0, 0.45);
 }
 
 .about__image {
@@ -518,10 +514,10 @@ main {
 
 .about__cta:hover,
 .about__cta:focus-visible {
-    background-color: #2A0B47;
+    background-color: rgba(255, 255, 255, 0.07);
     color: var(--home-cream);
     transform: translateY(-1px);
-    box-shadow: 0 12px 24px -12px rgba(30, 6, 54, 0.6);
+    box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.6);
 }
 
 .about__cta:focus-visible {
@@ -681,10 +677,10 @@ main {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    border: 1px solid #ECE9E4;
+    border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 12px;
     background-color: var(--color-white);
-    box-shadow: 0 14px 30px -26px rgba(10, 7, 5, 0.55);
+    box-shadow: 0 14px 30px -26px rgba(0, 0, 0, 0.55);
     transition: transform var(--duration-base) var(--ease-out),
                 box-shadow var(--duration-base) var(--ease-in-out),
                 border-color var(--duration-base) var(--ease-in-out);
@@ -693,8 +689,8 @@ main {
 .service-card:hover,
 .service-card:focus-within {
     transform: translateY(-3px);
-    border-color: rgba(228, 155, 63, 0.55);
-    box-shadow: 0 18px 34px -22px rgba(10, 7, 5, 0.45);
+    border-color: rgba(250, 204, 21, 0.55);
+    box-shadow: 0 18px 34px -22px rgba(0, 0, 0, 0.45);
 }
 
 .service-card__badge {
@@ -704,8 +700,8 @@ main {
     width: 48px;
     height: 48px;
     border-radius: var(--radius-full);
-    background-color: var(--home-purple);
-    color: var(--home-gold);
+    background-color: var(--home-gold);
+    color: var(--home-ink);
 }
 
 /* Icons are CSS masks: never inline SVG, which Live Server would break */
@@ -745,7 +741,7 @@ main {
     margin: 0 0 18px;
     font-size: 15px;
     line-height: 1.55;
-    color: #5F5C55;
+    color: rgba(0, 0, 0, 0.65);
 }
 
 .service-card__link {
@@ -927,7 +923,7 @@ main {
 .case-card__fact + .case-card__fact {
     margin-top: 14px;
     padding-top: 14px;
-    border-top: 1px solid #ECE9E4;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .case-card__label {
@@ -953,7 +949,7 @@ main {
 .case-card__chart {
     margin: 0;
     padding: 12px;
-    border: 1px solid #ECE9E4;
+    border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 10px;
     background-color: var(--color-white);
 }
@@ -974,13 +970,13 @@ main {
 
 .case-card__grid line,
 .case-card__axis {
-    stroke: #E8E6E1;
+    stroke: rgba(0, 0, 0, 0.10);
     stroke-width: 1;
 }
 
 .case-card__area {
     /* Light blue wash under the curves, as in the mockup */
-    fill: rgba(72, 110, 194, 0.12);
+    fill: rgba(22, 163, 74, 0.12);
 }
 
 .case-card__line {
@@ -1105,8 +1101,8 @@ main {
     inset: 0;
     z-index: -1;
     background:
-        radial-gradient(760px 320px at 50% 0%, rgba(126, 72, 204, 0.22), transparent 70%),
-        radial-gradient(520px 260px at 85% 100%, rgba(228, 155, 63, 0.10), transparent 70%);
+        radial-gradient(760px 320px at 50% 0%, rgba(22, 163, 74, 0.22), transparent 70%),
+        radial-gradient(520px 260px at 85% 100%, rgba(250, 204, 21, 0.10), transparent 70%);
     pointer-events: none;
 }
 
@@ -1203,7 +1199,7 @@ main {
     padding: 9px 22px;
     border-radius: 6px;
     background-color: var(--home-gold);
-    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
     font-size: var(--fs-base);
     font-weight: var(--fw-semibold);
     line-height: 1.25;
@@ -1226,8 +1222,8 @@ main {
     background-color: var(--home-gold-hover);
     color: var(--home-purple);
     transform: translateY(-1px);
-    box-shadow: inset 0 0 0 1px rgba(122, 62, 0, 0.25),
-                0 12px 26px -12px rgba(228, 155, 63, 0.8);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25),
+                0 12px 26px -12px rgba(250, 204, 21, 0.8);
 }
 
 .case-studies__cta:focus-visible {
@@ -1469,7 +1465,7 @@ main {
     gap: 12px;
     min-height: 158px;
     padding: 18px 12px;
-    border: 1px solid rgba(228, 155, 63, 0.45);
+    border: 1px solid rgba(250, 204, 21, 0.45);
     border-radius: 14px;
     text-align: center;
     transition: border-color var(--duration-base) var(--ease-in-out),
@@ -1480,7 +1476,7 @@ main {
 .industry-card:hover,
 .industry-card:focus-within {
     border-color: var(--home-gold);
-    background-color: rgba(228, 155, 63, 0.08);
+    background-color: rgba(250, 204, 21, 0.08);
     transform: translateY(-3px);
 }
 
@@ -1489,7 +1485,7 @@ main {
     display: block;
     width: 40px;
     height: 40px;
-    background-color: var(--home-gold);
+    background-color: var(--home-ink);
     -webkit-mask: var(--industry-icon) center / contain no-repeat;
     mask: var(--industry-icon) center / contain no-repeat;
 }
@@ -1531,7 +1527,7 @@ main {
     min-height: 40px;
     margin: 28px auto 0;
     padding: 9px 22px;
-    border: 1px solid rgba(228, 155, 63, 0.55);
+    border: 1px solid rgba(250, 204, 21, 0.55);
     border-radius: 6px;
     font-size: var(--fs-base);
     font-weight: var(--fw-semibold);
@@ -1546,7 +1542,7 @@ main {
 .industries__cta:hover,
 .industries__cta:focus-visible {
     border-color: var(--home-gold);
-    background-color: rgba(228, 155, 63, 0.12);
+    background-color: rgba(250, 204, 21, 0.12);
     color: var(--home-cream);
     transform: translateY(-1px);
 }
@@ -1719,7 +1715,7 @@ main {
     display: block;
     margin-top: 14px;
     font-size: 13px;
-    color: #7A776F;
+    color: rgba(0, 0, 0, 0.55);
 }
 
 .insight-card__title {
@@ -1741,7 +1737,7 @@ main {
     margin: 0;
     font-size: 14px;
     line-height: 1.55;
-    color: #5F5C55;
+    color: rgba(0, 0, 0, 0.65);
 }
 
 .insight-card__link:focus-visible {
@@ -1762,7 +1758,7 @@ main {
     min-height: 40px;
     margin: 32px auto 0;
     padding: 9px 22px;
-    border: 1px solid rgba(30, 6, 54, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 6px;
     font-size: var(--fs-base);
     font-weight: var(--fw-semibold);
@@ -1777,7 +1773,7 @@ main {
 .insights__cta:hover,
 .insights__cta:focus-visible {
     border-color: var(--home-purple);
-    background-color: rgba(30, 6, 54, 0.05);
+    background-color: rgba(0, 0, 0, 0.05);
     color: var(--home-purple);
     transform: translateY(-1px);
 }
@@ -1923,9 +1919,9 @@ main {
     justify-content: center;
     width: 62px;
     height: 62px;
-    border: 1px solid rgba(228, 155, 63, 0.35);
+    border: 1px solid var(--home-gold);
     border-radius: var(--radius-full);
-    background: radial-gradient(circle at 50% 35%, rgba(228, 155, 63, 0.18), rgba(228, 155, 63, 0.04));
+    background-color: var(--home-gold);
     transition: transform var(--duration-base) var(--ease-out),
                 border-color var(--duration-base) var(--ease-in-out),
                 box-shadow var(--duration-base) var(--ease-in-out);
@@ -1935,7 +1931,7 @@ main {
 .industry-card:focus-within .industry-card__badge {
     transform: translateY(-2px) scale(1.04);
     border-color: var(--home-gold);
-    box-shadow: 0 0 0 6px rgba(228, 155, 63, 0.08);
+    box-shadow: 0 0 0 6px rgba(250, 204, 21, 0.25);
 }
 
 .industry-card__icon {
@@ -1970,10 +1966,10 @@ main {
 .insight-card {
     display: flex;
     overflow: hidden;
-    border: 1px solid #ECE9E4;
+    border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 14px;
     background-color: var(--color-white);
-    box-shadow: 0 14px 30px -26px rgba(10, 7, 5, 0.55);
+    box-shadow: 0 14px 30px -26px rgba(0, 0, 0, 0.55);
     transition: transform var(--duration-base) var(--ease-out),
                 border-color var(--duration-base) var(--ease-in-out),
                 box-shadow var(--duration-base) var(--ease-in-out);
@@ -1982,8 +1978,8 @@ main {
 .insight-card:hover,
 .insight-card:focus-within {
     transform: translateY(-4px);
-    border-color: rgba(228, 155, 63, 0.55);
-    box-shadow: 0 20px 36px -22px rgba(10, 7, 5, 0.45);
+    border-color: rgba(250, 204, 21, 0.55);
+    box-shadow: 0 20px 36px -22px rgba(0, 0, 0, 0.45);
 }
 
 .insight-card__link {
@@ -2090,7 +2086,7 @@ main {
     width: 46px;
     height: 3px;
     border-radius: var(--radius-full);
-    background: linear-gradient(90deg, var(--home-gold), rgba(228, 155, 63, 0.35));
+    background: linear-gradient(90deg, var(--home-gold), rgba(250, 204, 21, 0.35));
     transform: translateX(-50%) scaleX(0);
     transform-origin: center;
     transition: transform 600ms var(--ease-out) 120ms;
@@ -2130,7 +2126,7 @@ html:not(.js-reveal) .insights__title::after {
     inset-inline: 0;
     top: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(228, 155, 63, 0.35) 50%, transparent);
+    background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.35) 50%, transparent);
 }
 
 /* --------------------------------------------------------------------------
@@ -2158,7 +2154,7 @@ html:not(.js-reveal) .insights__title::after {
 .service-card:hover .service-card__badge,
 .service-card:focus-within .service-card__badge {
     transform: translateY(-2px) scale(1.06);
-    box-shadow: 0 0 0 6px rgba(30, 6, 54, 0.06);
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.06);
 }
 
 .service-card__icon {
